@@ -1,0 +1,264 @@
+@charset "UTF-8";
+
+// ================================================
+// Panel Components (필터 패널, 리스트/상세 패널, 진행 단계)
+// ================================================
+
+@use '../import/component-variables' as *;
+@use '../import/component-mixins' as *;
+
+// Filter panel (사이드 필터)
+.filter-panel {
+  width: 320px;
+  background: $white;
+  border-radius: $radius-xl;
+  padding: $spacing-xl $spacing-lg $spacing-xl;
+  margin: $spacing-xl auto;
+  box-shadow: $shadow-sm;
+}
+
+.filter-panel .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.filter-panel .header h2 {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  margin: 0;
+  color: $gray-900;
+}
+
+.filter-panel .reset {
+  font-size: $font-size-xs;
+  color: $gray-500;
+  cursor: pointer;
+}
+
+.filter-panel .section {
+  border-top: $input-border-width solid $gray-200;
+  padding: $spacing-md 0;
+}
+
+.filter-panel .section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.filter-panel .section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-md;
+}
+
+.filter-panel .section-title .count {
+  background: $primary;
+  color: $white;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-normal;
+  padding: 2px $spacing-sm;
+  border-radius: $radius-full;
+  margin-left: $spacing-sm;
+}
+
+.filter-panel .checklist {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+}
+
+.filter-panel .checklist label {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  cursor: pointer;
+}
+
+.filter-panel .footer {
+  margin-top: $spacing-xl;
+  display: flex;
+  gap: $spacing-md;
+}
+
+.filter-panel .footer .btn {
+  flex: 1;
+  padding: $spacing-md 0;
+}
+
+// Layout: 3열 (사이드 + 리스트 + 상세)
+.layout {
+  display: grid;
+  grid-template-columns: 240px 360px 1fr;
+  height: 100vh;
+}
+
+.list-panel {
+  background: $white;
+  border-right: $input-border-width solid $gray-200;
+  padding: $spacing-lg;
+  overflow-y: auto;
+}
+
+.detail-panel {
+  padding: $spacing-xl $spacing-2xl;
+  overflow-y: auto;
+  background: $gray-50;
+}
+
+// List item (민원 목록 등)
+.list-item {
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  border: $input-border-width solid $gray-200;
+  margin-bottom: $spacing-md;
+  cursor: pointer;
+  @include transition(border-color, background-color);
+}
+
+.list-item:hover {
+  border-color: $gray-300;
+}
+
+.list-item.active {
+  border-color: $primary;
+  background: rgba($primary, 0.06);
+}
+
+.list-title {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-sm;
+  color: $gray-900;
+}
+
+.list-meta {
+  font-size: $font-size-xs;
+  color: $gray-500;
+  display: flex;
+  justify-content: space-between;
+}
+
+// Detail header
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+}
+
+.detail-title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $gray-900;
+}
+
+// Status badge (처리중, 종결 등)
+.status {
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  background: rgba($danger, 0.1);
+  color: $danger;
+}
+
+.status-success {
+  background: rgba($success, 0.1);
+  color: $success;
+}
+
+.status-primary {
+  background: rgba($primary, 0.1);
+  color: $primary;
+}
+
+// Info row (키-값 행)
+.info-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  font-size: $font-size-sm;
+  padding: $spacing-sm 0;
+  gap: $spacing-md;
+}
+
+.info-row span:first-child {
+  color: $gray-500;
+}
+
+// Cards grid (담당자 카드 2열)
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+}
+
+.cards .card {
+  max-width: none;
+  box-shadow: none;
+  background: $gray-100;
+  border-radius: $radius-xl;
+  padding: $spacing-lg;
+  font-size: $font-size-sm;
+}
+
+.cards .card h4 {
+  margin: 0 0 $spacing-sm 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.cards .card .badge {
+  margin-left: $spacing-sm;
+  font-size: $font-size-xs;
+  padding: 2px $spacing-sm;
+  background: rgba($primary, 0.15);
+  color: $primary;
+  border-radius: $radius-md;
+}
+
+// Progress (단계 표시)
+.progress {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+}
+
+.progress .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: $font-size-xs;
+  color: $gray-500;
+}
+
+.progress .circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $gray-200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-xs;
+  font-size: $font-size-sm;
+}
+
+.progress .step.done .circle {
+  background: $primary;
+  color: $white;
+}
+
+.progress .line {
+  flex: 1;
+  height: 2px;
+  background: $gray-200;
+  min-width: 24px;
+}

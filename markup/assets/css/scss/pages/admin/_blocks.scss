@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+@use "variables" as *;
+
+// 관리자 대시보드 — 페이지 블록 (헤더, 통계, 요약 등)
+// 컴포넌트를 조합하는 레이아웃·블록 단위
+
+.admin-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 16px;
+  background: var(--bg-base);
+  border: 1px solid $admin-item-border;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.admin-page-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-title);
+  margin: 0;
+}
+
+.admin-page-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  span {
+    padding: 4px 10px;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-body);
+  }
+}
+
+.admin-address {
+  width: 100%;
+  font-size: 0.875rem;
+  color: var(--text-body);
+  margin: 0;
+}
+
+.admin-summary {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}

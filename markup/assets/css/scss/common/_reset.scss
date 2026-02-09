@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  height: 10px;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #CDCDCD;
+  border-radius: 8px;
+  background-clip: padding-box;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+::-webkit-scrollbar-track {
+  background-color: #F2F2F2;
+}
+
+/* clearfix */
+.clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* hidden */
+.blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.d-none {
+  display: none !important;
+}
+
+[class*="gra"] {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  &::after {
+    inset: 0;
+    padding: 1px;
+    mask: var(--mask-contents);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}

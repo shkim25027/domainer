@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+@use "variables" as *;
+@use "../../import/mixin" as *;
+
+// 관리자 페이지 공통 베이스 (body, wrap, 컨테이너 등)
+// .page-admin 또는 body.admin 등으로 스코프
+
+.page-admin {
+  // 관리자 페이지 루트
+}
+
+.admin-content {
+  padding: $admin-content-padding;
+  min-height: 100%;
+}

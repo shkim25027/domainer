@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+// 공통 뱃지 컴포넌트
+// .badge, .badge-primary, .badge-success, .badge-warning, .badge-danger 등
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 4px;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+
+  &-default {
+    background: var(--bg-base);
+    border-color: var(--border-base);
+    color: var(--text-body);
+  }
+
+  &-primary {
+    background: var(--text-primary);
+    color: #fff;
+  }
+
+  &-success {
+    background: var(--text-success);
+    color: #fff;
+  }
+
+  &-warning {
+    background: var(--text-warning);
+    color: #fff;
+  }
+
+  &-danger {
+    background: var(--text-danger);
+    color: #fff;
+  }
+
+  &-outline {
+    background: transparent;
+    border-color: var(--border-base);
+    color: var(--text-body);
+  }
+}

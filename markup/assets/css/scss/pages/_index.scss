@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+// 페이지별 스타일 진입점
+// 새 페이지 추가 시 아래에 @forward "폴더명/index"; 추가
+
+@forward "main";
+@forward "admin/index";

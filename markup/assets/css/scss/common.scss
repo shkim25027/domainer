@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+// common.css 진입점: import → common(리셋·모달·반응형)
+@forward "import/typography";
+@forward "import/lib-fonts";
+@forward "import/reset-css";
+@forward "common/reset";
+@forward "common/modal";
+@forward "common/responsive";

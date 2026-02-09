@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+@use "../variables" as *;
+
+// 관리자 대시보드 — 별점 컴포넌트
+
+.admin-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-body);
+  margin-bottom: 16px;
+}
+
+.admin-stars {
+  display: inline-flex;
+  gap: 2px;
+  .admin-star {
+    width: 16px;
+    height: 16px;
+    border: 1px solid $admin-item-border;
+    border-radius: 2px;
+    background: var(--bg-base);
+    &.is-filled {
+      background: #ffc107;
+      border-color: #ffc107;
+    }
+  }
+}

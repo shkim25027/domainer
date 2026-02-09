@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+// ================================================
+// Tabs Component (폼/모달 세그먼트 탭, 리스트 탭)
+// ================================================
+
+@use '../import/component-variables' as *;
+@use '../import/component-mixins' as *;
+
+// 세그먼트 탭 (검토정보·민원등록 등 - 테두리 한 줄)
+.tabs {
+  display: flex;
+  border: $input-border-width solid $input-border-color;
+  border-radius: $radius-md;
+  overflow: hidden;
+  margin-bottom: $spacing-xl;
+}
+
+.tab {
+  flex: 1;
+  padding: $spacing-md 0;
+  text-align: center;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  font-family: $font-family-base;
+  cursor: pointer;
+  background: $white;
+  color: $gray-700;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  @include transition(background-color, color);
+
+  &.active {
+    background: $primary;
+    color: $white;
+    font-weight: $font-weight-semibold;
+  }
+
+  @include hover-support {
+    &:not(.active) {
+      background: $gray-50;
+    }
+  }
+}
+
+// 변형: 하단 보더만 (민원등록 스타일)
+.tabs-underline {
+  border: none;
+  border-bottom: $input-border-width solid $gray-200;
+  border-radius: 0;
+  margin-bottom: $spacing-xl;
+
+  .tab {
+    border: $input-border-width solid $gray-200;
+    border-bottom: none;
+    background: $gray-50;
+    margin-bottom: -$input-border-width;
+
+    &.active {
+      background: $primary;
+      color: $white;
+      border-color: $primary;
+    }
+  }
+}
+
+// 변형: 리스트/대시보드용 탭 (pill 스타일)
+.tabs-pills {
+  border: none;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+
+  .tab {
+    flex: none;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-md;
+    background: transparent;
+
+    &.active {
+      background: rgba($primary, 0.12);
+      color: $primary;
+    }
+  }
+}
