@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* media query */
+
+// 1023px 이하: 태블릿
+@media all and (max-width: 1023px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+// 767px 이하
+@media all and (max-width: 767px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+// 639px 이하
+@media all and (max-width: 639px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+// 479px 이하
+@media all and (max-width: 479px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+// 359px 이하
+@media all and (max-width: 359px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+// 319px 이하
+@media all and (max-width: 319px) {
+  html {
+    font-size: 8px;
+  }
+}

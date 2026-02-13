@@ -1,0 +1,39 @@
+@use "variables" as *;
+@use "px-convert" as *;
+
+// =======================================
+// 10px 기준 rem (1rem = 10px)
+// =======================================
+html {
+  font-size: $html-fz; // 1rem = 10px
+  &[lang="ko-KR"],
+  &[lang="ko"] {
+    font-family: $font-family-ko;
+  }
+  &[lang="en"],
+  *[lang="en"] {
+    font-family: $font-family-en;
+    body {
+      font-size: 1.8rem; // 18px
+      font-weight: 400;
+    }
+  }
+  body {
+    font-size: 1.6rem; // 16px
+    font-weight: 400;
+    line-height: $line-height;
+    color: $base-color;
+    letter-spacing: -0.04em;
+  }
+}
+
+// 반응형 타이틀 (개별 미디어쿼리)
+.title {
+  font-size: toRem(24px);
+  @media (max-width: 767px) {
+    font-size: toRem(20px);
+  }
+  @media (min-width: 1024px) {
+    font-size: toRem(28px);
+  }
+}
