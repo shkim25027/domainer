@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사업정보 관리 - DOMAINER</title>
+  <style>
+    /* ===== Design System Variables ===== */
+    :root {
+      --primary: #1F524B;
+      --primary-dark: #112D29;
+      --primary-light: #BDE6E0;
+      --primary-bg: #E2F4F1;
+      --danger: #ef4444;
+      --success: #10b981;
+
+      --gray-50:  #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #EEEEEE;
+      --gray-300: #E0E0E0;
+      --gray-400: #BDBDBD;
+      --gray-500: #9E9E9E;
+      --gray-600: #757575;
+      --gray-700: #616161;
+      --gray-800: #424242;
+      --gray-900: #212121;
+      --white: #fff;
+
+      --font-xs:   0.75rem;   /* 12px */
+      --font-sm:   0.8125rem; /* 13px */
+      --font-base: 0.875rem;  /* 14px */
+
+      --radius-sm: 2px;
+      --radius-md: 4px;
+      --radius-lg: 6px;
+      --radius-xl: 8px;
+      --radius-full: 9999px;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: var(--font-sm);
+      color: var(--gray-900);
+      background: var(--gray-100);
+      -webkit-font-smoothing: antialiased;
+    }
+    input, select, textarea, button { font-family: inherit; }
+
+    /* ===== Wrap (사이드바 + 콘텐츠 2열) ===== */
+    .wrap {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ===== Sidebar (.nav-wrap) ===== */
+    .nav-wrap {
+      background: linear-gradient(180deg, #0f5a44 0%, #0f3227 100%);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Logo */
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 16px 14px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .sidebar-logo svg { width: 26px; height: 26px; flex-shrink: 0; }
+
+    /* Project Selector */
+    .project-selector {
+      margin: 0 12px 14px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-lg);
+      padding: 8px 10px;
+      color: #fff;
+      font-size: var(--font-sm);
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 6px;
+    }
+    .project-selector span { flex: 1; }
+    .project-selector .arrow { font-size: 10px; opacity: 0.6; }
+
+    /* Nav Menu */
+    .nav-menu { list-style: none; padding: 0 0 0 8px; flex: 1; }
+    .nav-menu > li { margin-bottom: 1px; }
+    .nav-menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: var(--font-sm);
+      font-weight: 500;
+      border-radius: 6px 0 0 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-menu a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .nav-menu .nav-ico { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
+
+    /* 하위메뉴 (.nav-sub) */
+    .nav-sub { list-style: none; padding: 2px 0 4px 28px; }
+    .nav-sub li a {
+      font-size: var(--font-sm);
+      padding: 7px 10px;
+      color: rgba(255,255,255,0.6);
+      border-radius: 4px 0 0 4px;
+    }
+    .nav-sub li.active a {
+      background: linear-gradient(0deg, rgba(236,227,210,.5) 0%, rgba(236,227,210,.5) 100%), #fff;
+      color: #000;
+      font-weight: 700;
+    }
+    .nav-sub li a:hover:not([class]) { background: rgba(3,30,21,0.45); color: rgba(255,255,255,.9); }
+
+    /* 열려있는 그룹 표시 */
+    .nav-menu li.active > a { color: #70e0be; }
+
+    /* Sidebar User */
+    .sidebar-user {
+      padding: 12px 14px 18px;
+      color: rgba(255,255,255,0.55);
+      font-size: var(--font-xs);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: auto;
+    }
+    .sidebar-user .user-name {
+      font-size: var(--font-sm);
+      font-weight: 600;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 2px;
+    }
+
+    /* ===== Container (메인 콘텐츠) ===== */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ===== Content Panels (.content-panel) ===== */
+    .content-panel {
+      overflow-y: auto;
+      padding: 20px;
+      background: var(--white);
+    }
+    .content-panel--right {
+      background: var(--gray-50);
+      border-left: 1px solid var(--gray-200);
+    }
+
+    /* ===== Panel Header ===== */
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .panel-title {
+      font-size: var(--font-base);
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    /* ===== Form Table (.form-table) ===== */
+    .form-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--gray-300);
+      margin-bottom: 14px;
+      font-size: var(--font-sm);
+    }
+    .form-table th,
+    .form-table td {
+      border: 1px solid var(--gray-300);
+      padding: 6px 10px;
+      vertical-align: middle;
+    }
+    .form-table th {
+      background: var(--gray-100);
+      font-weight: 500;
+      color: var(--gray-700);
+      white-space: nowrap;
+      width: 90px;
+      text-align: left;
+    }
+    .form-table td { background: var(--white); }
+
+    /* ===== Input / Select / Textarea (공용) ===== */
+    .input,
+    .form-table input,
+    .form-table select,
+    .form-table textarea,
+    .facility-row input,
+    .facility-row select {
+      height: 30px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      padding: 0 8px;
+      font-size: var(--font-sm);
+      color: var(--gray-900);
+      background: var(--white);
+      outline: none;
+    }
+    .form-table input,
+    .form-table select { width: 100%; }
+    .form-table textarea {
+      height: auto;
+      min-height: 72px;
+      padding: 6px 8px;
+      width: 100%;
+      resize: vertical;
+    }
+    .form-table input:focus,
+    .form-table select:focus,
+    .form-table textarea:focus { border-color: var(--primary); }
+    .form-table input::placeholder,
+    .form-table textarea::placeholder { color: var(--gray-400); }
+
+    /* ===== Row Inline (.form-row-inline) ===== */
+    .form-row-inline {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .form-row-inline .sep { color: var(--gray-400); flex-shrink: 0; }
+    .form-row-inline .unit { color: var(--gray-600); font-size: var(--font-sm); flex-shrink: 0; }
+    .form-row-inline .lbl { font-weight: 600; color: var(--gray-700); flex-shrink: 0; }
+    .form-row-inline .input-w80 { width: 80px; }
+    .form-row-inline .input-w50 { width: 50px; text-align: right; }
+    .form-row-inline .input-w130 { width: 130px; }
+    .form-row-inline .note {
+      font-size: var(--font-xs);
+      color: var(--gray-500);
+      flex-shrink: 0;
+    }
+
+    /* ===== 지도 영역 (.map-area) ===== */
+    .map-area {
+      width: 220px;
+      height: 108px;
+      background: #dce6ed;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-400);
+      font-size: var(--font-xs);
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-area svg { opacity: 0.4; }
+
+    /* ===== 시설물 행 (.facility-row) ===== */
+    .facility-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .facility-row select { flex-shrink: 0; }
+    .facility-row input { flex: 1; min-width: 0; }
+    .facility-row .input-num { width: 48px; flex: none; text-align: right; }
+    .facility-row .divider { color: var(--gray-300); padding: 0 2px; }
+    .facility-row .unit { color: var(--gray-600); font-size: var(--font-sm); flex-shrink: 0; }
+
+    /* ===== Section Title (.section-title) ===== */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: var(--font-sm);
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 8px;
+    }
+
+    /* ===== Data Table (.data-table) ===== */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--font-sm);
+      margin-top: 8px;
+    }
+    .data-table th {
+      background: var(--gray-100);
+      padding: 6px 10px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-200);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 6px 10px;
+      border: 1px solid var(--gray-200);
+      text-align: center;
+      color: var(--gray-800);
+    }
+    .data-table tbody tr:hover { background: var(--gray-50); }
+
+    /* ===== Buttons (.btn) ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 12px;
+      height: 32px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-xl);
+      background: var(--white);
+      color: var(--gray-700);
+      font-size: var(--font-sm);
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 1;
+      transition: all 0.15s;
+    }
+    .btn:hover { background: var(--gray-50); border-color: var(--gray-400); }
+
+    .btn-sm {
+      height: 26px;
+      padding: 0 8px;
+      font-size: var(--font-xs);
+      border-radius: var(--radius-lg);
+    }
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+    .btn-outline { background: var(--white); border-color: var(--gray-300); color: var(--gray-700); }
+
+    /* 삭제(－) 버튼 */
+    .btn-del {
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      color: var(--gray-500);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .btn-del:hover { border-color: var(--danger); color: var(--danger); }
+
+    /* ===== Badge (.badge) ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 9px;
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: 600;
+    }
+    .badge-pink {
+      background: rgba(236,72,153,0.1);
+      color: #be185d;
+      border: 1px solid rgba(236,72,153,0.25);
+    }
+
+    /* 알림 숫자 뱃지 */
+    .notif {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      background: var(--danger);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* ===== 파일 링크 ===== */
+    .file-link {
+      color: var(--primary);
+      text-decoration: underline;
+      font-size: var(--font-sm);
+      cursor: pointer;
+    }
+    .file-info { color: var(--gray-500); font-size: var(--font-xs); margin-left: 2px; }
+    .new-win-btn {
+      height: 22px;
+      padding: 0 6px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      color: var(--gray-600);
+      font-size: var(--font-xs);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* 주석 텍스트 */
+    .anno { color: #e91e8c; font-size: var(--font-xs); }
+
+    /* ===== 공구관리 패널 ===== */
+
+    /* 공구 주소 */
+    .addr-note { font-size: var(--font-xs); color: var(--danger); margin-bottom: 12px; }
+
+    /* 공구 블록 (.gonggu-block) */
+    .gonggu-block {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-xl);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    /* 공구 헤더 (.gonggu-header) */
+    .gonggu-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+      font-size: var(--font-sm);
+      flex-wrap: nowrap;
+    }
+    .gonggu-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: var(--font-xs);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .gonggu-lbl { font-weight: 600; color: var(--gray-700); flex-shrink: 0; }
+    .gonggu-sec-lbl { color: var(--gray-500); flex-shrink: 0; }
+    .gonggu-header .input {
+      height: 26px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      padding: 0 6px;
+      font-size: var(--font-xs);
+      background: var(--white);
+      color: var(--gray-900);
+      outline: none;
+      font-family: inherit;
+    }
+    .gonggu-header .input-sec { flex: 1; min-width: 70px; }
+    .gonggu-header .input-sta { width: 56px; }
+    .gonggu-header .sta-lbl { color: var(--gray-600); font-weight: 500; flex-shrink: 0; font-size: var(--font-xs); }
+    .gonggu-header .sep { color: var(--gray-400); flex-shrink: 0; }
+    .gonggu-header .spacer { flex: 1; }
+
+    /* +인원 버튼 */
+    .btn-add-member {
+      height: 24px;
+      padding: 0 8px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      color: var(--gray-600);
+      font-size: 11px;
+      cursor: pointer;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .btn-add-member:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* 공구 본문 */
+    .gonggu-body { padding: 0; }
+
+    /* 인포 노트 */
+    .info-note {
+      padding: 5px 10px;
+      font-size: var(--font-xs);
+      color: var(--danger);
+      background: rgba(239,68,68,0.04);
+      border-bottom: 1px solid rgba(239,68,68,0.08);
+    }
+
+    /* 공구 테이블 (.gonggu-table) */
+    .gonggu-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--font-xs);
+    }
+    .gonggu-table th {
+      background: var(--gray-50);
+      padding: 5px 8px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--gray-600);
+      border-bottom: 1px solid var(--gray-200);
+      white-space: nowrap;
+    }
+    .gonggu-table td {
+      padding: 5px 8px;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-100);
+      color: var(--gray-800);
+    }
+    .gonggu-table tbody tr:last-child td { border-bottom: none; }
+    .gonggu-table tbody tr:hover { background: var(--gray-50); }
+    .gonggu-table .td-email { font-size: 10px; color: var(--gray-600); }
+
+    /* ===== Utility ===== */
+    .d-flex { display: flex; }
+    .align-center { align-items: center; }
+    .gap-1 { gap: 4px; }
+    .gap-2 { gap: 8px; }
+    .ml-auto { margin-left: auto; }
+    .mb-1 { margin-bottom: 6px; }
+    .mb-2 { margin-bottom: 10px; }
+    .mt-1 { margin-top: 6px; }
+    .mt-2 { margin-top: 10px; }
+    .fw-6 { font-weight: 600; }
+    .text-muted { color: var(--gray-500); }
+    .text-sm { font-size: var(--font-sm); }
+    .text-xs { font-size: var(--font-xs); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ===== Sidebar (.nav-wrap) ===== -->
+    <div class="nav-wrap">
+
+      <!-- 로고 -->
+      <div class="sidebar-logo">
+        <svg viewBox="0 0 26 26" fill="none">
+          <rect width="26" height="26" rx="6" fill="rgba(255,255,255,0.15)"/>
+          <path d="M6 13l5 5 9-9" stroke="#70e0be" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        DOMAINER
+      </div>
+
+      <!-- 프로젝트 선택 -->
+      <div class="project-selector">
+        <span>대산-당진 고속도로</span>
+        <span class="arrow">▼</span>
+      </div>
+
+      <!-- 메뉴 -->
+      <ul class="nav-menu">
+        <li>
+          <a href="#">
+            <span class="nav-ico">📊</span>보상현황
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="nav-ico">📋</span>보상관리
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="nav-ico">📣</span>민원관리
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="nav-ico">🗺</span>지도(위치기반)
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="nav-ico">🗂</span>자료관리
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="nav-ico">📜</span>보상기준 절차
+          </a>
+        </li>
+        <li class="active">
+          <a href="#">
+            <span class="nav-ico">⚙</span>프로젝트 관리
+          </a>
+          <ul class="nav-sub">
+            <li class="active">
+              <a href="#">사업정보 관리</a>
+            </li>
+            <li>
+              <a href="#">조사업체 협의기관 관리</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- 사용자 정보 -->
+      <div class="sidebar-user">
+        <div class="user-name">김형수</div>
+        <div>서산아산건설사업단</div>
+      </div>
+    </div>
+    <!-- /.nav-wrap -->
+
+    <!-- ===== 메인 콘텐츠 (.container) ===== -->
+    <div class="container">
+
+      <!-- ===== 좌측 : 사업정보 관리 폼 ===== -->
+      <div class="content-panel">
+
+        <!-- 기본 정보 테이블 -->
+        <table class="form-table">
+          <colgroup>
+            <col style="width:90px">
+            <col>
+          </colgroup>
+
+          <!-- 사업명 -->
+          <tr>
+            <th>사업명</th>
+            <td>
+              <div class="form-row-inline">
+                <select style="width:110px">
+                  <option>사업구분</option>
+                </select>
+                <input type="text" placeholder="노선명" style="flex:1" />
+              </div>
+            </td>
+          </tr>
+
+          <!-- 사업 구간 -->
+          <tr>
+            <th>사업 구간</th>
+            <td>
+              <div class="form-row-inline" style="align-items:stretch; gap:8px">
+                <!-- 기점 / 종점 -->
+                <div style="flex:1; display:flex; flex-direction:column; gap:6px; justify-content:center">
+                  <div class="form-row-inline">
+                    <input type="text" placeholder="기점(읍·면·동·리)" style="flex:1" />
+                    <span class="sep">~</span>
+                  </div>
+                  <input type="text" placeholder="종점(읍·면·동·리)" style="width:100%" />
+                </div>
+                <!-- 지도 -->
+                <div class="map-area">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                  </svg>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 사업연장 / 사업금액 -->
+          <tr>
+            <th>사업연장</th>
+            <td>
+              <div class="form-row-inline">
+                <input type="number" value="0.00" style="width:72px; text-align:right" />
+                <span class="unit">km</span>
+                <span class="lbl" style="margin-left:16px">사업금액</span>
+                <input type="text" value="0,000" style="width:72px; text-align:right" />
+                <span class="unit">억원</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 사업기간 -->
+          <tr>
+            <th>사업기간</th>
+            <td>
+              <div class="form-row-inline">
+                <input type="date" class="input-w130" />
+                <span class="sep">~</span>
+                <input type="date" class="input-w130" />
+                <span class="note" style="margin-left:8px">착공일로부터</span>
+                <input type="number" value="0" class="input-w50" />
+                <span class="unit">개월</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 관리부서 -->
+          <tr>
+            <th>관리부서</th>
+            <td>
+              <input type="text" placeholder="부서명 / 사업단명" />
+            </td>
+          </tr>
+
+          <!-- 사업목적 -->
+          <tr>
+            <th>사업목적</th>
+            <td>
+              <textarea placeholder="내용을 입력하세요"></textarea>
+            </td>
+          </tr>
+        </table>
+
+        <!-- 주요시설물 -->
+        <div class="section-title">
+          주요시설물
+          <button class="btn btn-sm btn-primary">＋ 시설물</button>
+        </div>
+
+        <!-- 시설물 행 1 : 나들목 / 교량 -->
+        <div class="facility-row mb-1">
+          <select style="width:80px"><option>나들목</option></select>
+          <input type="text" placeholder="시설명,구분" />
+          <span class="divider">|</span>
+          <select style="width:68px"><option>교량</option></select>
+          <input type="number" class="input-num" value="0" />
+          <span class="unit">개소</span>
+          <input type="number" class="input-num" value="0.00" />
+          <span class="unit">km</span>
+          <button class="btn-del">－</button>
+        </div>
+
+        <!-- 시설물 행 2 : 분기점 / 종류 -->
+        <div class="facility-row mb-2">
+          <select style="width:80px"><option>분기점</option></select>
+          <input type="text" placeholder="시설명,구분" />
+          <span class="divider">|</span>
+          <select style="width:68px"><option>종류</option></select>
+          <input type="text" placeholder="시설명,구분" />
+          <button class="btn-del">－</button>
+        </div>
+
+        <!-- 도로구역 고시 테이블 -->
+        <table class="form-table">
+          <colgroup>
+            <col style="width:140px">
+            <col>
+          </colgroup>
+          <tr>
+            <th style="white-space:nowrap">도로구역 결정(변경)고시</th>
+            <td>
+              <div class="form-row-inline">
+                <a class="file-link" href="#">2025-00-00 국토교통부고시 제2023-635호</a>
+                <span class="file-info">pdf, 17KB</span>
+                <button class="new-win-btn">새창</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>도로구역 세목고시</th>
+            <td>
+              <button class="btn btn-sm">＋ 파일 등록하기</button>
+            </td>
+          </tr>
+        </table>
+
+        <!-- 사업관리(가칭) -->
+        <div class="section-title mt-2">사업관리(가칭)</div>
+        <div class="form-row-inline mb-2">
+          <button class="btn btn-sm">한국도로공사</button>
+          <button class="btn btn-sm">D412565 : 자동입력 가능?</button>
+        </div>
+
+        <!-- 사업관리 담당자 테이블 -->
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>공구</th>
+              <th>부서</th>
+              <th>담당자</th>
+              <th>전화번호</th>
+              <th>메일 주소</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1,3공구</td>
+              <td>토목사업본부</td>
+              <td>정은혜</td>
+              <td>010-3595-3511</td>
+              <td>hanmacdesign@hanmaceng.co.kr</td>
+            </tr>
+            <tr>
+              <td>2,4공구</td>
+              <td>토목사업본부</td>
+              <td>김정석</td>
+              <td>010-8832-5721</td>
+              <td>hanmacdesign@hanmaceng.co.kr</td>
+            </tr>
+            <tr>
+              <td>전체공구</td>
+              <td>토목사업본부</td>
+              <td>채선영</td>
+              <td>010-9951-2389</td>
+              <td>hanmacdesign@hanmaceng.co.kr</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.content-panel (좌) -->
+
+
+      <!-- ===== 우측 : 공구관리 패널 ===== -->
+      <div class="content-panel content-panel--right">
+
+        <!-- 패널 헤더 -->
+        <div class="panel-header">
+          <div class="d-flex align-center gap-2">
+            <span class="panel-title">공구관리</span>
+            <span class="badge badge-pink">＋ 공구</span>
+          </div>
+          <button class="btn btn-sm btn-primary">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            인원정보 등록
+            <span class="notif">1</span>
+          </button>
+        </div>
+
+        <!-- ─── 공구 1 ─── -->
+        <div class="gonggu-block">
+          <div class="gonggu-header">
+            <span class="gonggu-num">1</span>
+            <span class="gonggu-lbl">공구</span>
+            <span class="gonggu-sec-lbl">사업 구간</span>
+            <input class="input input-sec" type="text" placeholder="시점(읍·면·동·리)" />
+            <input class="input input-sec" type="text" placeholder="종점(읍·면·동·리)" />
+            <span class="sta-lbl">STA</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+            <span class="sep">~</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+          </div>
+          <div class="gonggu-body">
+            <table class="gonggu-table">
+              <thead>
+                <tr>
+                  <th>업체명</th>
+                  <th>부서</th>
+                  <th>담당자</th>
+                  <th>전화번호</th>
+                  <th>메일 주소</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>코오롱글로벌(주)</td>
+                  <td>토목사업본부</td>
+                  <td>정은혜</td>
+                  <td>010-3595-3511</td>
+                  <td class="td-email">hanmacdesign@hanmaceng.co.kr</td>
+                  <td><button class="btn-del">－</button></td>
+                </tr>
+                <tr>
+                  <td>코오롱글로벌(주)</td>
+                  <td>토목사업본부</td>
+                  <td>김정석</td>
+                  <td>010-8832-5721</td>
+                  <td class="td-email">hanmacdesign@hanmaceng.co.kr</td>
+                  <td><button class="btn-del">－</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ─── 공구 2 ─── -->
+        <div class="gonggu-block">
+          <div class="gonggu-header">
+            <span class="gonggu-num">2</span>
+            <span class="gonggu-lbl">공구</span>
+            <span class="gonggu-sec-lbl">사업 구간</span>
+            <input class="input input-sec" type="text" placeholder="시점(읍·면·동·리)" />
+            <input class="input input-sec" type="text" placeholder="종점(읍·면·동·리)" />
+            <span class="sta-lbl">STA</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+            <span class="sep">~</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+            <button class="btn-add-member">＋인원</button>
+          </div>
+          <div class="gonggu-body">
+            <table class="gonggu-table">
+              <thead>
+                <tr>
+                  <th>업체명</th><th>부서</th><th>담당자</th>
+                  <th>전화번호</th><th>메일 주소</th><th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>코오롱글로벌(주)</td>
+                  <td>토목사업본부</td>
+                  <td>김수현</td>
+                  <td>010-3595-3511</td>
+                  <td class="td-email">hanmacdesign@hanmaceng.co.kr</td>
+                  <td><button class="btn-del">－</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ─── 공구 3 ─── -->
+        <div class="gonggu-block">
+          <div class="gonggu-header">
+            <span class="gonggu-num">3</span>
+            <span class="gonggu-lbl">공구</span>
+            <span class="gonggu-sec-lbl">사업 구간</span>
+            <input class="input input-sec" type="text" placeholder="시점(읍·면·동·리)" />
+            <input class="input input-sec" type="text" placeholder="종점(읍·면·동·리)" />
+            <span class="sta-lbl">STA</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+            <span class="sep">~</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+            <button class="btn-add-member">＋인원</button>
+          </div>
+          <div class="gonggu-body">
+            <table class="gonggu-table">
+              <thead>
+                <tr>
+                  <th>업체명</th><th>부서</th><th>담당자</th>
+                  <th>전화번호</th><th>메일 주소</th><th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>코오롱글로벌(주)</td>
+                  <td>토목사업본부</td>
+                  <td>신혜영</td>
+                  <td>010-3595-3511</td>
+                  <td class="td-email">hanmacdesign@hanmaceng.co.kr</td>
+                  <td><button class="btn-del">－</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ─── 공구 4 ─── -->
+        <div class="gonggu-block">
+          <div class="gonggu-header">
+            <span class="gonggu-num">4</span>
+            <span class="gonggu-lbl">공구</span>
+            <span class="gonggu-sec-lbl">사업 구간</span>
+            <input class="input input-sec" type="text" placeholder="시점(읍·면·동·리)" />
+            <input class="input input-sec" type="text" placeholder="종점(읍·면·동·리)" />
+            <span class="sta-lbl">STA</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+            <span class="sep">~</span>
+            <input class="input input-sta" type="text" placeholder="0+000" />
+            <button class="btn-add-member">＋인원</button>
+          </div>
+          <div class="gonggu-body">
+            <table class="gonggu-table">
+              <thead>
+                <tr>
+                  <th>업체명</th><th>부서</th><th>담당자</th>
+                  <th>전화번호</th><th>메일 주소</th><th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>코오롱글로벌(주)</td>
+                  <td>토목사업본부</td>
+                  <td>허유나</td>
+                  <td>010-3595-3511</td>
+                  <td class="td-email">hanmacdesign@hanmaceng.co.kr</td>
+                  <td><button class="btn-del">－</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.content-panel (우) -->
+
+    </div>
+    <!-- /.container -->
+
+  </div>
+  <!-- /.wrap -->
+</body>
+</html>

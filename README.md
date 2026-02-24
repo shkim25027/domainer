@@ -1,75 +1,38 @@
-# Domainer
+# Domainer – Gulp 사용 안내
 
-React + Vite 기반 SPA.
+## 1. 설치
 
-## 프로젝트 구조
+### 1-1. 프로젝트 의존성 설치
 
-```
-domainer/
-├── public/              # 정적 파일 (그대로 서빙)
-│   ├── favicon.svg
-│   ├── fonts/           # 웹 폰트
-│   └── images/          # 이미지, 아이콘
-├── src/
-│   ├── components/      # 레이아웃·공통 컴포넌트
-│   │   ├── Layout.jsx
-│   │   ├── Header.jsx
-│   │   ├── Nav.jsx
-│   │   └── Footer.jsx
-│   ├── pages/           # 페이지 컴포넌트
-│   │   ├── Home.jsx
-│   │   └── Guide.jsx
-│   ├── styles/          # SCSS (공통·컴포넌트·레이아웃)
-│   │   ├── common.scss
-│   │   ├── style.scss
-│   │   ├── guide.scss
-│   │   ├── _root.scss
-│   │   ├── import/      # 변수, 믹스인, 리셋 등
-│   │   ├── common/      # 리셋, 모달, 반응형
-│   │   ├── components/  # 버튼, 뱃지, 입력, 카드 등
-│   │   ├── layouts/
-│   │   └── pages/
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── vite.config.js
-└── package.json
-```
-
-## 설치
+프로젝트 루트에서 다음 명령으로 `package.json`에 있는 패키지(Gulp 포함)를 한 번에 설치합니다.
 
 ```bash
 npm install
 ```
 
-## 실행
+설치가 끝나면 `node_modules` 폴더가 생성되고, Gulp와 플러그인 등이 로컬에 설치됩니다.
+
+### 1-2. Gulp CLI 전역 설치 (선택, 권장)
+
+터미널 어디서나 `gulp` 명령을 쓰려면 CLI를 전역으로 설치합니다.
 
 ```bash
-npm run dev
+npm install --global gulp-cli
 ```
 
-또는 `npm start` — 개발 서버가 `http://localhost:3000`에서 실행됩니다.
+> **참고:** 전역 설치를 하지 않아도, 프로젝트 폴더에서는 `npx gulp`로 실행할 수 있습니다.
 
-## 빌드
+## 2. 실행
+
+프로젝트 루트에서 터미널 실행:
 
 ```bash
-npm run build
+gulp
 ```
 
-`dist/`에 배포용 파일이 생성됩니다.
+기본 태스크가 실행되며, SCSS 컴파일·이미지 최적화·HTML 조립·브라우저 새로고침 등이 동작합니다.
 
-```bash
-npm run preview
-```
+## 3. 설정
 
-빌드 결과를 로컬에서 확인할 수 있습니다.
-
-## 라우팅
-
-- `/` — 메인
-- `/guide` — 컴포넌트 가이드 (버튼, 뱃지, 폼 등)
-
-## 설정
-
-- **Vite:** `vite.config.js`
-- **스타일:** `src/styles/` (SCSS 진입: `common.scss`, `style.scss`)
+- **설정 파일:** `gulpfile.mjs`
+- **빌드 출력 경로:** `gulpfile.mjs` 상단의 `paths` 객체에서 수정 (예: `paths.build` → `./dist/`, 각 소스/출력 경로)
