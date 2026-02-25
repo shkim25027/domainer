@@ -93,6 +93,7 @@
 
   // Style variants
   &-save {
+    min-width: $input-width-sm;
     background-color: $primary;
     border-color: $primary;
     color: $white;
@@ -109,6 +110,7 @@
   }
 
   &-cancel {
+    min-width: $input-width-sm;
     background-color: $gray-700 ;
     border-color: $secondary;
     color: $white;
