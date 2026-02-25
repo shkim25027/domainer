@@ -64,13 +64,13 @@
             <div class="guide-row">
               <div class="guide-items">
                 <div>
-                  <h1 class="text-title-1">title h1 - 32px</h1>
-                  <h2 class="text-title-2">title h2 - 24px</h2>
+                  <!--<h1 class="text-title-1">title h1 - 32px</h1>
+                  <h2 class="text-title-2">title h2 - 24px</h2>-->
                   <h3 class="text-title-3" style="color: var(--text-title);">title h3 - 18px</h3>
                   <p class="text-lg">p - 16px</p>
                   <p class="text-base">p - 14px</p>
                   <p class="text-sm">p - 13px</p>
-                  <p class="text-xs">p - 12px</p>
+                  <!-- <p class="text-xs">p - 12px</p> -->
                 </div>
               </div>
             </div>
@@ -81,8 +81,10 @@
             <h2 id="guide-input-heading">2. 입력 필드 (Input)</h2>
             <h3>기본</h3>
             <div class="form-group">
-              <label class="label" for="g-input1">이름</label>
-              <input type="text" id="g-input1" class="input input-lg" placeholder="이름을 입력하세요" autocomplete="name">
+              <div class="form-group-item">
+                <label class="label" for="g-input1">이름</label>
+                <input type="text" id="g-input1" class="input input-lg" placeholder="이름을 입력하세요" autocomplete="name">
+              </div>
             </div>
             <h3>사이즈</h3>
             <div class="guide-row">
@@ -91,7 +93,7 @@
                 <input type="text" class="input input-sm" placeholder="Small" aria-label="Small 크기 입력">
                 <input type="text" class="input input-md" placeholder="Medium" aria-label="Medium 크기 입력">
                 <input type="text" class="input input-lg" placeholder="Large" aria-label="Large 크기 입력">
-                <input type="text" class="input input-full" placeholder="Full" aria-label="Full 크기 입력">
+                <input type="text" class="input" placeholder="Full" aria-label="기본 크기 입력">
               </div>
             </div>
             <h3>상태</h3>
@@ -102,7 +104,7 @@
                 <input type="text" class="input input-md" placeholder="Disabled" disabled aria-label="비활성화 상태 예시">
               </div>
             </div>
-            <h3>Textarea · Select</h3>
+            <h3>Textarea</h3>
             <div class="guide-row">
               <div class="form-group">
                 <label class="label" for="g-textarea1">메시지 (기본)</label>
@@ -115,33 +117,36 @@
                 <span id="g-textarea-desc2" class="help-text" hidden>3줄 이상 입력 가능</span>
               </div>
             </div>
+            <h3>Select</h3>
             <div class="guide-row">
               <div class="form-group">
-                <label class="label" for="g-select2">옵션 (sm)</label>
-                <select id="g-select2" class="select select-sm" aria-label="옵션 선택 sm">
-                  <option value="">선택하세요</option>
-                  <option value="1">옵션 1</option>
-                  <option value="2">옵션 2</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="label" for="g-select3">옵션 (md)</label>
-                <select id="g-select3" class="select select-md" aria-label="옵션 선택 md">
-                  <option value="">선택하세요</option>
-                  <option value="1">옵션 1</option>
-                  <option value="2">옵션 2</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="label" for="g-select4">옵션 (lg)</label>
-                <select id="g-select4" class="select select-lg" aria-label="옵션 선택 lg">
-                  <option value="">선택하세요</option>
-                  <option value="1">옵션 1</option>
-                  <option value="2">옵션 2</option>
-                </select>
+                <div class="form-group-item">
+                  <label class="label" for="g-select2">옵션 (sm)</label>
+                  <select id="g-select2" class="select select-sm" aria-label="옵션 선택 sm">
+                    <option value="">선택하세요</option>
+                    <option value="1">옵션 1</option>
+                    <option value="2">옵션 2</option>
+                  </select>
+                </div>
+                <div class="form-group-item">
+                  <label class="label" for="g-select3">옵션 (md)</label>
+                  <select id="g-select3" class="select select-md" aria-label="옵션 선택 md">
+                    <option value="">선택하세요</option>
+                    <option value="1">옵션 1</option>
+                    <option value="2">옵션 2</option>
+                  </select>
+                </div>
+                <div class="form-group-item">
+                  <label class="label" for="g-select4">옵션 (lg)</label>
+                  <select id="g-select4" class="select select-lg" aria-label="옵션 선택 lg">
+                    <option value="">선택하세요</option>
+                    <option value="1">옵션 1</option>
+                    <option value="2">옵션 2</option>
+                  </select>
+                </div>
               </div>
               <div class="form-group" style="width: 100%;">
-                <label class="label" for="g-select5">옵션 (full)</label>
+                <label class="label" for="g-select5">옵션</label>
                 <select id="g-select5" class="select" aria-label="옵션 선택 full">
                   <option value="">선택하세요</option>
                   <option value="1">옵션 1</option>
