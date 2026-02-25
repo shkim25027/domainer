@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+// ================================================
+// Typography Utility Classes (_root.scss 변수 기반)
+// ================================================
+
+@use '../root' as *;
+
+// ----- Font Size (본문) -----
+.text-xs   { font-size: $font-size-xs !important; }   // 12px
+.text-sm   { font-size: $font-size-sm !important; }   // 13px
+.text-base { font-size: $font-size-base !important; }  // 14px
+.text-md   { font-size: $font-size-md !important; }   // 14px
+.text-lg   { font-size: $font-size-lg !important; }    // 16px
+.text-xl   { font-size: $font-size-xl !important; }    // 18px
+
+// ----- Font Size (제목) -----
+.text-title-1 { font-size: $font-title-1 !important; }  // 32px
+.text-title-2 { font-size: $font-title-2 !important; }   // 24px
+.text-title-3 { font-size: $font-title-3 !important; }   // 18px
+
+// ----- Font Weight -----
+.font-normal   { font-weight: $font-weight-normal !important; }   // 400
+.font-medium   { font-weight: $font-weight-medium !important; }     // 500
+.font-semibold { font-weight: $font-weight-semibold !important; }  // 600
+.font-bold     { font-weight: $font-weight-bold !important; }      // 700

@@ -49,7 +49,11 @@ const paths = {
   },
   jscopy: { src: "./markup/assets/js/lib/**/*", dest: "./dist/assets/js/lib" },
   img: {
-    src: "./markup/assets/images/**/*.{png,jpg,jpeg,svg}",
+    src: [
+      "./markup/assets/images/**/*.{png,jpg,jpeg,svg}",
+      "!./markup/assets/images/bg_sidebar.png", // imagemin 제외
+    ],
+    rawSrc: "./markup/assets/images/bg_sidebar.png", // 압축 없이 복사
     dest: "./dist/assets/images",
   },
   fonts: { src: "./markup/assets/fonts/**/*", dest: "./dist/assets/fonts" },
@@ -78,10 +82,14 @@ function fonts() {
   return src(paths.fonts.src).pipe(dest(paths.fonts.dest));
 }
 
-// Images
+// Images (최적화)
 function images() {
   return src(paths.img.src).pipe(imagemin()).pipe(dest(paths.img.dest));
-  // return src(paths.img.src).pipe(dest(paths.img.dest));
+}
+
+// Images (압축 없이 복사)
+function imagesCopy() {
+  return src(paths.img.rawSrc).pipe(dest(paths.img.dest));
 }
 
 // SCSS → CSS (진입점 common.scss, style.scss 만 컴파일)
@@ -144,6 +152,7 @@ function serve() {
   watch(paths.js.src, scripts);
   watch(paths.jscopy.src, jscopy);
   watch(paths.img.src, images);
+  watch(paths.img.rawSrc, imagesCopy);
   watch(paths.fonts.src, fonts);
   watch(paths.html.src, html);
 }
@@ -153,13 +162,13 @@ function serve() {
 // ------------------------------------
 const build = series(
   clean,
-  parallel(fonts, images, scss, csscopy, scripts, jscopy, html),
+  parallel(fonts, images, imagesCopy, scss, csscopy, scripts, jscopy, html),
   cache
 );
 
 const dev = series(
   clean,
-  parallel(fonts, images, scss, csscopy, scripts, jscopy, html),
+  parallel(fonts, images, imagesCopy, scss, csscopy, scripts, jscopy, html),
   parallel(serve)
 );
 

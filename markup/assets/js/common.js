@@ -96,6 +96,55 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+  // 프로젝트 셀렉터 드롭다운 토글
+  const projectSelector = document.querySelector(".project-selector");
+  if (projectSelector) {
+    const trigger = projectSelector;
+    const label = projectSelector.querySelector(".project-selector-label");
+    const dropdown = projectSelector.querySelector(".project-selector-dropdown");
+
+    trigger.addEventListener("click", (e) => {
+      if (dropdown?.contains(e.target)) return;
+      const isOpen = projectSelector.classList.toggle("is-open");
+      trigger.setAttribute("aria-expanded", isOpen);
+    });
+
+    dropdown?.addEventListener("click", (e) => {
+      const option = e.target.closest("[role='option']");
+      if (!option) return;
+      const value = option.getAttribute("data-value") || option.textContent.trim();
+      if (label) label.textContent = value;
+      dropdown.querySelectorAll("[role='option']").forEach((el) => el.setAttribute("aria-selected", "false"));
+      option.setAttribute("aria-selected", "true");
+      projectSelector.classList.remove("is-open");
+      trigger.setAttribute("aria-expanded", "false");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!projectSelector.contains(e.target)) {
+        projectSelector.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  // depth01 > li.has-depth > a 클릭 시 depth02 펼침/접힘
+  document.querySelectorAll(".depth01 > li.has-depth > a").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const li = this.parentElement;
+      const isActive = li.classList.contains("active");
+
+      // 같은 depth01 내 다른 has-depth 메뉴 닫기 (accordion)
+      const depth01 = li.closest(".depth01");
+      depth01.querySelectorAll(":scope > li.has-depth").forEach((item) => {
+        if (item !== li) item.classList.remove("active");
+      });
+
+      li.classList.toggle("active", !isActive);
+    });
+  });
+
   $("[id^=open-modal]").click(function () {
     var modalId = this.id.replace("open-", "");
     $("#" + modalId).show();

@@ -6,26 +6,6 @@
 
 @use '../import/component-variables' as *;
 
-// Page/Modal container
-.container {
-  max-width: 760px;
-  margin: $spacing-xl auto;
-  background: $white;
-  border-radius: $radius-xl;
-  padding: $spacing-xl $spacing-2xl;
-  box-shadow: $shadow-md;
-}
-
-.container-sm {
-  width: 420px;
-  padding: $spacing-xl;
-}
-
-.container-md {
-  width: 460px;
-  padding: $spacing-xl;
-}
-
 // Section block
 .section {
   margin-bottom: $spacing-2xl;

@@ -6,22 +6,26 @@
     <style>
       .wrap {
         display: flex;
+        min-height: 100vh;
+        height: auto;
       }
       .container {
         max-width: 100%;
+        min-height: 100vh;
+        height: auto;
       }
       .guide { max-width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
       .guide h1 { font-size: 2.5rem; margin: 0 0 2rem; color: var(--text-title); }
       .guide-section {
         padding: 1.5rem 2rem;
         margin-bottom: 2rem;
-        background: var(--bg-primary, #f8f8f8);
+        background: #fff;
         border-radius: 8px;
         border: 1px solid var(--border-base, #e5e7eb);
       }
       .guide-section:last-of-type { margin-bottom: 0; }
-      .guide-section h2 { font-size: 2.125rem; margin: 0 0 1.25rem; color: var(--text-title); font-weight: 600; }
-      .guide-section h3 { font-size: 1.875rem; margin: 1.25rem 0 0.75rem; color: var(--text-body); font-weight: 600; }
+      .guide-section h2 { font-size: 2rem; margin: 0 0 1.25rem; color: var(--text-title); font-weight: 600; }
+      .guide-section h3 { font-size: 1.5rem; margin: 1.25rem 0 0.75rem; color: var(--text-body); font-weight: 600; }
       .guide-section h3:first-of-type { margin-top: 0; }
       .guide-grid {
         display: grid;

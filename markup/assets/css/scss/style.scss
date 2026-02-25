@@ -2,6 +2,7 @@
 
 // style.css 진입점: _root(CSS 변수) → layouts → components → pages
 @forward "root";
+@forward "utilities/typography";
 @forward "layouts/layout";
 @forward "components/button";
 @forward "components/badge";
@@ -13,4 +14,3 @@
 @forward "components/form-layout";
 @forward "components/file-upload";
 @forward "components/panel";
-@forward "pages/index";
