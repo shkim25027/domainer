@@ -4,18 +4,13 @@
     @@include("_include/_head.html")
     <title>컴포넌트 가이드 — Domainer</title>
     <style>
-      .wrap {
-        display: flex;
-        min-height: 100vh;
-        height: auto;
-      }
       .container {
         max-width: 100%;
         min-height: 100vh;
         height: auto;
       }
-      .guide { max-width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
-      .guide h1 { font-size: 2.5rem; margin: 0 0 2rem; color: var(--text-title); }
+      .guide { width: 100%; max-width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+      .guide h1 { font-size: 2rem; margin: 0 0 2rem; color: var(--text-title); }
       .guide-section {
         padding: 1.5rem 2rem;
         margin-bottom: 2rem;
@@ -24,8 +19,8 @@
         border: 1px solid var(--border-base, #e5e7eb);
       }
       .guide-section:last-of-type { margin-bottom: 0; }
-      .guide-section h2 { font-size: 2rem; margin: 0 0 1.25rem; color: var(--text-title); font-weight: 600; }
-      .guide-section h3 { font-size: 1.5rem; margin: 1.25rem 0 0.75rem; color: var(--text-body); font-weight: 600; }
+      .guide-section h2 { font-size: 1.5rem; margin: 0 0 1.25rem; color: var(--text-title); font-weight: 600; }
+      .guide-section h3 { font-size: 1.125rem; margin: 1.25rem 0 0.75rem; color: var(--text-title); font-weight: 600; }
       .guide-section h3:first-of-type { margin-top: 0; }
       .guide-grid {
         display: grid;
@@ -62,13 +57,70 @@
     </style>
   </head>
   <body>
-
     <div class="wrap">
+      @@include("_include/_sidebar.html")
       <div class="container">
         <main id="guide-main" class="guide" role="main" aria-label="컴포넌트 가이드">
           <h1>컴포넌트 가이드 — 한눈에 보기</h1>
+          <!-- 1. 폰트 사이즈-->
+          <section class="guide-section" aria-labelledby="guide-font-size-heading">
+            <h2 id="guide-font-size-heading">1. 폰트 사이즈</h2>
+            <div class="guide-row">
+              <div class="guide-items">
+                <div>
+                  <h1 class="text-title-1">title h1 - 32px</h1>
+                  <h2 class="text-title-2">title h2 - 24px</h2>
+                  <h3 class="text-title-3" style="color: var(--text-title);">title h3 - 18px</h3>
+                  <p class="text-lg">p - 16px</p>
+                  <p class="text-base">p - 14px</p>
+                  <p class="text-sm">p - 13px</p>
+                  <p class="text-xs">p - 12px</p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-          <!-- 1. 버튼 -->
+          <!-- 2. 입력 필드 -->
+          <section class="guide-section" aria-labelledby="guide-input-heading">
+            <h2 id="guide-input-heading">2. 입력 필드 (Input)</h2>
+            <h3>기본</h3>
+            <div class="form-group">
+              <label class="label" for="g-input1">이름</label>
+              <input type="text" id="g-input1" class="input input-md" placeholder="이름을 입력하세요" autocomplete="name">
+            </div>
+            <h3>사이즈</h3>
+            <div class="guide-row">
+              <div class="guide-items">
+                <input type="text" class="input input-sm" placeholder="Small" aria-label="Small 크기 입력">
+                <input type="text" class="input input-md" placeholder="Medium" aria-label="Medium 크기 입력">
+                <input type="text" class="input input-lg" placeholder="Large" aria-label="Large 크기 입력">
+              </div>
+            </div>
+            <h3>상태</h3>
+            <div class="guide-row">
+              <div class="guide-items">
+                <input type="text" class="input input-md input-error" placeholder="Error" aria-label="오류 상태 예시" aria-invalid="true">
+                <input type="text" class="input input-md input-success" value="Success" aria-label="성공 상태 예시">
+                <input type="text" class="input input-md" placeholder="Disabled" disabled aria-label="비활성화 상태 예시">
+              </div>
+            </div>
+            <h3>Textarea · Select</h3>
+            <div class="form-group">
+              <label class="label" for="g-textarea1">메시지</label>
+              <textarea id="g-textarea1" class="textarea" placeholder="메시지를 입력하세요" rows="3" aria-describedby="g-textarea-desc"></textarea>
+              <span id="g-textarea-desc" class="help-text" hidden>3줄 이상 입력 가능</span>
+            </div>
+            <div class="form-group">
+              <label class="label" for="g-select1">옵션</label>
+              <select id="g-select1" class="select select-md" aria-label="옵션 선택">
+                <option value="">선택하세요</option>
+                <option value="1">옵션 1</option>
+                <option value="2">옵션 2</option>
+              </select>
+            </div>
+          </section>
+
+          <!-- 1. 버튼 --/>
           <section class="guide-section" aria-labelledby="guide-btn-heading">
             <div class="guide-grid">
               <div class="guide-grid-item">
@@ -116,7 +168,7 @@
             </div>
           </section>
 
-          <!-- 2. 뱃지 -->
+          <!-- 2. 뱃지 --/>
           <section class="guide-section" aria-labelledby="guide-badge-heading">
             <h2 id="guide-badge-heading">2. 뱃지 (Badge)</h2>
             <div class="guide-row">
@@ -131,47 +183,9 @@
             </div>
           </section>
 
-          <!-- 3. 입력 필드 -->
-          <section class="guide-section" aria-labelledby="guide-input-heading">
-            <h2 id="guide-input-heading">3. 입력 필드 (Input)</h2>
-            <h3>기본</h3>
-            <div class="form-group">
-              <label class="label" for="g-input1">이름</label>
-              <input type="text" id="g-input1" class="input input-md" placeholder="이름을 입력하세요" autocomplete="name">
-            </div>
-            <h3>사이즈</h3>
-            <div class="guide-row">
-              <div class="guide-items">
-                <input type="text" class="input input-sm" placeholder="Small" aria-label="Small 크기 입력">
-                <input type="text" class="input input-md" placeholder="Medium" aria-label="Medium 크기 입력">
-                <input type="text" class="input input-lg" placeholder="Large" aria-label="Large 크기 입력">
-              </div>
-            </div>
-            <h3>상태</h3>
-            <div class="guide-row">
-              <div class="guide-items">
-                <input type="text" class="input input-md input-error" placeholder="Error" aria-label="오류 상태 예시" aria-invalid="true">
-                <input type="text" class="input input-md input-success" value="Success" aria-label="성공 상태 예시">
-                <input type="text" class="input input-md" placeholder="Disabled" disabled aria-label="비활성화 상태 예시">
-              </div>
-            </div>
-            <h3>Textarea · Select</h3>
-            <div class="form-group">
-              <label class="label" for="g-textarea1">메시지</label>
-              <textarea id="g-textarea1" class="textarea" placeholder="메시지를 입력하세요" rows="3" aria-describedby="g-textarea-desc"></textarea>
-              <span id="g-textarea-desc" class="help-text" hidden>3줄 이상 입력 가능</span>
-            </div>
-            <div class="form-group">
-              <label class="label" for="g-select1">옵션</label>
-              <select id="g-select1" class="select select-md" aria-label="옵션 선택">
-                <option value="">선택하세요</option>
-                <option value="1">옵션 1</option>
-                <option value="2">옵션 2</option>
-              </select>
-            </div>
-          </section>
 
-          <!-- 4. 체크박스 -->
+
+          <!-- 4. 체크박스 --/>
           <section class="guide-section" aria-labelledby="guide-checkbox-heading">
             <h2 id="guide-checkbox-heading">4. 체크박스 (Checkbox)</h2>
             <h3>기본</h3>
@@ -225,7 +239,7 @@
             </div>
           </section>
 
-          <!-- 5. 라디오 -->
+          <!-- 5. 라디오 --/>
           <section class="guide-section" aria-labelledby="guide-radio-heading">
             <h2 id="guide-radio-heading">5. 라디오 (Radio)</h2>
             <h3>기본</h3>
@@ -284,7 +298,7 @@
             </div>
           </section>
 
-          <!-- 6. 카드 · 태그 -->
+          <!-- 6. 카드 · 태그 --/>
           <section class="guide-section" aria-labelledby="guide-card-heading">
             <h2 id="guide-card-heading">6. 카드 · 태그 (Card · Tag)</h2>
             <div class="tags" role="list">
@@ -305,7 +319,7 @@
             </article>
           </section>
 
-          <!-- 7. 탭 -->
+          <!-- 7. 탭 --/>
           <section class="guide-section" aria-labelledby="guide-tabs-heading">
             <h2 id="guide-tabs-heading">7. 탭 (Tabs)</h2>
             <h3>세그먼트 탭</h3>
@@ -325,7 +339,7 @@
             </div>
           </section>
 
-          <!-- 8. 종합 폼 예제 -->
+          <!-- 8. 종합 폼 예제 --/>
           <section class="guide-section" aria-labelledby="guide-form-heading">
             <h2 id="guide-form-heading">8. 종합 폼 예제</h2>
             <form action="#" method="get" novalidate aria-labelledby="guide-form-heading">
@@ -369,6 +383,7 @@
               </div>
             </form>
           </section>
+        -->
         </main>
       </div>
     </div>
