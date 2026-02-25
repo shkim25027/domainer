@@ -262,9 +262,6 @@
   padding-right: calc($input-padding-x-md * 2.5);
   height: $input-height-md;
   width: $input-width-full;
-  &-xs {
-    width: $input-width-xs;
-  }
   &-sm {
     width: $input-width-sm;
   }
@@ -277,5 +274,15 @@
   &:disabled {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   }
+
+  // Valid state 제외 (input만 적용)
+  &:valid:not(:placeholder-shown) {
+    border-color: $input-border-color;
+  }
+}
+
+// Textarea: valid state 제외 (input만 적용)
+.textarea:valid:not(:placeholder-shown) {
+  border-color: $input-border-color;
 }
 
