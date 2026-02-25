@@ -13,17 +13,24 @@ $btn-radius: $radius-squicle;
 $btn-disabled-opacity: 0.4;
 
 // 버튼 크기 (height 고정) - xxxs ~ xxxl
+$btn-width-xs: 48px;
+$btn-width-sm: 80px;
+$btn-width-md: 120px;
+$btn-width-lg: 200px;
+$btn-width-full: 100%;
+
+// 버튼 크기 (height 고정) - xxxs ~ xxxl
 $btn-height-xs: 24px;
 $btn-height-sm: 34px;
-$btn-height-md: 44px;
-$btn-height-lg: 48px;
-$btn-height-xl: 52px;
-$btn-height-xxl: 56px;
+$btn-height-md: 40px;
+$btn-height-lg: 44px;
+$btn-height-xl: 48px;
+$btn-height-xxl: 52px;
 $btn-height-xxxl: 56px;
 
 $btn-padding-xxxs: 0 4px;
 $btn-padding-xxs: 0 8px;
-$btn-padding-xs: 0 8px;
+$btn-padding-xs: 0 8px; 
 $btn-padding-sm: 0 12px;
 $btn-padding-md: 0 16px;
 $btn-padding-lg: 0 20px;
@@ -32,8 +39,15 @@ $btn-padding-xxl: 0 28px;
 $btn-padding-xxxl: 0 32px;
 
 // ----- Input (Form 컴포넌트) -----
-$input-height-sm: $btn-height-xs;
-$input-height-md: $btn-height-sm;
+$input-width-xs: $btn-width-xs;
+$input-width-sm: $btn-width-sm;
+$input-width-md: $btn-width-md;
+$input-width-lg: $btn-width-lg;
+$input-width-full: $btn-width-full;
+
+$input-height-xs: $btn-height-xs;
+$input-height-sm: $btn-height-sm;
+$input-height-md: $btn-height-md;
 $input-height-lg: $btn-height-lg;
 
 $input-padding-x-sm: $spacing-3;

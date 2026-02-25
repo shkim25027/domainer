@@ -4,12 +4,8 @@
     @@include("_include/_head.html")
     <title>컴포넌트 가이드 — Domainer</title>
     <style>
-      .container {
-        max-width: 100%;
-        min-height: 100vh;
-        height: auto;
-      }
-      .guide { width: 100%; max-width: 100%; margin: 0 auto; padding: 2rem 1.5rem; }
+
+      .guide { width: 100%; max-width: 100%; max-height: 100vh; margin: 0 auto; padding: 2rem 1.5rem; overflow-y: auto; }
       .guide h1 { font-size: 2rem; margin: 0 0 2rem; color: var(--text-title); }
       .guide-section {
         padding: 1.5rem 2rem;
@@ -62,7 +58,7 @@
       <div class="container">
         <main id="guide-main" class="guide" role="main" aria-label="컴포넌트 가이드">
           <h1>컴포넌트 가이드 — 한눈에 보기</h1>
-          <!-- 1. 폰트 사이즈-->
+          <!-- 1. 폰트 사이즈 -->
           <section class="guide-section" aria-labelledby="guide-font-size-heading">
             <h2 id="guide-font-size-heading">1. 폰트 사이즈</h2>
             <div class="guide-row">
@@ -86,14 +82,16 @@
             <h3>기본</h3>
             <div class="form-group">
               <label class="label" for="g-input1">이름</label>
-              <input type="text" id="g-input1" class="input input-md" placeholder="이름을 입력하세요" autocomplete="name">
+              <input type="text" id="g-input1" class="input input-lg" placeholder="이름을 입력하세요" autocomplete="name">
             </div>
             <h3>사이즈</h3>
             <div class="guide-row">
               <div class="guide-items">
+                <input type="text" class="input input-xs" placeholder="xSmall" aria-label="xSmall 크기 입력">
                 <input type="text" class="input input-sm" placeholder="Small" aria-label="Small 크기 입력">
                 <input type="text" class="input input-md" placeholder="Medium" aria-label="Medium 크기 입력">
                 <input type="text" class="input input-lg" placeholder="Large" aria-label="Large 크기 입력">
+                <input type="text" class="input input-full" placeholder="Full" aria-label="Full 크기 입력">
               </div>
             </div>
             <h3>상태</h3>
@@ -105,72 +103,107 @@
               </div>
             </div>
             <h3>Textarea · Select</h3>
-            <div class="form-group">
-              <label class="label" for="g-textarea1">메시지</label>
-              <textarea id="g-textarea1" class="textarea" placeholder="메시지를 입력하세요" rows="3" aria-describedby="g-textarea-desc"></textarea>
-              <span id="g-textarea-desc" class="help-text" hidden>3줄 이상 입력 가능</span>
+            <div class="guide-row">
+              <div class="form-group">
+                <label class="label" for="g-textarea1">메시지 (기본)</label>
+                <textarea id="g-textarea1" class="textarea" placeholder="메시지를 입력하세요" rows="3" aria-describedby="g-textarea-desc1"></textarea>
+                <span id="g-textarea-desc1" class="help-text" hidden>3줄 이상 입력 가능</span>
+              </div>
+              <div class="form-group">
+                <label class="label" for="g-textarea2">메시지 (no-resize)</label>
+                <textarea id="g-textarea2" class="textarea textarea-no-resize" placeholder="메시지를 입력하세요" rows="3" aria-describedby="g-textarea-desc2"></textarea>
+                <span id="g-textarea-desc2" class="help-text" hidden>3줄 이상 입력 가능</span>
+              </div>
             </div>
-            <div class="form-group">
-              <label class="label" for="g-select1">옵션</label>
-              <select id="g-select1" class="select select-md" aria-label="옵션 선택">
-                <option value="">선택하세요</option>
-                <option value="1">옵션 1</option>
-                <option value="2">옵션 2</option>
-              </select>
+            <div class="guide-row">
+              <div class="form-group">
+                <label class="label" for="g-select1">옵션 (xs)</label>
+                <select id="g-select1" class="select select-xs" aria-label="옵션 선택 xs">
+                  <option value="">선택하세요</option>
+                  <option value="1">옵션 1</option>
+                  <option value="2">옵션 2</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="label" for="g-select2">옵션 (sm)</label>
+                <select id="g-select2" class="select select-sm" aria-label="옵션 선택 sm">
+                  <option value="">선택하세요</option>
+                  <option value="1">옵션 1</option>
+                  <option value="2">옵션 2</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="label" for="g-select3">옵션 (md)</label>
+                <select id="g-select3" class="select select-md" aria-label="옵션 선택 md">
+                  <option value="">선택하세요</option>
+                  <option value="1">옵션 1</option>
+                  <option value="2">옵션 2</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="label" for="g-select4">옵션 (lg)</label>
+                <select id="g-select4" class="select select-lg" aria-label="옵션 선택 lg">
+                  <option value="">선택하세요</option>
+                  <option value="1">옵션 1</option>
+                  <option value="2">옵션 2</option>
+                </select>
+              </div>
+              <div class="form-group" style="width: 100%;">
+                <label class="label" for="g-select5">옵션 (full)</label>
+                <select id="g-select5" class="select" aria-label="옵션 선택 full">
+                  <option value="">선택하세요</option>
+                  <option value="1">옵션 1</option>
+                  <option value="2">옵션 2</option>
+                </select>
+              </div>
             </div>
           </section>
 
-          <!-- 1. 버튼 --/>
+          <!-- 3. 버튼 -->
           <section class="guide-section" aria-labelledby="guide-btn-heading">
-            <div class="guide-grid">
-              <div class="guide-grid-item">
-                <h2 id="guide-btn-heading">1. 버튼 (Button)</h2>
+            <h2 id="guide-btn-heading">3. 버튼 (Button)</h2>
+            <h3>기본 스타일</h3>
+            <div class="guide-row">
+              <div class="guide-items">
+                <button type="button" class="btn btn-primary btn-md">Primary</button>
+                <button type="button" class="btn btn-secondary btn-md">Secondary</button>
+                <button type="button" class="btn btn-success btn-md">Success</button>
+                <button type="button" class="btn btn-warning btn-md">Warning</button>
+                <button type="button" class="btn btn-danger btn-md">Danger</button>
+                <button type="button" class="btn btn-outline btn-md">Outline</button>
+                <button type="button" class="btn btn-ghost btn-md">Ghost</button>
+                <button type="button" class="btn btn-link btn-md">Link</button>
               </div>
-              <div class="guide-grid-item">
-                <h3>기본 스타일</h3>
-                <div class="guide-row">
-                  <div class="guide-items">
-                    <button type="button" class="btn btn-primary btn-md">Primary</button>
-                    <button type="button" class="btn btn-secondary btn-md">Secondary</button>
-                    <button type="button" class="btn btn-success btn-md">Success</button>
-                    <button type="button" class="btn btn-warning btn-md">Warning</button>
-                    <button type="button" class="btn btn-danger btn-md">Danger</button>
-                    <button type="button" class="btn btn-outline btn-md">Outline</button>
-                    <button type="button" class="btn btn-ghost btn-md">Ghost</button>
-                    <button type="button" class="btn btn-link btn-md">Link</button>
-                  </div>
-                </div>
-                <h3>사이즈</h3>
-                <div class="guide-row">
-                  <div class="guide-items">
-                    <button type="button" class="btn btn-primary btn-sm">Small</button>
-                    <button type="button" class="btn btn-primary btn-md">Medium</button>
-                    <button type="button" class="btn btn-primary btn-lg">Large</button>
-                  </div>
-                </div>
-                <h3>상태</h3>
-                <div class="guide-row">
-                  <div class="guide-items">
-                    <button type="button" class="btn btn-primary btn-md" disabled>Disabled</button>
-                    <button type="button" class="btn btn-primary btn-md btn-loading" aria-busy="true" aria-label="처리 중">Loading</button>
-                    <button type="button" class="btn btn-primary btn-md btn-block">Full Width</button>
-                  </div>
-                </div>
-                <h3>아이콘 버튼</h3>
-                <div class="guide-row">
-                  <div class="guide-items">
-                    <button type="button" class="btn btn-primary btn-icon btn-md" aria-label="추가">+</button>
-                    <button type="button" class="btn btn-secondary btn-icon btn-md" aria-label="닫기">×</button>
-                    <button type="button" class="btn btn-outline btn-icon btn-md btn-rounded" aria-label="좋아요">♥</button>
-                  </div>
-                </div>
+            </div>
+            <h3>사이즈</h3>
+            <div class="guide-row">
+              <div class="guide-items">
+                <button type="button" class="btn btn-primary btn-sm">Small</button>
+                <button type="button" class="btn btn-primary btn-md">Medium</button>
+                <button type="button" class="btn btn-primary btn-lg">Large</button>
+              </div>
+            </div>
+            <h3>상태</h3>
+            <div class="guide-row">
+              <div class="guide-items">
+                <button type="button" class="btn btn-primary btn-md" disabled>Disabled</button>
+                <button type="button" class="btn btn-primary btn-md btn-loading" aria-busy="true" aria-label="처리 중">Loading</button>
+                <button type="button" class="btn btn-primary btn-md btn-block">Full Width</button>
+              </div>
+            </div>
+            <h3>아이콘 버튼</h3>
+            <div class="guide-row">
+              <div class="guide-items">
+                <button type="button" class="btn btn-primary btn-icon btn-md" aria-label="추가">+</button>
+                <button type="button" class="btn btn-secondary btn-icon btn-md" aria-label="닫기">×</button>
+                <button type="button" class="btn btn-outline btn-icon btn-md btn-rounded" aria-label="좋아요">♥</button>
               </div>
             </div>
           </section>
 
-          <!-- 2. 뱃지 --/>
+          <!-- 4. 뱃지 -->
           <section class="guide-section" aria-labelledby="guide-badge-heading">
-            <h2 id="guide-badge-heading">2. 뱃지 (Badge)</h2>
+            <h2 id="guide-badge-heading">4. 뱃지 (Badge)</h2>
             <div class="guide-row">
               <div class="guide-items">
                 <span class="badge badge-default">기본</span>
@@ -183,11 +216,9 @@
             </div>
           </section>
 
-
-
-          <!-- 4. 체크박스 --/>
+          <!-- 5. 체크박스 -->
           <section class="guide-section" aria-labelledby="guide-checkbox-heading">
-            <h2 id="guide-checkbox-heading">4. 체크박스 (Checkbox)</h2>
+            <h2 id="guide-checkbox-heading">5. 체크박스 (Checkbox)</h2>
             <h3>기본</h3>
             <div class="checkbox-group">
               <label class="checkbox">
@@ -239,9 +270,9 @@
             </div>
           </section>
 
-          <!-- 5. 라디오 --/>
+          <!-- 6. 라디오 -->
           <section class="guide-section" aria-labelledby="guide-radio-heading">
-            <h2 id="guide-radio-heading">5. 라디오 (Radio)</h2>
+            <h2 id="guide-radio-heading">6. 라디오 (Radio)</h2>
             <h3>기본</h3>
             <div class="radio-group" role="radiogroup" aria-label="옵션 선택">
               <label class="radio">
@@ -298,9 +329,9 @@
             </div>
           </section>
 
-          <!-- 6. 카드 · 태그 --/>
+          <!-- 7. 카드 · 태그 -->
           <section class="guide-section" aria-labelledby="guide-card-heading">
-            <h2 id="guide-card-heading">6. 카드 · 태그 (Card · Tag)</h2>
+            <h2 id="guide-card-heading">7. 카드 · 태그 (Card · Tag)</h2>
             <div class="tags" role="list">
               <span class="tag" role="listitem">태그1</span>
               <span class="tag" role="listitem">태그2</span>
@@ -319,9 +350,9 @@
             </article>
           </section>
 
-          <!-- 7. 탭 --/>
+          <!-- 8. 탭 -->
           <section class="guide-section" aria-labelledby="guide-tabs-heading">
-            <h2 id="guide-tabs-heading">7. 탭 (Tabs)</h2>
+            <h2 id="guide-tabs-heading">8. 탭 (Tabs)</h2>
             <h3>세그먼트 탭</h3>
             <div class="tabs" role="tablist" aria-label="검토 정보 탭">
               <button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-1">기본정보</button>
@@ -339,9 +370,9 @@
             </div>
           </section>
 
-          <!-- 8. 종합 폼 예제 --/>
+          <!-- 9. 종합 폼 예제 -->
           <section class="guide-section" aria-labelledby="guide-form-heading">
-            <h2 id="guide-form-heading">8. 종합 폼 예제</h2>
+            <h2 id="guide-form-heading">9. 종합 폼 예제</h2>
             <form action="#" method="get" novalidate aria-labelledby="guide-form-heading">
               <div class="form-group">
                 <label class="label label-required" for="g-name">이름</label>
@@ -383,7 +414,6 @@
               </div>
             </form>
           </section>
-        -->
         </main>
       </div>
     </div>

@@ -12,18 +12,19 @@
   @include transition(border-color, box-shadow, background-color);
 
   display: block;
-  width: 100%;
-  font-family: $font-family-base;
+  width: $input-width-full;
+  height: $input-height-md;
+  font-size: $font-size-base;
   font-weight: $font-weight-normal;
   line-height: 1.5;
   background-color: $input-bg;
   background-clip: padding-box;
   border: $input-border-width solid $input-border-color;
   border-radius: $radius-md;
-
+  padding: 0 $input-padding-x-sm;
   color: $input-text-color;
 
-  @include focus-visible;
+  //@include focus-visible;
 
   &::placeholder {
     color: $input-placeholder-color;
@@ -62,7 +63,7 @@
 
     &:focus {
       border-color: $danger;
-      @include focus-ring(rgba($danger, 0.25));
+     // @include focus-ring(rgba($danger, 0.25));
     }
   }
 
@@ -73,27 +74,25 @@
 
     &:focus {
       border-color: $success;
-      @include focus-ring(rgba($success, 0.25));
+      //@include focus-ring(rgba($success, 0.25));
     }
   }
 
   // Size variants
+  &-xs {
+    width: $input-width-xs;
+  }
+
   &-sm {
-    height: $input-height-sm;
-    padding: 0 $input-padding-x-sm;
-    font-size: $font-size-sm;
+    width: $input-width-sm;
   }
 
   &-md {
-    height: $input-height-md;
-    padding: 0 $input-padding-x-md;
-    font-size: $font-size-base;
-  }
+    width: $input-width-md;
 
+  } 
   &-lg {
-    height: $input-height-lg;
-    padding: 0 $input-padding-x-lg;
-    font-size: $font-size-lg;
+    width: $input-width-lg;
   }
 
   // Rounded
@@ -107,19 +106,9 @@
   @extend .input;
 
   min-height: 5rem;
-  padding: $spacing-md $input-padding-x-md;
+  padding: $spacing-xs $input-padding-x-sm;
   resize: vertical;
   line-height: 1.5;
-
-  &-sm {
-    padding: $spacing-sm $input-padding-x-sm;
-    font-size: $font-size-sm;
-  }
-
-  &-lg {
-    padding: $spacing-lg $input-padding-x-lg;
-    font-size: $font-size-lg;
-  }
 
   &-no-resize {
     resize: none;
@@ -265,20 +254,28 @@
 // Select
 .select {
   @extend .input;
-
+  font-size: $font-size-base;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right $input-padding-x-md center;
   background-size: 16px 12px;
   padding-right: calc($input-padding-x-md * 2.5);
-
+  height: $input-height-md;
+  width: $input-width-full;
+  &-xs {
+    width: $input-width-xs;
+  }
+  &-sm {
+    width: $input-width-sm;
+  }
+  &-md {
+    width: $input-width-md;
+  }
+  &-lg {
+    width: $input-width-lg;
+  } 
   &:disabled {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   }
 }
 
-.select-md {
-  height: $input-height-md;
-  padding: 0 $input-padding-x-md;
-  font-size: $font-size-base;
-}
