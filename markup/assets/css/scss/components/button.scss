@@ -65,10 +65,18 @@
   }
 
   // Size variants
+  &-xs {
+    min-width: $input-height-xs;
+    height: $input-height-xs;
+    padding: 0 $input-padding-x-sm;
+    font-size: $font-size-xs;
+    gap: $spacing-1;
+  }
   &-sm {
     height: $input-height-sm;
     padding: 0 $input-padding-x-sm;
     font-size: $font-size-sm;
+
   }
 
   &-md {
@@ -84,7 +92,7 @@
   }
 
   // Style variants
-  &-primary {
+  &-save {
     background-color: $primary;
     border-color: $primary;
     color: $white;
@@ -100,8 +108,8 @@
     }
   }
 
-  &-secondary {
-    background-color: $secondary;
+  &-cancel {
+    background-color: $gray-700 ;
     border-color: $secondary;
     color: $white;
 
@@ -116,118 +124,25 @@
     }
   }
 
-  &-success {
-    background-color: $success;
-    border-color: $success;
-    color: $white;
-
-    @include hover-support {
-      background-color: darken($success, 8%);
-      border-color: darken($success, 8%);
+  &-add {
+    &-primary {
+      background-color: #FFC600;
+      border-color: #FFC600;
+      font-weight: $font-weight-bold ;
+    }
+    &-secondary {
+      background-color: #B9E5BA;
+      border-color: $secondary;
+      font-weight: $font-weight-bold ;
     }
   }
-
-  &-danger {
-    background-color: $danger;
-    border-color: $danger;
-    color: $white;
-
-    @include hover-support {
-      background-color: darken($danger, 8%);
-      border-color: darken($danger, 8%);
-    }
-  }
-
-  &-warning {
-    background-color: $warning;
-    border-color: $warning;
-    color: $white;
-
-    @include hover-support {
-      background-color: darken($warning, 8%);
-      border-color: darken($warning, 8%);
-    }
-  }
-
-  &-outline {
-    background-color: transparent;
-    border-color: $gray-300;
-    color: $gray-700;
-
-    @include hover-support {
-      background-color: $gray-50;
-      border-color: $gray-400;
-    }
-
-    &:active:not(:disabled) {
-      background-color: $gray-100;
-    }
-  }
-
-  &-outline-primary {
-    background-color: transparent;
-    border-color: $primary;
-    color: $primary;
-
-    @include hover-support {
-      background-color: rgba($primary, 0.05);
-      border-color: $primary-hover;
-      color: $primary-hover;
-    }
-  }
-
-  &-ghost {
-    background-color: transparent;
-    border-color: transparent;
-    color: $gray-700;
-
-    @include hover-support {
-      background-color: $gray-100;
-    }
-
-    &:active:not(:disabled) {
-      background-color: $gray-200;
-    }
-  }
-
-  &-link {
-    background-color: transparent;
-    border-color: transparent;
-    color: $primary;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-
-    @include hover-support {
-      color: $primary-hover;
-    }
-
-    &:active:not(:disabled) {
-      transform: none;
-    }
-  }
-
-  // Full width
-  &-block {
-    display: flex;
-    width: 100%;
-  }
-
-  // Icon button
-  &-icon {
+  &-remove {
+    background-color: #fff;
+    border-color: var(--danger);
+    color: var(--danger);
+    font-weight: $font-weight-bold ;
+    border-radius: $radius-none;
     padding: 0;
-    aspect-ratio: 1;
-
-    &.btn-sm {
-      width: $input-height-sm;
-    }
-
-    &.btn-md {
-      width: $input-height-md;
-    }
-
-    &.btn-lg {
-      width: $input-height-lg;
-    }
   }
 
   // Rounded
