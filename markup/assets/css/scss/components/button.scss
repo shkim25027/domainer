@@ -6,11 +6,12 @@
 
 @use '../import/component-variables' as *;
 @use '../import/component-mixins' as *;
+@use '../import/mixin' as *;
 
 .btn {
   @include reset-button;
   @include transition(background-color, border-color, color, box-shadow, transform);
-
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -128,14 +129,41 @@
 
   &-add {
     &-primary {
-      background-color: #FFC600;
-      border-color: #FFC600;
-      font-weight: $font-weight-bold ;
+      position: relative;
+      background:linear-gradient(180deg, #FCF5DF 0%, #F3E8C6 100%);
+      border-color: #FFF;
+      font-weight: $font-weight-bold;
+      border-radius: $radius-md;
+      &::before {
+        content: ' ';
+        position: absolute;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        @include maskContents();
+        top: -2px;
+        left: -2px;
+        padding: 1px;
+        background: linear-gradient(180deg, #9A8769 0%, #9C7A44 100%);
+      }
+      
     }
     &-secondary {
-      background-color: #B9E5BA;
-      border-color: $secondary;
-      font-weight: $font-weight-bold ;
+      position: relative;
+      background: linear-gradient(180deg, #BBE7BC 0%, #BAE6BB 100%);
+      border-color: #FFF;
+      font-weight: $font-weight-bold;
+      border-radius: $radius-md;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        @include maskContents;
+        top: -2px;
+        left: -2px;
+        background: linear-gradient(180deg, #325E33 0%, #84B085 100%);
+      }
     }
   }
   &-remove {
@@ -150,6 +178,22 @@
   // Rounded
   &-rounded {
     border-radius: $radius-full;
+  }
+
+  .badge-count {
+    position: absolute;
+    top: calc(50% - 10px);
+    right: - 14px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #007141;
+    color: $white;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    line-height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.60);
   }
 }
 

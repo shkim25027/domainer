@@ -8,6 +8,7 @@
 // ----- 전역 SCSS 변수 (레이아웃·페이지·컴포넌트 공통) -----
 // Font
 $font-family-base: 'Noto Sans KR', sans-serif;
+$font-size-xxs: 0.625rem;    // 10px
 $font-size-xs: 0.75rem;    // 12px
 $font-size-sm: 0.8125rem;  // 13px (가이드 13px~)
 $font-size-base: 0.875rem; // 14px (가이드 14px~)
@@ -145,6 +146,7 @@ $z-index-tooltip: 1070;
 // ================================================
 :root {
   /* Font */
+  --font-xxs: 0.625rem;    /* 12px */
   --font-xs: 0.75rem;    /* 12px */
   --font-sm: 0.8125rem;  /* 13px */
   --font-base: 0.875rem; /* 14px */
@@ -247,4 +249,6 @@ $z-index-tooltip: 1070;
   --primary-bg: #e2f4f1;
   --danger: #ef4444;
   --success: #10b981;
+
+  
 }
