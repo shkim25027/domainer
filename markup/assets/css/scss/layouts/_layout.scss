@@ -53,6 +53,7 @@ body {
   display: flex;
   width: 100%;
   height: var(--window-inner-height);
+  background-color: #0D241D;
   overflow: hidden;
 }
 
@@ -72,18 +73,6 @@ body {
   border-left: 1px solid var(--gray-200);
 }
 
-.panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.panel-title {
-  font-size: var(--font-base);
-  font-weight: 700;
-  color: var(--gray-900);
-}
 
 /* ============================================================
    사이드바 (.nav-wrap) — 로고, 프로젝트 선택, 메뉴, 사용자
@@ -471,143 +460,6 @@ body {
   }
 }
 
-/* ============================================================
-   콘텐츠 영역 (폼·테이블)
-   ============================================================ */
-.form-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--gray-300);
-  margin-bottom: 14px;
-  font-size: var(--font-sm);
-
-  th,
-  td {
-    border: 1px solid var(--gray-300);
-    padding: 6px 10px;
-    vertical-align: middle;
-  }
-
-  th {
-    background: var(--gray-100);
-    font-weight: 500;
-    color: var(--gray-700);
-    white-space: nowrap;
-    width: 90px;
-    text-align: left;
-  }
-
-  td {
-    background: var(--white);
-  }
-
-  input,
-  select {
-    width: 100%;
-  }
-
-  input,
-  select,
-  textarea {
-    height: 30px;
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius-md);
-    padding: 0 8px;
-    font-size: var(--font-sm);
-    color: var(--gray-900);
-    background: var(--white);
-    outline: none;
-  }
-
-  textarea {
-    height: auto;
-    min-height: 72px;
-    padding: 6px 8px;
-    width: 100%;
-    resize: vertical;
-  }
-
-  input:focus,
-  select:focus,
-  textarea:focus {
-    border-color: var(--primary);
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--gray-400);
-  }
-}
-
-.form-row-inline {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  .sep {
-    color: var(--gray-400);
-    flex-shrink: 0;
-  }
-
-  .unit {
-    color: var(--gray-600);
-    font-size: var(--font-sm);
-    flex-shrink: 0;
-  }
-
-  .lbl {
-    font-weight: 600;
-    color: var(--gray-700);
-    flex-shrink: 0;
-  }
-
-  .input-w80 {
-    width: 80px;
-  }
-
-  .input-w50 {
-    width: 50px;
-    text-align: right;
-  }
-
-  .input-w130 {
-    width: 130px;
-  }
-
-  .note {
-    font-size: var(--font-xs);
-    color: var(--gray-500);
-    flex-shrink: 0;
-  }
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--font-sm);
-  margin-top: 8px;
-
-  th {
-    background: var(--gray-100);
-    padding: 6px 10px;
-    text-align: center;
-    font-weight: 500;
-    color: var(--gray-700);
-    border: 1px solid var(--gray-200);
-    white-space: nowrap;
-  }
-
-  td {
-    padding: 6px 10px;
-    border: 1px solid var(--gray-200);
-    text-align: center;
-    color: var(--gray-800);
-  }
-
-  tbody tr:hover {
-    background: var(--gray-50);
-  }
-}
 
 /* ============================================================
    Utility
@@ -615,9 +467,15 @@ body {
 .d-flex {
   display: flex;
 }
+.flex-1 {
+  flex: 1;
+}
 
 .align-center {
   align-items: center;
+}
+.justify-center {
+  justify-content: center;
 }
 
 .gap-1 {
@@ -625,7 +483,7 @@ body {
 }
 
 .gap-2 {
-  gap: 8px;
+  gap: 8px !important;
 }
 
 .mb-1 {
@@ -647,3 +505,4 @@ body {
 .text-muted {
   color: var(--gray-500);
 }
+

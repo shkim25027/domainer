@@ -107,12 +107,12 @@ $spacing-11: 64px;
 $spacing-12: 72px;
 
 
-$spacing-xs: $spacing-2;
-$spacing-sm: $spacing-4;
-$spacing-md: $spacing-6;
-$spacing-lg: $spacing-4;
-$spacing-xl: $spacing-6;
-$spacing-2xl: $spacing-7;
+$spacing-xs: $spacing-1;
+$spacing-sm: $spacing-2;
+$spacing-md: $spacing-4;
+$spacing-lg: $spacing-6;
+$spacing-xl: $spacing-7;
+$spacing-2xl: $spacing-9;
 
 // Border Radius (가이드: Squicle 10px)
 $radius-none: 0;
@@ -148,9 +148,9 @@ $z-index-tooltip: 1070;
   --font-xs: 0.75rem;    /* 12px */
   --font-sm: 0.8125rem;  /* 13px */
   --font-base: 0.875rem; /* 14px */
-  --font-md: 0.875rem;
-  --font-lg: 1rem;
-  --font-xl: 1.125rem;
+  --font-md: 0.875rem;   // 14px  
+  --font-lg: 1rem;        // 16px
+  --font-xl: 1.125rem;    // 18px
 
   /* Radius */
   --radius-none: 0;

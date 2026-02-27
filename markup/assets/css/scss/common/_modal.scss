@@ -53,6 +53,175 @@
   }
 }
 
+/* ============================================================
+   모달 v2 (.modal-dialog / header / body / footer)
+   ============================================================ */
+.modal-upload {
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.is-open {
+    display: flex;
+  }
+
+  .modal-dialog {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    width: 420px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
+  }
+}
+
+/* 헤더 */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: linear-gradient(90deg, #103D2E 0%, #1A523F 60%, #12352A 100%);
+}
+
+.modal-title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0;
+  transition: color 0.15s, background 0.15s;
+
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* 바디 */
+.modal-body {
+  padding: 20px 20px 10px;
+
+  /* 업로드 드래그 영역 */
+  .file-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 24px 20px 20px;
+    margin-bottom: 16px;
+  }
+
+  .upload-ico {
+    margin-bottom: 4px;
+  }
+
+  .upload-text {
+    font-size: var(--font-base);
+    font-weight: 700;
+    color: var(--gray-700);
+    margin: 0;
+  }
+
+  .upload-or {
+    font-size: var(--font-sm);
+    color: var(--gray-400);
+    margin: 0;
+  }
+
+  /* 업로드 파일 목록 헤더 */
+  .file-header {
+    font-size: var(--font-sm);
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 8px;
+
+    .badge-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 9px;
+      padding: 0 4px;
+      vertical-align: middle;
+    }
+  }
+
+  /* 파일 항목 */
+  .file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    margin-bottom: 6px;
+    font-size: var(--font-sm);
+    color: var(--gray-700);
+  }
+
+  .file-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: none;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    border-radius: 4px;
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--danger);
+      background: var(--gray-100);
+    }
+  }
+
+  /* 안내 링크 */
+  .upload-guide {
+    text-align: center;
+    font-size: var(--font-sm);
+    margin: 12px 0 4px;
+
+    a {
+      color: var(--gray-500);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+}
+
+/* 풋터 */
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px 20px;
+}
+
 /* 배경 dim 스타일 */
 .dim-background {
   display: none;

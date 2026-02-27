@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    @@include("_include/_head.html")
+  </head>
+  <body>
+    <div class="wrap">
+      @@include("_include/_sidebar.html")
+      <div class="container">
+        <!-- =============================================
+             LEFT PANEL : 사업정보관리
+             ============================================= -->
+        <div class="panel project-info-panel">
+
+          <!-- 패널 헤더 -->
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <img src="./assets/images/ico/ico_setting.svg" alt="" class="ico-title" aria-hidden="true">
+              사업정보관리
+            </h2>
+            <div class="d-flex gap-1">
+              <button type="button" class="btn btn-cancel btn-sm">취소</button>
+              <button type="button" class="btn btn-save btn-sm">저장</button>
+            </div>
+          </div>
+          <!-- // 패널 헤더 -->
+
+          <div class="panel-body">
+
+            <!-- ─── 좌측 : 사업 기본정보 ─── -->
+            <div class="panel-body-left">
+
+              <!-- 사업 기본정보 폼 -->
+              <table class="form-table">
+                <tbody>
+                  <tr>
+                    <th>사업명</th>
+                    <td colspan="2">
+                      <div class="form-row-inline">
+                        <select class="select select-md">
+                          <option>도로구분</option>
+                        </select>
+                        <input type="text" placeholder="노선명">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th rowspan="2">공사구간</th>
+                    <td>
+                      <div class="form-row-inline">
+                        <input type="text" placeholder="기점(읍·면·동·리)" >
+                        <span class="sep">~</span>
+                        
+                      </div>
+                    </td>
+                    <!-- 지도 썸네일 : 공사구간~공사기간 rowspan -->
+                    <td rowspan="6" class="map-cell">
+                      <div class="map-thumb">
+                        <img src="./assets/images/map_sample.jpg" alt="지도">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                      <div class="form-row-inline">
+                        <input type="text" placeholder="종점(읍·면·동·리)" style="flex:1">
+                        <span class="sep">&nbsp;&nbsp;</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>공사연장</th>
+                    <td>
+                      <div class="form-row-inline">
+                        <input type="text" value="00.00" >
+                        <span class="unit">km</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>공사비</th>
+                    <td>
+                      <div class="form-row-inline">
+                        <input type="text" value="0,000">
+                        <span class="unit">원</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>공사기간</th>
+                    <td>
+                      <div class="form-row-inline">
+                        <input type="date" placeholder="시작일">
+                        <span class="sep">~</span>
+                        <input type="date" placeholder="종료일">
+                      </div>
+                      <span class="note">착공일로부터 <strong>0</strong>개월</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>관리부서</th>
+                    <td>
+                      <input type="text" placeholder="부서명 / 사업단명">
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>과업목적</th>
+                    <td colspan="2">
+                      <textarea placeholder="내용을 입력하세요"></textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- // 사업 기본정보 폼 -->
+
+              <!-- 주요시설물 -->
+              <div class="form-group">
+                <div class="section-row d-flex align-center gap-2 mb-1">
+                  <span class="section-label">주요시설물</span>
+                  <button type="button" class="btn btn-add-primary btn-xs">+ 시설물</button>
+                </div>
+                <!-- 시설물 행 1 -->
+                <div class="facility-row form-grid gap-2 mb-1">
+                  <div class="form-row-inline">
+                    <select class="select-md">
+                      <option>나들목</option>
+                    </select>
+                    <div class="d-flex flex-1 align-center gap-1">
+                      <input type="text" placeholder="시설명,구분">
+                      <span class="btn-xs"></span>
+                    </div>
+              
+                  </div>
+                  <div class="form-row-inline">
+                    <select class="select-md">
+                      <option>교 량</option>
+                    </select>
+                    <div class="d-flex flex-1 align-center gap-2">
+                      <input type="number" value="0">
+                      <span class="unit">개소</span>
+                      <input type="number" value="0.00" >
+                      <span class="unit">km</span>
+                      <button type="button" class="btn btn-remove btn-xs">—</button>
+                    </div>
+                  </div>              
+                  <div class="form-row-inline">
+                    <select class="select-md">
+                      <option>분기점</option>
+                    </select>
+                    <div class="d-flex flex-1 align-center gap-1">
+                      <input type="text" placeholder="시설명,구분">
+                      <button type="button" class="btn btn-remove btn-xs">—</button>
+                    </div>
+                    
+                  </div>    
+                   <div class="form-row-inline">
+                    <select class="select-md">
+                      <option>총 류</option>
+                    </select>
+                    <div class="d-flex flex-1 align-center gap-1">
+                      <input type="text" placeholder="시설명,구분">
+                      <button type="button" class="btn btn-remove btn-xs">—</button>
+                    </div>
+                  </div>    
+                </div>
+              </div>
+              <!-- // 주요시설물 -->
+
+              <!-- 도로구역 결정 고시 -->
+              <div class="form-group">
+                <div class="notice-link mb-2 d-flex gap-2">
+                  <div class="link-title">도로구역 결정(변경)고시</div>
+                  <div>
+                    <a href="#" class="link-file">2025-00-00 국토교통부고시 제2023-635호 [pdf, 17KB]
+                      <img src="./assets/images/ico/ico_link_out.svg" alt="외부링크" class="ico-link">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- // 도로구역 결정 고시 -->
+
+              <!-- 사업관리 -->
+              <div class="form-group">
+                <div class="section-row d-flex align-center gap-2 mb-1">
+                  <span class="panel-title">사업관리(가칭)</span>
+                  <input type="text" class="input-md" value="한국도로공사">
+                  <input type="text" class="input-lg" value="D412565 : 자동입력 가능?">
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>분류</th>
+                      <th>공구</th>
+                      <th>부서</th>
+                      <th>성명</th>
+                      <th>전화번호</th>
+                      <th>메일 주소</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>담당자</td>
+                      <td>1,3공구</td>
+                      <td>토목사업본부</td>
+                      <td>정은혜</td>
+                      <td>010-3595-3511</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                    </tr>
+                    <tr>
+                      <td>담당자</td>
+                      <td>2,4공구</td>
+                      <td>토목사업본부</td>
+                      <td>김정석</td>
+                      <td>010-8832-5721</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                    </tr>
+                    <tr>
+                      <td>검토자</td>
+                      <td>전체공구</td>
+                      <td>토목사업본부</td>
+                      <td>채선영</td>
+                      <td>010-9951-2389</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- // 사업관리 -->
+
+            </div>
+            <!-- // panel-body-left -->
+
+
+            <!-- ─── 우측 : 공구관리 ─── -->
+            <div class="panel-body-right">
+
+              <!-- 공구관리 서브 헤더 -->
+              <div class="form-title">
+                <div class="d-flex align-center gap-2">
+                  <span class="panel-title">공구관리</span>
+                  <button type="button" class="btn btn-add-secondary btn-xs">+ 공구</button>
+                </div>
+                <button type="button" class="btn btn-add-secondary btn-sm" data-modal-open="modalPersonInfo">
+                  <img src="./assets/images/ico/ico_person.svg" alt="" aria-hidden="true">
+                  인원정보 등록
+                  <span class="badge-count">1</span>
+                </button>
+              </div>
+              <!-- // 공구관리 서브 헤더 -->
+
+              <!-- ─── 공구 1 ─── -->
+              <div class="form-group">
+                <div class="form-row-inline">
+                  <input class="input-auto" type="text" placeholder="공구명 입력" value="1">
+                  <label for="gonggu1" class="input-label blind">공구</label>
+                </div>
+                <div class="form-row-inline gap-2">
+                  <dl class="form-row-inline flex-1">
+                    <dt>공사 구간</dt>
+                    <dd class="flex-1 form-row-inline gap-2">
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                        <span class="sep">~</span>
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                    </dd>
+                  </dl>
+                  <dl class="form-row-inline">
+                    <dt class="lbl">STA.</dt>
+                    <dd>
+                        <div class="form-row-inline">
+                          <input type="text" value="0+000" class="input-sm">
+                          <span class="sep">~</span>
+                          <input type="text" value="0+000" class="input-sm">
+                        </div>
+                    </dd>
+                  </dl>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>업체명</th>
+                      <th>부서</th>
+                      <th>담당자</th>
+                      <th>전화번호</th>
+                      <th>메일 주소</th>
+                      <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>코오롱글로벌(주)</td>
+                      <td>토목사업본부</td>
+                      <td>김수현</td>
+                      <td>010-3595-3511</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                      <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- // 공구 1 -->
+
+              <!-- ─── 공구 2 ─── -->
+              <div class="form-group">
+                <div class="form-row-inline">
+                  <input class="input-auto" type="text" placeholder="공구명 입력" value="2">
+                  <label for="gonggu2" class="input-label">공구</label>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="form-row-inline gap-2">
+                  <dl class="form-row-inline flex-1">
+                    <dt>공사 구간</dt>
+                    <dd class="flex-1 form-row-inline gap-2">
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                        <span class="sep">~</span>
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                    </dd>
+                  </dl>
+                  <dl class="form-row-inline">
+                    <dt class="lbl">STA.</dt>
+                    <dd>
+                        <div class="form-row-inline">
+                          <input type="text" value="0+000" class="input-sm">
+                          <span class="sep">~</span>
+                          <input type="text" value="0+000" class="input-sm">
+                        </div>
+                    </dd>
+                  </dl>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>업체명</th>
+                      <th>부서</th>
+                      <th>담당자</th>
+                      <th>전화번호</th>
+                      <th>메일 주소</th>
+                      <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>코오롱글로벌(주)</td>
+                      <td>토목사업본부</td>
+                      <td>김수현</td>
+                      <td>010-3595-3511</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                      <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" placeholder="업체명"></td>
+                      <td><input type="text" placeholder="부서명"></td>
+                      <td><input type="text" placeholder="담당자"></td>
+                      <td><input type="text" placeholder="전화번호"></td>
+                      <td><input type="text" placeholder="your@email.com"></td>
+                      <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- // 공구 2 -->
+
+              <!-- ─── 공구 3 ─── -->
+              <div class="form-group">
+                <div class="form-row-inline">
+                  <input class="input-auto" type="text" placeholder="공구명 입력" value="3">
+                  <label for="gonggu3" class="input-label">공구</label>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="form-row-inline gap-2">
+                  <dl class="form-row-inline flex-1">
+                    <dt>공사 구간</dt>
+                    <dd class="flex-1 form-row-inline gap-2">
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                        <span class="sep">~</span>
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                    </dd>
+                  </dl>
+                  <dl class="form-row-inline">
+                    <dt class="lbl">STA.</dt>
+                    <dd>
+                        <div class="form-row-inline">
+                          <input type="text" value="0+000" class="input-sm">
+                          <span class="sep">~</span>
+                          <input type="text" value="0+000" class="input-sm">
+                        </div>
+                    </dd>
+                  </dl>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>업체명</th>
+                      <th>부서</th>
+                      <th>담당자</th>
+                      <th>전화번호</th>
+                      <th>메일 주소</th>
+                      <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>코오롱글로벌(주)</td>
+                      <td>토목사업본부</td>
+                      <td>김수현</td>
+                      <td>010-3595-3511</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                      <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- // 공구 3 -->
+
+              <!-- ─── 공구 4 ─── -->
+              <div class="form-group">
+                <div class="form-row-inline">
+                  <input class="input-auto" type="text" placeholder="공구명 입력" value="4">
+                  <label for="gonggu4" class="input-label">공구</label>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="form-row-inline gap-2">
+                  <dl class="form-row-inline flex-1">
+                    <dt>공사 구간</dt>
+                    <dd class="flex-1 form-row-inline gap-2">
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                        <span class="sep">~</span>
+                        <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
+                    </dd>
+                  </dl>
+                  <dl class="form-row-inline">
+                    <dt class="lbl">STA.</dt>
+                    <dd>
+                        <div class="form-row-inline">
+                          <input type="text" value="0+000" class="input-sm">
+                          <span class="sep">~</span>
+                          <input type="text" value="0+000" class="input-sm">
+                        </div>
+                    </dd>
+                  </dl>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>업체명</th>
+                      <th>부서</th>
+                      <th>담당자</th>
+                      <th>전화번호</th>
+                      <th>메일 주소</th>
+                      <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>코오롱글로벌(주)</td>
+                      <td>토목사업본부</td>
+                      <td>김수현</td>
+                      <td>010-3595-3511</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                      <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                    </tr>
+                    <tr>
+                      <td>코오롱글로벌(주)</td>
+                      <td>토목사업본부</td>
+                      <td>김수현</td>
+                      <td>010-3595-3511</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                      <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                    </tr>
+                    <tr>
+                      <td>코오롱글로벌(주)</td>
+                      <td>토목사업본부</td>
+                      <td>김수현</td>
+                      <td>010-3595-3511</td>
+                      <td>hanmacdesign@hanmaceng.co.kr</td>
+                      <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- // 공구 4 -->
+
+            </div>
+            <!-- // panel-body-right -->
+
+          </div>
+          <!-- // panel-body -->
+
+        </div>
+        <!-- // panel -->
+
+      </div>
+    </div>
+
+    <!-- =============================================
+         MODAL : 시공사 인원정보 등록
+         ============================================= -->
+    <div class="modal modal-upload" id="modalPersonInfo" role="dialog" aria-modal="true" aria-labelledby="modalPersonInfoTitle">
+      <div class="modal-dialog">
+
+        <!-- 모달 헤더 -->
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalPersonInfoTitle">시공사 인원정보 등록</h3>
+          <button type="button" class="modal-close" aria-label="닫기">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 모달 바디 -->
+        <div class="modal-body">
+
+          <!-- 파일 업로드 드래그 영역 -->
+          <div class="file-box">
+            <svg class="upload-ico" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path d="M20 28V16M20 16L15 21M20 16L25 21" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 30C6.686 30 4 27.314 4 24C4 21.09 5.99 18.64 8.72 18.1C8.26 17.12 8 16.03 8 14.88C8 10.54 11.58 7 16 7C19.3 7 22.14 8.96 23.46 11.76C24.24 11.28 25.1 11 26 11C28.76 11 31 13.24 31 16C31 16.36 30.96 16.7 30.9 17.04C33.74 17.54 36 20.02 36 23C36 26.31 33.31 29 30 29" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <p class="upload-text">파일을 여기에 끌어 놓기</p>
+            <p class="upload-or">또는</p>
+            <button type="button" class="btn btn-outline btn-sm">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1v8M4 5l3-4 3 4M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              불러오기
+            </button>
+          </div>
+
+          <!-- 업로드 파일 목록 -->
+          <div class="file-header">
+            <span>업로드 파일 <span class="badge-count">1</span>개</span>
+          </div>
+          <div class="file-list">
+            <div class="file-item">
+              <span class="file-name">시공사 인원정보 (2026-03-22) [xlsx, 17KB]</span>
+              <button type="button" class="file-remove" aria-label="파일 삭제">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 안내 링크 -->
+          <p class="upload-guide">
+            <a href="#">엑셀파일이 아니라 다른 파일을 불러올 경우는?</a>
+          </p>
+
+        </div>
+        <!-- // 모달 바디 -->
+
+        <!-- 모달 풋터 -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel btn-md">취소</button>
+          <button type="button" class="btn btn-save btn-md">등록</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- // MODAL -->
+
+    <script>
+      // 모달 열기 : [data-modal-open="modalId"] 버튼
+      document.querySelectorAll('[data-modal-open]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var id = btn.getAttribute('data-modal-open');
+          document.getElementById(id).classList.add('is-open');
+        });
+      });
+
+      // 모달 닫기 : .modal-close 버튼 또는 오버레이 클릭
+      document.querySelectorAll('.modal').forEach(function(modal) {
+        // X 버튼
+        var closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function() {
+            modal.classList.remove('is-open');
+          });
+        }
+        // 오버레이(배경) 클릭
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) modal.classList.remove('is-open');
+        });
+      });
+
+      // ESC 키로 닫기
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal.is-open').forEach(function(modal) {
+            modal.classList.remove('is-open');
+          });
+        }
+      });
+    </script>
+
+  </body>
+</html>

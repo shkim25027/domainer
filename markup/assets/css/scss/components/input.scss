@@ -7,6 +7,7 @@
 @use '../import/component-variables' as *;
 @use '../import/component-mixins' as *;
 
+input,
 .input {
   @include reset-input;
   @include transition(border-color, box-shadow, background-color);
@@ -68,7 +69,8 @@
   }
 
   // Valid state
-  &:valid:not(:placeholder-shown),
+ // &:valid:not(:placeholder-shown),
+  &:focus,
   &.input-success {
     border-color: $success;
 
@@ -77,8 +79,17 @@
       //@include focus-ring(rgba($success, 0.25));
     }
   }
+  // Size variants - 입력값에 따라 자동으로 너비 확장
+  &-auto {
+    width: auto;
+    min-width: 80px;
+    max-width: 100%;
+    box-sizing: content-box;
 
-  // Size variants
+    @supports (field-sizing: content) {
+      field-sizing: content;
+    }
+  }
   &-xs {
     width: $input-width-xs;
   }
@@ -102,6 +113,7 @@
 }
 
 // Textarea
+textarea,
 .textarea {
   @extend .input;
 
@@ -252,6 +264,7 @@
 }
 
 // Select
+select,
 .select {
   @extend .input;
   font-size: $font-size-base;

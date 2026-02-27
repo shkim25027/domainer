@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@use '../import/mixin' as *;
+
+
+.project-info-panel {
+
+    .panel-body {
+        display: grid;
+        grid-template-columns: 738fr 975fr;
+    }
+
+}

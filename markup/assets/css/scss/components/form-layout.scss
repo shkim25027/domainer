@@ -1,115 +1,130 @@
 @charset "UTF-8";
 
 // ================================================
-// Form Layout (section, form-grid, field, actions, counter)
+// Form Layout
+// section / form-grid / field / search / counter / actions / form-table
 // ================================================
 
 @use '../import/component-variables' as *;
 
-// Section block
+// ────────────────────────────────────────────────
+// Section
+// ────────────────────────────────────────────────
 .section {
   margin-bottom: $spacing-2xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    margin-bottom: $spacing-md;
+  }
 }
 
-.section:last-child {
-  margin-bottom: 0;
-}
-
-.section h3,
-.section-title {
+.section-title,
+.section h3 {
   font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
   margin-bottom: $spacing-md;
   color: $gray-800;
 }
 
-.section h3 {
-  margin-bottom: $spacing-md;
-}
-
-// Form grid (2열)
+// ────────────────────────────────────────────────
+// Form Grid (2열)
+// ────────────────────────────────────────────────
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $spacing-md $spacing-lg;
+  grid-template-columns: repeat(2, calc(50% - 4px));
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: $spacing-sm;
+  gap: $spacing-xs;
   font-size: $font-size-sm;
   margin-bottom: 0;
+  &:not(:last-child) {
+    margin-bottom: $spacing-lg;
+  }
 }
 
 .form-group-full {
   grid-column: 1 / -1;
 }
 
-// Single field (form-group 대체용)
+// ────────────────────────────────────────────────
+// Field
+// ────────────────────────────────────────────────
 .field {
   margin-bottom: $spacing-lg;
-}
 
-.field label {
-  display: block;
-  font-size: $font-size-sm;
-  margin-bottom: $spacing-sm;
-  color: $gray-700;
-  font-weight: $font-weight-medium;
+  label {
+    display: block;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-sm;
+    color: $gray-700;
+    font-weight: $font-weight-medium;
+  }
 }
 
 .row {
   display: flex;
   gap: $spacing-md;
   margin-bottom: $spacing-md;
+
+  .field {
+    flex: 1;
+    margin-bottom: 0;
+  }
 }
 
-.row .field {
-  flex: 1;
-  margin-bottom: 0;
-}
-
-// Search box (아이콘 + input)
+// ────────────────────────────────────────────────
+// Search Box
+// ────────────────────────────────────────────────
 .search-box {
   position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    background: currentColor;
+    opacity: 0.5;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    pointer-events: none;
+  }
+
+  .input,
+  input {
+    padding-left: 2.25rem;
+  }
 }
 
-.search-box::before {
-  content: '';
-  position: absolute;
-  left: $spacing-md;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1rem;
-  height: 1rem;
-  background: currentColor;
-  opacity: 0.5;
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
-  mask-repeat: no-repeat;
-  mask-size: contain;
-  mask-position: center;
-  pointer-events: none;
-}
-
-.search-box .input,
-.search-box input {
-  padding-left: 2.25rem;
-}
-
-// Counter (글자 수 등)
+// ────────────────────────────────────────────────
+// Counter
+// ────────────────────────────────────────────────
 .counter {
   text-align: right;
   font-size: $font-size-xs;
   color: $gray-500;
   margin-top: $spacing-xs;
+
+  &-primary {
+    color: $primary;
+  }
 }
 
-.counter-primary {
-  color: $primary;
-}
-
+// ────────────────────────────────────────────────
 // Actions / Footer
+// ────────────────────────────────────────────────
 .actions,
 .footer {
   display: flex;
@@ -124,21 +139,109 @@
   gap: $spacing-sm;
 }
 
+// ────────────────────────────────────────────────
 // Inline (input + button)
+// ────────────────────────────────────────────────
 .inline {
   display: flex;
   gap: $spacing-sm;
   align-items: center;
+
+  input {
+    flex: 1;
+    min-width: 0;
+  }
 }
 
-.inline input {
-  flex: 1;
-  min-width: 0;
-}
-
+// ────────────────────────────────────────────────
 // Divider
+// ────────────────────────────────────────────────
 hr {
   border: none;
   border-top: $input-border-width solid $gray-200;
   margin: $spacing-xl 0;
 }
+
+// ────────────────────────────────────────────────
+// Form Table
+// ────────────────────────────────────────────────
+.form-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--gray-300);
+  margin-bottom: $spacing-lg;
+  font-size: var(--font-sm);
+
+  th,
+  td {
+    border: 1px solid var(--gray-300);
+    padding: 6px 10px;
+    vertical-align: middle;
+  }
+
+  th {
+    background: var(--gray-100);
+    font-weight: 500;
+    color: var(--gray-700);
+    white-space: nowrap;
+    width: 90px;
+    text-align: left;
+  }
+
+  td {
+    background: var(--white);
+  }
+}
+
+// ────────────────────────────────────────────────
+// Form Row Inline
+// ────────────────────────────────────────────────
+.form-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+
+  .sep   { min-width: 20px; color: var(--gray-400); flex-shrink: 0; text-align: center; }
+  .unit  { min-width: 20px; color: var(--gray-600); font-size: var(--font-sm); flex-shrink: 0; }
+  .lbl   { font-size: var(--font-sm); font-weight: 500; flex-shrink: 0; }
+  .note  { font-size: var(--font-xs); color: var(--gray-500); flex-shrink: 0; }
+} 
+
+// ────────────────────────────────────────────────
+// Data Table
+// ────────────────────────────────────────────────
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-sm);
+  margin-top: 8px;
+
+  th {
+    background: var(--gray-100);
+    padding: 6px 10px;
+    text-align: center;
+    font-weight: 500;
+    color: var(--gray-700);
+    border: 1px solid var(--gray-200);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 6px 10px;
+    border: 1px solid var(--gray-200);
+    text-align: center;
+    color: var(--gray-800);
+  }
+
+  tbody tr:hover {
+    background: var(--gray-50);
+  }
+}
+
+.form-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

@@ -145,6 +145,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // input-auto: 입력값에 따라 너비 자동 확장 (field-sizing 미지원 브라우저용)
+  if (!CSS.supports?.("field-sizing", "content")) {
+    const resizeInputAuto = (input) => {
+      const measure = document.createElement("span");
+      const style = getComputedStyle(input);
+      measure.style.cssText = `
+        position:absolute;visibility:hidden;white-space:pre;
+        font:${style.font};letter-spacing:${style.letterSpacing};
+        padding:0 ${style.paddingLeft} 0 ${style.paddingRight};
+      `;
+      measure.textContent = input.value || input.placeholder || "";
+      document.body.appendChild(measure);
+      const w = Math.max(80, measure.offsetWidth + 2);
+      input.style.width = w + "px";
+      document.body.removeChild(measure);
+    };
+    document.querySelectorAll(".input-auto").forEach((input) => {
+      resizeInputAuto(input);
+      input.addEventListener("input", () => resizeInputAuto(input));
+    });
+  }
+
   $("[id^=open-modal]").click(function () {
     var modalId = this.id.replace("open-", "");
     $("#" + modalId).show();

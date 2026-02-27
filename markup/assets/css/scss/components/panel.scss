@@ -7,6 +7,33 @@
 @use '../import/component-variables' as *;
 @use '../import/component-mixins' as *;
 
+.panel {
+  background: $white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-sm;
+  padding: $spacing-lg;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #706453;
+  padding: 18px 0 8px;
+}
+
+.panel-title {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--gray-900);
+}
+.panel-body-right,
+.panel-body-left {
+  padding: 16px;
+}
+
+
+
 // Filter panel (사이드 필터)
 .filter-panel {
   width: 320px;
@@ -262,3 +289,4 @@
   background: $gray-200;
   min-width: 24px;
 }
+ 
