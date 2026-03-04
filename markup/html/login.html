@@ -107,9 +107,8 @@
         const indicator = document.querySelector('.login-tabs-indicator');
 
         function updateIndicator() {
-          const activeTab = authMode === 'phone' ? tabPhone : tabEmail;
-          indicator.style.width = activeTab.offsetWidth + 'px';
-          indicator.style.left = activeTab.offsetLeft + 'px';
+          indicator.classList.toggle('is-left', authMode === 'phone');
+          indicator.classList.toggle('is-right', authMode === 'email');
         }
 
         function switchTab(mode) {
@@ -129,7 +128,6 @@
         tabEmail.addEventListener('click', () => switchTab('email'));
 
         updateIndicator();
-        window.addEventListener('resize', updateIndicator);
 
         // 전화번호 포맷 및 전송 버튼 활성화
         function formatPhone(val) {

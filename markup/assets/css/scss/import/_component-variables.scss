@@ -57,7 +57,7 @@ $input-padding-x-lg: $spacing-6;
 $input-border-width: 1px;
 $input-border-color: $gray-300;
 $input-border-color-hover: $gray-400;
-$input-border-color-focus: $primary;
+$input-border-color-focus: var(--text-success);
  
 $input-bg: $white;
 $input-bg-disabled: $gray-100;
