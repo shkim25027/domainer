@@ -354,7 +354,7 @@
     content: '';
     position: absolute;
     left: 50%;
-    bottom: -4px;
+    bottom: -10px;
     transform: translateX(-50%);
     width: calc(100% - 12px);
     height: 13px;
@@ -378,22 +378,17 @@
   font-size: $font-size-lg;
   font-weight: $font-weight-semibold;
   border-radius: 8px;
-  background: url('../images/login/bg_btn_login.svg') center/100% 100% no-repeat;
-  mask-image: url('../images/login/bg_btn_login.svg');
-  mask-size: 100% 100%;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  -webkit-mask-image: url('../images/login/bg_btn_login.svg');
-  -webkit-mask-size: 100% 100%;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
+  border: none;
+  background: url('../images/login/bg_btn_login.svg') ;
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 1px 3.3px 0 rgba(0, 0, 0, 0.20);
   color: $white;
   cursor: pointer;
   text-shadow: -1px -1px 0 #226F50, 1px -1px 0 #226F50, -1px 1px 0 #226F50, 1px 1px 0 #226F50;
   z-index: 1;
   @include transition(opacity, box-shadow);
-
-
   &:hover {
     opacity: 0.95;
   }

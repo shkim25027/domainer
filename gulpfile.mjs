@@ -1,6 +1,11 @@
 // gulpfile.mjs
 import gulp, { src, dest, watch, series, parallel } from "gulp";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import gulpSass from "gulp-sass"; //SCSS → CSS 컴파일
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import * as sass from "sass";
 import postcss from "gulp-postcss"; //CSS 후처리, 플러그인 적용
 import autoprefixer from "autoprefixer"; //브라우저 벤더 프리픽스 자동 추가
@@ -9,7 +14,6 @@ import browserSyncLib from "browser-sync"; // 개발 서버를 띄우고 파일 
 import concat from "gulp-concat"; //여러 파일을 하나로 합침
 import rename from "gulp-rename"; //파일 이름 변경 (예: style.css → style.min.css)
 import terser from "gulp-terser"; //JS 압축/최적화
-import imagemin from "gulp-imagemin"; //PNG, JPEG, GIF, SVG 이미지 용량 최적화
 import includer from "gulp-file-include"; //Gulp 빌드 시 정적 HTML 조립
 import prettier from "gulp-prettier"; //JS/CSS/HTML 코드 자동 포맷팅
 import { deleteAsync } from "del";
@@ -49,15 +53,8 @@ const paths = {
   },
   jscopy: { src: "./markup/assets/js/lib/**/*", dest: "./dist/assets/js/lib" },
   img: {
-    src: [
-      "./markup/assets/images/**/*.{png,jpg,jpeg,svg}",
-      "!./markup/assets/images/bg_sidebar.png", // imagemin 제외
-      "!./markup/assets/images/login/bg_login.png", // imagemin 제외
-    ],
-    rawSrc: [
-      "./markup/assets/images/bg_sidebar.png", // 압축 없이 복사
-      "./markup/assets/images/login/bg_login.png", // 압축 없이 복사
-    ],
+    src: "./markup/assets/images/**/*.{png,jpg,jpeg,svg,gif}",
+    base: "./markup/assets/images",
     dest: "./dist/assets/images",
   },
   fonts: { src: "./markup/assets/fonts/**/*", dest: "./dist/assets/fonts" },
@@ -86,14 +83,28 @@ function fonts() {
   return src(paths.fonts.src).pipe(dest(paths.fonts.dest));
 }
 
-// Images (최적화)
-function images() {
-  return src(paths.img.src).pipe(imagemin()).pipe(dest(paths.img.dest));
+// Images (Node fs.copyFileSync로 바이너리 그대로 복사 - 깨짐 방지)
+const IMG_EXT = new Set([".png", ".jpg", ".jpeg", ".svg", ".gif"]);
+
+function copyDirRecursive(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return;
+  fs.mkdirSync(destDir, { recursive: true });
+  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    const srcPath = path.join(srcDir, entry.name);
+    const destPath = path.join(destDir, entry.name);
+    if (entry.isDirectory()) {
+      copyDirRecursive(srcPath, destPath);
+    } else if (IMG_EXT.has(path.extname(entry.name).toLowerCase())) {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
 }
 
-// Images (압축 없이 복사)
-function imagesCopy() {
-  return src(paths.img.rawSrc).pipe(dest(paths.img.dest));
+function images(done) {
+  const srcDir = path.resolve(__dirname, "markup/assets/images");
+  const destDir = path.resolve(__dirname, "dist/assets/images");
+  copyDirRecursive(srcDir, destDir);
+  done();
 }
 
 // SCSS → CSS (진입점 common.scss, style.scss 만 컴파일)
@@ -156,7 +167,6 @@ function serve() {
   watch(paths.js.src, scripts);
   watch(paths.jscopy.src, jscopy);
   watch(paths.img.src, images);
-  watch(paths.img.rawSrc, imagesCopy);
   watch(paths.fonts.src, fonts);
   watch(paths.html.src, html);
 }
@@ -166,13 +176,13 @@ function serve() {
 // ------------------------------------
 const build = series(
   clean,
-  parallel(fonts, images, imagesCopy, scss, csscopy, scripts, jscopy, html),
+  parallel(fonts, images, scss, csscopy, scripts, jscopy, html),
   cache
 );
 
 const dev = series(
   clean,
-  parallel(fonts, images, imagesCopy, scss, csscopy, scripts, jscopy, html),
+  parallel(fonts, images, scss, csscopy, scripts, jscopy, html),
   parallel(serve)
 );
 
