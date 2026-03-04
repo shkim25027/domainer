@@ -157,8 +157,15 @@
 }
 
 // ================================================
-// Floating Label Input
+// Floating Label Input (로그인 전용 - 글로벌 input/label transition 무효화)
 // ================================================
+.page-login input,
+.page-login .input-float input,
+.page-login .input-float .input,
+.page-login .input-float .label {
+  transition: none !important;
+}
+
 .input-float {
   position: relative;
 
@@ -172,7 +179,7 @@
     font-size: $font-size-2xl;
     color: $input-text-color;
     outline: none;
-    @include transition(border-color, box-shadow);
+    transition: none !important;
 
     &::placeholder {
       color: transparent;
@@ -183,7 +190,8 @@
     }
 
     &:focus {
-      border-width: 2px;
+      border-color: $input-border-color-focus;
+      box-shadow: 0 0 0 1px $input-border-color-focus inset;
     }
   }
 
@@ -267,7 +275,7 @@
   }
 
   // 버튼을 input 위에 오버레이
-  &--overlay {
+  &-overlay {
     position: relative;
     display: block;
 
@@ -351,16 +359,17 @@
 .btn-login {
   width: 100%;
   margin-top: $spacing-lg;
-  height: 72px;
-  font-size: $font-size-lg;
+  height: 80px;
+  font-size: $font-size-2xl;
   font-weight: $font-weight-semibold;
   border-radius: 8px;
+  padding-bottom: 8px;
   border: none;
-  background: url('../images/login/bg_btn_login.svg') ;
-  background-size: 100% auto;
+  background: url('../images/login/bg_btn_login.png') ;
+  background-size: 408px auto;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: 0 1px 3.3px 0 rgba(0, 0, 0, 0.20);
+
   color: $white;
   cursor: pointer;
   text-shadow: -1px -1px 0 #226F50, 1px -1px 0 #226F50, -1px 1px 0 #226F50, 1px 1px 0 #226F50;
