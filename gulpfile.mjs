@@ -52,8 +52,12 @@ const paths = {
     src: [
       "./markup/assets/images/**/*.{png,jpg,jpeg,svg}",
       "!./markup/assets/images/bg_sidebar.png", // imagemin 제외
+      "!./markup/assets/images/login/bg_login.png", // imagemin 제외
     ],
-    rawSrc: "./markup/assets/images/bg_sidebar.png", // 압축 없이 복사
+    rawSrc: [
+      "./markup/assets/images/bg_sidebar.png", // 압축 없이 복사
+      "./markup/assets/images/login/bg_login.png", // 압축 없이 복사
+    ],
     dest: "./dist/assets/images",
   },
   fonts: { src: "./markup/assets/fonts/**/*", dest: "./dist/assets/fonts" },

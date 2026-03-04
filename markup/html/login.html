@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    @@include("_include/_head.html")
+  </head>
+  <body class="page-login">
+    <div class="login-wrap">
+      <!-- 왼쪽: 로그인 폼 영역 (글라스 모피즘) -->
+      <div class="login-left">
+        <div class="login-logo">
+          <img src="./assets/images/logo_b.svg" alt="DOMAINER" />
+        </div>
+        <div class="login-inner">
+          <div class="login-area">
+            <h1 class="login-title">로그인</h1>
+
+            <!-- 인증 방식 탭 -->
+            <div class="login-tabs tabs" role="tablist">
+              <span class="login-tabs-indicator" aria-hidden="true"></span>
+              <button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="panel-phone" id="tab-phone" data-auth="phone">
+                <span class="tab-ico tab-ico-phone"></span>
+                휴대폰 인증
+              </button>
+              <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="panel-email" id="tab-email" data-auth="email">
+                <span class="tab-ico tab-ico-email">@</span>
+                이메일
+              </button>
+            </div>
+            
+          <!-- 휴대폰 인증 폼 -->
+          <div id="panel-phone" class="login-panel active" role="tabpanel" aria-labelledby="tab-phone">
+            <form class="login-form" id="form-phone" novalidate>
+              <div class="form-group">
+                <div class="login-input-row login-input-row--overlay">
+                  <div class="input-float">
+                    <input type="tel" id="phone" class="input" placeholder=" " maxlength="13" autocomplete="tel" />
+                    <label class="label" for="phone">휴대전화 번호</label>
+                  </div>
+                  <button type="button" class="btn btn-send btn-primary btn-sm" id="btn-send-code" disabled>인증번호 전송</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-float input-with-timer">
+                  <input type="text" id="code" class="input" placeholder=" " maxlength="6" autocomplete="one-time-code" inputmode="numeric" />
+                  <label class="label" for="code">인증번호</label>
+                  <span class="timer" id="timer" aria-live="polite"></span>
+                </div>
+                <span class="help-text help-text-error" id="code-error" aria-live="assertive">인증번호가 일치하지 않습니다</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- 이메일 로그인 폼 -->
+          <div id="panel-email" class="login-panel" role="tabpanel" aria-labelledby="tab-email" hidden>
+            <form class="login-form" id="form-email">
+              <div class="form-group">
+                <div class="input-float">
+                  <input type="email" id="email" class="input" placeholder=" " autocomplete="email" />
+                  <label class="label" for="email">이메일</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-float">
+                  <input type="password" id="password" class="input" placeholder=" " autocomplete="current-password" />
+                  <label class="label" for="password">비밀번호</label>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- 공통 로그인 버튼 -->
+          <div class="login-btn-wrap">
+            <button type="button" class="btn btn-login btn-primary btn-lg" id="btn-login">로그인</button>
+          </div>
+          
+
+          <div class="login-links">
+            <a href="#" class="login-link">비밀번호 재설정</a>
+            <a href="#" class="login-link">회원가입</a>
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      (function () {
+        const tabPhone = document.getElementById('tab-phone');
+        const tabEmail = document.getElementById('tab-email');
+        const panelPhone = document.getElementById('panel-phone');
+        const panelEmail = document.getElementById('panel-email');
+        const btnSendCode = document.getElementById('btn-send-code');
+        const btnLogin = document.getElementById('btn-login');
+        const inputPhone = document.getElementById('phone');
+        const inputCode = document.getElementById('code');
+        const codeError = document.getElementById('code-error');
+        const timerEl = document.getElementById('timer');
+
+        let authMode = 'phone';
+        let codeSent = false;
+        let countdown = null;
+
+        // 탭 전환
+        const tabsEl = document.querySelector('.login-tabs');
+        const indicator = document.querySelector('.login-tabs-indicator');
+
+        function updateIndicator() {
+          const activeTab = authMode === 'phone' ? tabPhone : tabEmail;
+          indicator.style.width = activeTab.offsetWidth + 'px';
+          indicator.style.left = activeTab.offsetLeft + 'px';
+        }
+
+        function switchTab(mode) {
+          authMode = mode;
+          tabPhone.classList.toggle('active', mode === 'phone');
+          tabEmail.classList.toggle('active', mode === 'email');
+          tabPhone.setAttribute('aria-selected', mode === 'phone');
+          tabEmail.setAttribute('aria-selected', mode === 'email');
+          panelPhone.classList.toggle('active', mode === 'phone');
+          panelEmail.classList.toggle('active', mode === 'email');
+          panelPhone.hidden = mode !== 'phone';
+          panelEmail.hidden = mode !== 'email';
+          updateIndicator();
+        }
+
+        tabPhone.addEventListener('click', () => switchTab('phone'));
+        tabEmail.addEventListener('click', () => switchTab('email'));
+
+        updateIndicator();
+        window.addEventListener('resize', updateIndicator);
+
+        // 전화번호 포맷 및 전송 버튼 활성화
+        function formatPhone(val) {
+          return val.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        }
+
+        inputPhone.addEventListener('input', (e) => {
+          e.target.value = formatPhone(e.target.value);
+          const phone = e.target.value.replace(/\D/g, '');
+          btnSendCode.disabled = phone.length < 10;
+        });
+
+        // 타이머
+        function startTimer(sec) {
+          if (countdown) clearInterval(countdown);
+          let s = sec;
+
+          function render() {
+            const m = Math.floor(s / 60);
+            const ss = s % 60;
+            timerEl.textContent = m + '분 ' + (ss < 10 ? '0' : '') + ss + '초';
+            timerEl.classList.add('visible');
+          }
+
+          render();
+          countdown = setInterval(() => {
+            s--;
+            if (s <= 0) {
+              clearInterval(countdown);
+              timerEl.textContent = '';
+              timerEl.classList.remove('visible');
+              btnSendCode.textContent = '인증번호 전송';
+              btnSendCode.classList.remove('btn-resend');
+              codeSent = false;
+              return;
+            }
+            render();
+          }, 1000);
+        }
+
+        // 인증번호 전송
+        btnSendCode.addEventListener('click', () => {
+          const phone = inputPhone.value.replace(/\D/g, '');
+          if (phone.length < 10) return;
+          codeSent = true;
+          btnSendCode.textContent = '인증번호 재전송';
+          btnSendCode.classList.add('btn-resend');
+          
+          startTimer(181);
+        });
+
+        // 인증번호 입력 시 오류 초기화
+        inputCode.addEventListener('input', () => {
+          inputCode.closest('.input-float').classList.remove('has-error');
+          codeError.classList.remove('visible');
+        });
+
+        // 로그인 처리
+        btnLogin.addEventListener('click', () => {
+          if (authMode === 'phone') {
+            const code = inputCode.value;
+            if (!code || code.length < 4) {
+              inputCode.closest('.input-float').classList.add('has-error');
+              codeError.classList.add('visible');
+              return;
+            }
+          }
+          console.log('Login:', authMode);
+        });
+      })();
+    </script>
+  </body>
+</html>

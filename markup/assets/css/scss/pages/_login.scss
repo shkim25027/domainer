@@ -1,0 +1,421 @@
+@charset "UTF-8";
+
+// ================================================
+// Login Page - 2패널 레이아웃 (폼 | 배경)
+// ================================================
+
+@use '../import/component-variables' as *;
+@use '../import/component-mixins' as *;
+@use '../import/mixin' as *;
+
+.page-login {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: $gray-100;
+}
+
+.login-wrap {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: url('../images/login/bg_login.png') center/cover no-repeat;
+}
+
+// 왼쪽: 로그인 폼 (블러 + 블루-그린 이터리얼 글라스)
+.login-left {
+  flex: 0 0 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  max-width: 780px;
+  width: 40.625%;
+  padding: 42px 52px;
+  background:
+  linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.4) 100%),
+  radial-gradient(80% 50% at 30% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+  radial-gradient(120% 80% at 80% 80%, rgba(255, 255, 255, 0.25) 0%, transparent 50%),
+  rgba(255, 255, 255, 0.1);
+  background-blend-mode: overlay, screen, screen, normal;
+  backdrop-filter: blur(4px);
+  filter: drop-shadow(-10px 0 79.8px rgba(0, 0, 0, 0.2)) brightness(1.08);
+}
+
+.login-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-area {
+  padding: 40px;
+  width: 100%;
+  margin-bottom: $spacing-12;
+}
+
+.login-logo {
+  align-self: flex-start;
+  margin-bottom: 48px;
+  z-index: 1;
+  img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+.login-title {
+  margin: 0 0 32px;
+  font-size: $font-title-1;
+  font-weight: $font-weight-bold;
+  color: #143222;
+}
+
+// 탭: 휴대폰 인증 | 이메일 (슬라이딩 인디케이터)
+.login-tabs {
+  position: relative;
+  display: flex;
+  gap: 0;
+  border: 1px solid #ECECEC;
+  border-radius: 8px;
+  margin-bottom: $spacing-lg;
+  background: rgba(159, 169, 160, 0.14);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2) inset;
+
+  .login-tabs-indicator {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 0;
+    width: 50%;
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, #fff 100%), #ddd;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2) inset, 1px -1px 1px 0 rgba(0, 0, 0, 0.2) inset, 2px 2px 1px 0 rgba(0, 0, 0, 0.3), -2px 2px 2px 0 rgba(255, 255, 255, 0.5) inset, -2px -2px 2px 0 rgba(0, 0, 0, 0.15) inset;
+    transition: left 0.3s ease, width 0.3s ease;
+    z-index: 0;
+  }
+
+  .tab {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+    padding: 21px $spacing-lg;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-normal;
+    color: #061C14;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    @include transition(color);
+
+    &.active {
+      color: $gray-900;
+      font-weight: $font-weight-semibold;
+    }
+
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .tab:hover:not(:disabled):not(.active) {
+      background: transparent;
+    }
+  }
+
+  .tab-ico {
+    font-size: 1rem;
+    line-height: 1;
+
+    &-phone {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='17' viewBox='0 0 16 17' fill='none'%3E%3Cpath d='M11 0.149414C12.1874 0.149414 13.1504 1.11239 13.1504 2.2998V14.2998C13.1504 15.4872 12.1874 16.4502 11 16.4502H5C3.81259 16.4502 2.84961 15.4872 2.84961 14.2998V2.2998C2.84961 1.11239 3.81259 0.149414 5 0.149414H11ZM5 1.4502C4.53056 1.4502 4.15039 1.83036 4.15039 2.2998V14.2998C4.15039 14.7692 4.53056 15.1494 5 15.1494H11C11.4694 15.1494 11.8496 14.7692 11.8496 14.2998V2.2998C11.8496 1.83036 11.4694 1.4502 11 1.4502H5ZM8 12.1494C8.63513 12.1494 9.15039 12.6647 9.15039 13.2998C9.15039 13.9349 8.63513 14.4502 8 14.4502C7.36487 14.4502 6.84961 13.9349 6.84961 13.2998C6.84961 12.6647 7.36487 12.1494 8 12.1494Z' fill='%23354741' stroke='%23354741' stroke-width='0.3'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+  }
+}
+
+.login-panel {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+// ================================================
+// Floating Label Input
+// ================================================
+.input-float {
+  position: relative;
+
+  .input {
+    width: 100%;
+    height: 68px;
+    padding: 24px $input-padding-x-md 6px;
+    border: $input-border-width solid $input-border-color;
+    border-radius: $radius-lg;
+    background: $input-bg;
+    font-size: $font-size-2xl;
+    color: $input-text-color;
+    outline: none;
+    @include transition(border-color, box-shadow);
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:hover {
+      border-color: $input-border-color-hover;
+    }
+
+    &:focus {
+      border-color: $input-border-color-focus;
+      box-shadow: 0 0 0 $focus-ring-width $focus-ring-color;
+    }
+  }
+
+  .label {
+    position: absolute;
+    left: $input-padding-x-md;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $input-placeholder-color;
+    pointer-events: none;
+    @include transition(top, transform, font-size, color);
+  }
+
+  // 포커스 or 값 입력 시 라벨 플로팅
+  .input:focus ~ .label,
+  .input:not(:placeholder-shown) ~ .label {
+    top: 10px;
+    transform: translateY(0);
+    font-size: $font-size-xs;
+  }
+
+  // 에러 상태
+  &.has-error {
+    .input {
+      border-color: $danger;
+      box-shadow: 0 0 0 $focus-ring-width rgba($danger, 0.2);
+    }
+  }
+}
+
+// ================================================
+// 폼 그룹
+// ================================================
+.login-form .form-group {
+  &:not(:last-child) {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+// ================================================
+// 휴대폰 번호 + 인증번호 전송 버튼 행
+// ================================================
+.login-form .login-input-row {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: stretch;
+
+  .input-float {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .btn-send {
+    flex-shrink: 0;
+    height: 42px;
+    white-space: nowrap;
+    border-radius: $radius-md;
+    padding: 4px 8px;
+    background: linear-gradient(0deg, #29845D 0%, #3FC28D 100%);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10), 0 0 0 2px rgba(255, 255, 255, 0.18) inset;
+    &:disabled {
+      background: linear-gradient(0deg, #E7E7E7 0%, #D1D1D1 100%);
+      border: 1px solid #A7A7A7;
+      cursor: not-allowed;
+      opacity: 1;
+      color: var(--text-base);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10), 0 0 0 2px rgba(255, 255, 255, 0.18) inset;
+    }
+
+    &.btn-resend {
+      background: linear-gradient(0deg, #A18B5F 0%, #CCB588 100%);
+      border: 1px solid #9E8553;
+
+      &:hover {
+        background-color: $secondary-600;
+        border-color: $secondary-600;
+      }
+    }
+  }
+
+  // 버튼을 input 위에 오버레이
+  &--overlay {
+    position: relative;
+    display: block;
+
+    .input-float {
+      flex: none;
+      width: 100%;
+    }
+
+    .input-float .input {
+      padding-right: 120px;
+    }
+
+    .btn-send {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+// ================================================
+// 인증번호 + 타이머 (타이머 인풋 내부 우측)
+// ================================================
+.input-with-timer {
+  .input {
+    padding-right: 90px; // 타이머 공간 확보
+  }
+
+  .timer {
+    display: none;
+    position: absolute;
+    right: $input-padding-x-md;
+    bottom: 24px;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    color: #0F9060;
+    white-space: nowrap;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-top: 2px;
+      margin-right: $spacing-xs;
+      vertical-align: middle;
+      background: url('../images/ico/ico_timer.svg') center/contain no-repeat;
+    }
+
+    &.visible {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+}
+
+.help-text-error {
+  display: none;
+  margin-top: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $danger;
+  text-align: center;
+  font-weight: $font-weight-medium;
+
+  &.visible {
+    display: block;
+  }
+}
+
+// ================================================
+// 로그인 버튼 (3D 광택 그린)
+// ================================================
+.login-btn-wrap {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: calc(100% - 12px);
+    height: 13px;
+    opacity: 0.8;
+    background: url('../images/login/bg_btn_login_shadow.svg') center/100% 100% no-repeat;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    filter: blur(1.5px);
+    @include transition(opacity, filter);
+  }
+
+  &:hover::before {
+    opacity: 1;
+    filter: blur(1.5px) brightness(0.6);
+  }
+}
+.btn-login {
+  width: 100%;
+  margin-top: $spacing-lg;
+  height: 72px;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  border-radius: 8px;
+  background: url('../images/login/bg_btn_login.svg') center/100% 100% no-repeat;
+  mask-image: url('../images/login/bg_btn_login.svg');
+  mask-size: 100% 100%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url('../images/login/bg_btn_login.svg');
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  color: $white;
+  cursor: pointer;
+  text-shadow: -1px -1px 0 #226F50, 1px -1px 0 #226F50, -1px 1px 0 #226F50, 1px 1px 0 #226F50;
+  z-index: 1;
+  @include transition(opacity, box-shadow);
+
+
+  &:hover {
+    opacity: 0.95;
+  }
+
+  &:active {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 하단 링크
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: $spacing-md;
+}
+
+.login-link {
+  font-size: $font-size-lg;
+  color: #3E5130;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+// 오른쪽: 배경 노출 (login-wrap 배경이 보임)
+.login-right {
+  flex: 0 0 50%;
+  min-height: 100vh;
+}
