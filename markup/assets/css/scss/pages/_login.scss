@@ -34,12 +34,7 @@
   max-width: 780px;
   width: 40.625%;
   padding: 42px 52px;
-  border-right: 1px solid rgba(254, 252, 252, 0.16);
-  background:
-  url('../images/login/bg_login_left.png') center/cover no-repeat;
-  background-blend-mode: overlay, screen, screen, normal;
-  backdrop-filter: blur(4px);
-  filter: drop-shadow(-50px 0 100px #979A8D);
+  //border-right: 1px solid rgba(254, 252, 252, 0.16);
 }
 
 .login-inner {
@@ -73,7 +68,7 @@
 
 .login-title {
   margin: 0 0 32px;
-  font-size: $font-title-1;
+  font-size: $font-heading-1;
   font-weight: $font-weight-bold;
   color: #143222;
 }
