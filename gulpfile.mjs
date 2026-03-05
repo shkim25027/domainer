@@ -67,6 +67,11 @@ const paths = {
     ],
     dest: "./dist",
   },
+  codingList: {
+    src: "./markup/_coding_list/**/*",
+    dest: "./dist/_coding_list",
+    entry: "./markup/coding_list.html",
+  },
 };
 
 // ------------------------------------
@@ -138,6 +143,16 @@ function jscopy() {
   return src(paths.jscopy.src).pipe(dest(paths.jscopy.dest));
 }
 
+// Coding list: _coding_list 폴더 복사
+function codingListCopy() {
+  return src(paths.codingList.src).pipe(dest(paths.codingList.dest));
+}
+
+// Coding list: markup/coding_list.html → dist/coding_list.html
+function codingListPage() {
+  return src(paths.codingList.entry).pipe(dest("./dist"));
+}
+
 // HTML SSI
 function html() {
   return src([paths.html.src, ...paths.html.ignore]) // 배열로 합침
@@ -161,7 +176,21 @@ function cache() {
 
 // BrowserSync
 function serve() {
-  browserSync.init({ server: { baseDir: paths.build }, port: 3000 });
+  browserSync.init({
+    server: {
+      baseDir: paths.build,
+      index: "coding_list.html",
+      middleware: (req, res, next) => {
+        if (req.url === "/favicon.ico") {
+          res.statusCode = 204;
+          res.end();
+          return;
+        }
+        next();
+      },
+    },
+    port: 3000,
+  });
   watch(paths.scss.src, scss);
   watch(paths.csscopy.src, csscopy);
   watch(paths.js.src, scripts);
@@ -169,6 +198,8 @@ function serve() {
   watch(paths.img.src, images);
   watch(paths.fonts.src, fonts);
   watch(paths.html.src, html);
+  watch(paths.codingList.src, series(codingListCopy, codingListPage));
+  watch(paths.codingList.entry, codingListPage);
 }
 
 // ------------------------------------
@@ -176,13 +207,13 @@ function serve() {
 // ------------------------------------
 const build = series(
   clean,
-  parallel(fonts, images, scss, csscopy, scripts, jscopy, html),
+  parallel(fonts, images, scss, csscopy, scripts, jscopy, html, codingListCopy, codingListPage),
   cache
 );
 
 const dev = series(
   clean,
-  parallel(fonts, images, scss, csscopy, scripts, jscopy, html),
+  parallel(fonts, images, scss, csscopy, scripts, jscopy, html, codingListCopy, codingListPage),
   parallel(serve)
 );
 

@@ -163,21 +163,3 @@
     margin-bottom: $spacing-md;
   }
 }
-
-.survey-block,
-.consult-block {
-  border: 1px solid $gray-200;
-  border-radius: $radius-lg;
-  padding: $spacing-lg;
-  background: $gray-50;
-  &:not(:last-child) {
-    margin-bottom: $spacing-lg;
-  }
-}
-
-.survey-block-header {
-  margin-bottom: $spacing-md;
-  .form-row-inline .input {
-    min-width: 0;
-  }
-}
