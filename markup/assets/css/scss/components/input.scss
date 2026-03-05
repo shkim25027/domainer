@@ -189,6 +189,41 @@ textarea,
   }
 }
 
+// Input + 버튼 인라인 그룹 (한 덩어리처럼 보이는 입력+추가 버튼)
+.input-group-inline {
+  display: inline-flex;
+  align-items: center;
+  border: $input-border-width solid $input-border-color;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background: $input-bg;
+  min-width: max-content;
+
+  .input,
+  input {
+    border: none;
+    border-radius: 0;
+    min-width: 100px;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .btn-input-append {
+    flex-shrink: 0;
+    border: none;
+    margin-right: 6px;
+    border: $input-border-width solid $input-border-color;
+    background: $gray-100;
+    white-space: nowrap;
+    border-radius: $radius-md;
+    &:hover {
+      background: $gray-200;
+    }
+  }
+}
+
 // Input with icon
 .input-with-icon {
   position: relative;
@@ -273,7 +308,7 @@ select,
   background-position: right $input-padding-x-md center;
   background-size: 16px 12px;
   padding-right: calc($input-padding-x-md * 2.5);
-  height: $input-height-md;
+  height: $input-height-sm;
   width: $input-width-full;
   &-sm {
     width: $input-width-sm;

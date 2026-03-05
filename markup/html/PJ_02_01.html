@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    @@include("_include/_head.html")
+  </head>
+  <body>
+    <div class="wrap">
+      @@include("_include/_sidebar.html")
+      <div class="container">
+        <!-- =============================================
+             조사·협의 관리
+             ============================================= -->
+        <div class="panel survey-consult-panel">
+
+          <!-- 패널 헤더 -->
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <img src="./assets/images/ico/ico_setting.svg" alt="" class="ico-title" aria-hidden="true">
+              조사·협의 관리
+            </h2>
+            <div class="d-flex gap-1">
+              <button type="button" class="btn btn-cancel btn-sm">취소</button>
+              <button type="button" class="btn btn-save btn-sm">저장</button>
+            </div>
+          </div>
+          <!-- // 패널 헤더 -->
+
+          <div class="panel-body survey-consult-body">
+
+            <!-- 좌: 조사업체 -->
+            <div class="survey-consult-column">
+              <div class="form-title form-title-row">
+                <span class="panel-title">조사업체</span>
+                <button type="button" class="btn btn-add-primary btn-xs">+ 업체</button>
+              </div>
+
+              <!-- 조사업체 1 -->
+              <div class="form-group survey-block">
+                <div class="survey-block-header d-flex flex-wrap align-center gap-2">
+                  <div class="form-row-inline flex-1">
+                    <select class="select select-md">
+                      <option>현장조사</option>
+                      <option>감정평가</option>
+                    </select>
+                    <input type="text" class="input flex-1" value="(주)케이씨씨건설" placeholder="업체명">
+                    <input type="text" class="input flex-1" value="1,3공구" placeholder="조사 지역">
+                    <span class="lbl">조사 기간</span>
+                    <input type="date" class="input" placeholder="시작일" aria-label="시작일">
+                    <span class="sep">~</span>
+                    <input type="date" class="input" placeholder="종료일" aria-label="종료일">
+                  </div>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="data-table">
+                  <table>
+                    <colgroup>
+                      <col style="width: 120px;">
+                      <col style="width: 100px;">
+                      <col style="width: 120px;">
+                      <col style="width: auto;">
+                      <col style="width: 80px;">
+                      <col style="width: 60px;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>부서</th>
+                        <th>담당자</th>
+                        <th>전화번호</th>
+                        <th>메일 주소</th>
+                        <th>특기사항</th>
+                        <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- // 조사업체 1 -->
+
+              <!-- 조사업체 2 -->
+              <div class="form-group survey-block">
+                <div class="survey-block-header d-flex flex-wrap align-center gap-2">
+                  <div class="form-row-inline flex-1">
+                    <select class="select select-md">
+                      <option>현장조사</option>
+                      <option selected>감정평가</option>
+                    </select>
+                    <input type="text" class="input flex-1" value="(주)태영건설" placeholder="업체명">
+                    <input type="text" class="input flex-1" value="전주시 주화산동1가, 전주시 주화산동2가, 전주시 주화산..." placeholder="조사 지역">
+                    <span class="lbl">조사 기간</span>
+                    <input type="date" class="input" value="2023-08-01" aria-label="시작일">
+                    <span class="sep">~</span>
+                    <input type="date" class="input" value="2023-08-01" aria-label="종료일">
+                  </div>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="data-table">
+                  <table>
+                    <colgroup>
+                      <col style="width: 120px;">
+                      <col style="width: 100px;">
+                      <col style="width: 120px;">
+                      <col style="width: auto;">
+                      <col style="width: 80px;">
+                      <col style="width: 60px;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>부서</th>
+                        <th>담당자</th>
+                        <th>전화번호</th>
+                        <th>메일 주소</th>
+                        <th>특기사항</th>
+                        <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- // 조사업체 2 -->
+
+              <!-- 조사업체 3 -->
+              <div class="form-group survey-block">
+                <div class="survey-block-header d-flex flex-wrap align-center gap-2">
+                  <div class="form-row-inline flex-1">
+                    <select class="select select-md">
+                      <option>현장조사</option>
+                      <option selected>감정평가</option>
+                    </select>
+                    <input type="text" class="input flex-1" value="(주)금호건설" placeholder="업체명">
+                    <input type="text" class="input flex-1" value="전주시 주화산동1가, 전주시 주화산동2가, 전주시 주화산..." placeholder="조사 지역">
+                    <span class="lbl">조사 기간</span>
+                    <input type="date" class="input" value="2023-08-01" aria-label="시작일">
+                    <span class="sep">~</span>
+                    <input type="date" class="input" value="2023-08-01" aria-label="종료일">
+                  </div>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="data-table">
+                  <table>
+                    <colgroup>
+                      <col style="width: 120px;">
+                      <col style="width: 100px;">
+                      <col style="width: 120px;">
+                      <col style="width: auto;">
+                      <col style="width: 80px;">
+                      <col style="width: 60px;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>부서</th>
+                        <th>담당자</th>
+                        <th>전화번호</th>
+                        <th>메일 주소</th>
+                        <th>특기사항</th>
+                        <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- // 조사업체 3 -->
+
+            </div>
+            <!-- // 좌: 조사업체 -->
+
+            <!-- 우: 협의기관 -->
+            <div class="survey-consult-column">
+              <div class="form-title form-title-row">
+                <span class="panel-title">협의기관</span>
+                <button type="button" class="btn btn-add-primary btn-xs">+ 기관</button>
+              </div>
+
+              <!-- 협의기관 1 -->
+              <div class="form-group consult-block">
+                <div class="survey-block-header d-flex flex-wrap align-center gap-2">
+                  <div class="form-row-inline flex-1">
+                    <select class="select select-md">
+                      <option selected>관리기관</option>
+                      <option>관계기관</option>
+                      <option>보상협의회</option>
+                      <option>토지 수용 위원회</option>
+                    </select>
+                    <input type="text" class="input flex-1" value="전북특별자치도" placeholder="기관명">
+                  </div>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="data-table">
+                  <table>
+                    <colgroup>
+                      <col style="width: 110px;">
+                      <col style="width: 90px;">
+                      <col style="width: 110px;">
+                      <col style="width: 100px;">
+                      <col style="width: auto;">
+                      <col style="width: 80px;">
+                      <col style="width: 60px;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>부서</th>
+                        <th>담당자</th>
+                        <th>전화번호</th>
+                        <th>팩스번호</th>
+                        <th>메일 주소</th>
+                        <th>특기사항</th>
+                        <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수원"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- // 협의기관 1 -->
+
+              <!-- 협의기관 2 -->
+              <div class="form-group consult-block">
+                <div class="survey-block-header d-flex flex-wrap align-center gap-2">
+                  <div class="form-row-inline flex-1">
+                    <select class="select select-md">
+                      <option>관리기관</option>
+                      <option selected>관계기관</option>
+                      <option>보상협의회</option>
+                      <option>토지 수용 위원회</option>
+                    </select>
+                    <input type="text" class="input flex-1" value="전주시" placeholder="기관명">
+                  </div>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="data-table">
+                  <table>
+                    <colgroup>
+                      <col style="width: 110px;">
+                      <col style="width: 90px;">
+                      <col style="width: 110px;">
+                      <col style="width: 100px;">
+                      <col style="width: auto;">
+                      <col style="width: 80px;">
+                      <col style="width: 60px;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>부서</th>
+                        <th>담당자</th>
+                        <th>전화번호</th>
+                        <th>팩스번호</th>
+                        <th>메일 주소</th>
+                        <th>특기사항</th>
+                        <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" value="토목사업본부"></td>
+                        <td><input type="text" value="김수원"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- // 협의기관 2 -->
+
+              <!-- 협의기관 3 -->
+              <div class="form-group consult-block">
+                <div class="survey-block-header d-flex flex-wrap align-center gap-2">
+                  <div class="form-row-inline flex-1">
+                    <select class="select select-md">
+                      <option>관리기관</option>
+                      <option>관계기관</option>
+                      <option selected>보상협의회</option>
+                      <option>토지 수용 위원회</option>
+                    </select>
+                    <input type="text" class="input flex-1" value="한국토지주택공사" placeholder="기관명">
+                  </div>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="data-table">
+                  <table>
+                    <colgroup>
+                      <col style="width: 110px;">
+                      <col style="width: 90px;">
+                      <col style="width: 110px;">
+                      <col style="width: 100px;">
+                      <col style="width: auto;">
+                      <col style="width: 80px;">
+                      <col style="width: 60px;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>부서</th>
+                        <th>담당자</th>
+                        <th>전화번호</th>
+                        <th>팩스번호</th>
+                        <th>메일 주소</th>
+                        <th>특기사항</th>
+                        <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" value="도시계획과"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" value="도시계획과"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- // 협의기관 3 -->
+
+              <!-- 협의기관 4 -->
+              <div class="form-group consult-block">
+                <div class="survey-block-header d-flex flex-wrap align-center gap-2">
+                  <div class="form-row-inline flex-1">
+                    <select class="select select-md">
+                      <option>관리기관</option>
+                      <option>관계기관</option>
+                      <option>보상협의회</option>
+                      <option selected>토지 수용 위원회</option>
+                    </select>
+                    <input type="text" class="input flex-1" value="중앙토지수용위원회" placeholder="기관명">
+                  </div>
+                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                </div>
+                <div class="data-table">
+                  <table>
+                    <colgroup>
+                      <col style="width: 110px;">
+                      <col style="width: 90px;">
+                      <col style="width: 110px;">
+                      <col style="width: 100px;">
+                      <col style="width: auto;">
+                      <col style="width: 80px;">
+                      <col style="width: 60px;">
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th>부서</th>
+                        <th>담당자</th>
+                        <th>전화번호</th>
+                        <th>팩스번호</th>
+                        <th>메일 주소</th>
+                        <th>특기사항</th>
+                        <th><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" value="사무국"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" value="사무국"></td>
+                        <td><input type="text" value="김수현"></td>
+                        <td><input type="text" value="010-3595-3511"></td>
+                        <td><input type="text" value="041-123-4567"></td>
+                        <td><input type="text" value="hanmacdesign@hanmaceng.co.kr"></td>
+                        <td><input type="text" placeholder="특기사항"></td>
+                        <td><button type="button" class="btn btn-remove btn-xs">—</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- // 협의기관 4 -->
+
+            </div>
+            <!-- // 우: 협의기관 -->
+
+          </div>
+          <!-- // panel-body -->
+
+        </div>
+        <!-- // panel -->
+
+      </div>
+    </div>
+
+
+  </body>
+</html>

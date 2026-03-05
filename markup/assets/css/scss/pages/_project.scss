@@ -1,13 +1,183 @@
 @charset "UTF-8";
 
 @use '../import/mixin' as *;
+@use '../import/component-variables' as *;
 
+// =============================================
+// 사업정보 관리 (1번 시안: 상단 3열 + 하단 공구관리)
+// =============================================
 
 .project-info-panel {
+  .panel-body {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
-    .panel-body {
-        display: grid;
-        grid-template-columns: 738fr 975fr;
+// 상단 3열: 지도 | 사업 기본정보 | 주요시설물
+.project-info-top {
+  display: grid;
+  grid-template-columns: 200px 1fr 0.8fr;
+  gap: $spacing-xl;
+  align-items: start;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-info-map {
+  .map-thumb {
+    border-radius: $radius-lg;
+    overflow: hidden;
+    border: 1px solid $gray-200;
+    background: $gray-100;
+    aspect-ratio: 1;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
+  }
+}
 
+.project-info-form {
+  .form-table {
+    width: 100%;
+  }
+  .form-table th {
+    width: 140px;
+    padding: $spacing-sm $spacing-md $spacing-sm 0;
+    font-weight: $font-weight-medium;
+    color: $gray-700;
+    vertical-align: top;
+  }
+  .form-table td {
+    padding: $spacing-sm 0;
+  }
+  .note {
+    margin-left: $spacing-sm;
+    font-size: $font-size-xs;
+    color: $gray-500;
+  }
+  .link-file {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+}
+
+// 사업자 행: 사업자명 | [코드 + Q 코드검색] | 본사 버튼 | 추가 입력 (이미지 시안)
+.project-info-business-row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+
+  > .input-md {
+    min-width: 120px;
+  }
+}
+
+.project-info-facility {
+  border-left: 1px solid $gray-200;
+  padding-left: $spacing-xl;
+  @media (max-width: 1024px) {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid $gray-200;
+    padding-top: $spacing-xl;
+  }
+}
+
+// 하단: 공구관리 (2번 시안 스타일 참고)
+.project-info-bottom {
+  border-top: 1px solid $gray-200;
+  padding-top: $spacing-xl;
+
+  .form-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-sm;
+  }
+  .form-desc {
+    font-size: $font-size-xs;
+    color: $gray-500;
+    margin: 0 0 $spacing-lg 0;
+  }
+}
+
+.gonggu-block {
+  border: 1px solid $gray-200;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  background: $gray-50;
+  &:not(:last-child) {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.gonggu-header {
+  margin-bottom: $spacing-md;
+  .input-auto {
+    width: 48px;
+    text-align: center;
+  }
+  .gonggu-company {
+    font-size: $font-size-sm;
+    color: $gray-600;
+    margin-left: $spacing-sm;
+    strong {
+      color: $gray-900;
+      font-weight: $font-weight-semibold;
+    }
+  }
+}
+
+// =============================================
+// 조사·협의 관리 (PJ_02_01)
+// =============================================
+.survey-consult-panel {
+  .panel-body.survey-consult-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+    align-items: start;
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.survey-consult-column {
+  .form-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+}
+
+.survey-block,
+.consult-block {
+  border: 1px solid $gray-200;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  background: $gray-50;
+  &:not(:last-child) {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.survey-block-header {
+  margin-bottom: $spacing-md;
+  .form-row-inline .input {
+    min-width: 0;
+  }
 }
