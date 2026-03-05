@@ -168,15 +168,15 @@ hr {
 // ────────────────────────────────────────────────
 .form-table {
   width: 100%;
-  border-collapse: collapse;
   font-size: var(--font-sm);
 
+  // table 구조
+  border-collapse: collapse;
   th,
   td {
     padding: 6px 10px;
     vertical-align: middle;
   }
-
   th {
     font-weight: 500;
     color: var(--gray-700);
@@ -186,8 +186,34 @@ hr {
     vertical-align: top;
     line-height: calc($input-height-sm + 6px);
   }
-
   td {
+    background: var(--white);
+  }
+
+  // div 구조
+  .form-row {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--gray-200);
+    &:last-child { border-bottom: none; }
+  }
+  .form-th,
+  .form-cell {
+    padding: 6px 10px;
+    vertical-align: middle;
+  }
+  .form-th {
+    font-weight: 500;
+    color: var(--gray-700);
+    white-space: nowrap;
+    width: 90px;
+    flex-shrink: 0;
+    text-align: left;
+    line-height: calc($input-height-sm + 6px);
+  }
+  .form-cell {
+    flex: 1;
+    min-width: 0;
     background: var(--white);
   }
 }
@@ -214,6 +240,7 @@ hr {
   position: relative;
   width: 100%;
   margin-top: 8px;
+  font-size: var(--font-sm);
 
   &::before {
     content: '';
@@ -226,11 +253,11 @@ hr {
     border-radius: $radius-md;
     background: linear-gradient(180deg, #EDE5DF 0%, rgba(237, 229, 223, 0) 100%);
   }
-  
+
+  // table 구조
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--font-sm);
   }
   th {
     padding: 6px 10px;
@@ -242,15 +269,32 @@ hr {
     background-repeat: no-repeat;
     white-space: nowrap;
   }
-
   td {
     padding: 2px 3px;
     text-align: center;
     color: var(--gray-800);
   }
-
   tbody tr:hover {
     background: var(--gray-50);
+  }
+
+  // div 구조 (grid)
+  .data-th {
+    padding: 6px 10px;
+    text-align: center;
+    font-weight: 500;
+    color: var(--gray-700);
+    background: linear-gradient(180deg, #FFF 0%, rgba(251, 247, 244, 0.00) 100%);
+    background-size: 100% 24px;
+    background-repeat: no-repeat;
+    white-space: nowrap;
+  }
+  .data-td {
+    padding: 2px 3px;
+    text-align: center;
+    color: var(--gray-800);
+    background: var(--white);
+    input { width: 100%; }
   }
 }
 

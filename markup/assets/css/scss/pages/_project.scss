@@ -45,14 +45,16 @@
   .form-table {
     width: 100%;
   }
-  .form-table th {
+  .form-table th,
+  .form-table .form-th {
     width: 140px;
     padding: $spacing-sm $spacing-md $spacing-sm 0;
     font-weight: $font-weight-medium;
     color: $gray-700;
     vertical-align: top;
   }
-  .form-table td {
+  .form-table td,
+  .form-table .form-cell {
     padding: $spacing-sm 0;
   }
   .note {
