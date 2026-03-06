@@ -17,11 +17,11 @@
   overflow: hidden;
   &:has(.panel-header:last-child) {
     border-radius: $radius-xl $radius-xl 0 0;
-    > .panel-header { padding: 20px $spacing-lg 0; }
+    > .panel-header { padding: 20px $spacing-lg $spacing-sm; }
   }
   > .panel-header,
   > .title-box {
-    padding: 20px $spacing-lg 0;
+    padding: 20px $spacing-lg $spacing-sm;
     flex-shrink: 0;
   }
 }
@@ -60,11 +60,22 @@
 
 
 .panel-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #706453;
   padding-bottom: $spacing-xs;
+  &::before {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+    height: 1px;
+    opacity: 0.4;
+    background: #706453;
+  }
 }
 
 .panel-title {

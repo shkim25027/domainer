@@ -238,7 +238,9 @@ body {
   .nav-group {
     padding: 12px 0;
     &:not(:last-of-type) {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+     background-image: url(../images/bg_nav_line.png);
+     background-repeat: no-repeat;
+     background-position: center bottom;
     }
     > li {
       margin-bottom: 1px;
@@ -327,6 +329,10 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 8px;
+  background-image: url(../images/bg_nav_line.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  padding-top: $spacing-md;
   .user-name {
     font-size: 1rem;
     color: #fff;
