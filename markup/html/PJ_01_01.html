@@ -140,10 +140,13 @@
                 <h3 class="title">주요시설물</h3>
                 <button type="button" class="btn btn-add-primary btn-xs">+ 시설물</button>
               </div>
-              <div class="form-group">
+              <div class="form-group" id="facilityGroup">
                 <div class="form-row-inline">
                   <select class="select-md">
-                    <option>나들목</option>
+                    <option selected>나들목</option>
+                    <option>분기점</option>
+                    <option>교 량</option>
+                    <option>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-1">
                     <input type="text" value="대산, 대호지, 정미">
@@ -151,7 +154,10 @@
                 </div>
                 <div class="form-row-inline">
                   <select class="select-md">
-                    <option>분기점</option>
+                    <option>나들목</option>
+                    <option selected>분기점</option>
+                    <option>교 량</option>
+                    <option>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-1">
                     <input type="text" value="당진">
@@ -160,7 +166,10 @@
                 </div>
                 <div class="form-row-inline">
                   <select class="select-md">
-                    <option>교 량</option>
+                    <option>나들목</option>
+                    <option>분기점</option>
+                    <option selected>교 량</option>
+                    <option>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-2">
                     <input type="number" value="46">
@@ -172,7 +181,10 @@
                 </div>
                 <div class="form-row-inline">
                   <select class="select-md">
-                    <option>터널</option>
+                    <option>나들목</option>
+                    <option>분기점</option>
+                    <option>교 량</option>
+                    <option selected>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-2">
                     <input type="number" value="4">
@@ -190,7 +202,7 @@
         <!-- // panel-inline -->
 
         <div class="panel flex-1 panel-border-dashed-top">
-          <div class="panel-body">
+          <div class="panel-body" id="gongguPanelBody">
             <div class="title-box">
               <h3 class="title">공구 관리</h3>
               <button type="button" class="btn btn-add-primary btn-xs">+ 공구</button>
@@ -251,9 +263,9 @@
                 </div>
                 <div class="data-tbody" style="display: contents;">
                   <div class="data-row" style="display: contents;">
-                    <div class="data-td"><input type="text" value="토목사업본부"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부"></div>
                     <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
-                    <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511"></div>
                     <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
@@ -499,6 +511,152 @@
           if (e.target === modal) modal.classList.remove('is-open');
         });
       });
+
+      // =============================================
+      // 주요시설물: + 시설물 추가 / select 변경 / 삭제
+      // =============================================
+      (function() {
+        var SELECT_OPTIONS = ['나들목', '분기점', '교 량', '터널'];
+
+        // select 타입에 따른 d-flex 내부 HTML
+        function getFieldHTML(type, removable) {
+          var removeBtn = removable ? '<button type="button" class="btn btn-remove btn-xs">—</button>' : '';
+          if (type === '교 량' || type === '터널') {
+            return '<div class="d-flex flex-1 align-center gap-2">'
+              + '<input type="number">'
+              + '<span class="unit">개소</span>'
+              + '<input type="number">'
+              + '<span class="unit">km</span>'
+              + removeBtn
+              + '</div>';
+          }
+          return '<div class="d-flex flex-1 align-center gap-1">'
+            + '<input type="text">'
+            + removeBtn
+            + '</div>';
+        }
+
+        // 전체 select 옵션 HTML (특정 값 selected)
+        function getSelectHTML(selected) {
+          return SELECT_OPTIONS.map(function(opt) {
+            return '<option' + (opt === selected ? ' selected' : '') + '>' + opt + '</option>';
+          }).join('');
+        }
+
+        var group = document.getElementById('facilityGroup');
+        if (!group) return;
+
+        // + 시설물 버튼
+        var addBtn = group.closest('.panel-body').querySelector('.btn-add-primary');
+        if (addBtn) {
+          addBtn.addEventListener('click', function() {
+            var row = document.createElement('div');
+            row.className = 'form-row-inline';
+            row.innerHTML = '<select class="select-md">' + getSelectHTML('나들목') + '</select>'
+              + getFieldHTML('나들목', true);
+            group.appendChild(row);
+          });
+        }
+
+        // select 변경: d-flex 내용 교체
+        group.addEventListener('change', function(e) {
+          if (e.target.tagName !== 'SELECT') return;
+          var row = e.target.closest('.form-row-inline');
+          var isFirst = row === group.querySelector('.form-row-inline');
+          var oldField = row.querySelector('.d-flex');
+          var tmp = document.createElement('div');
+          tmp.innerHTML = getFieldHTML(e.target.value, !isFirst);
+          oldField.replaceWith(tmp.firstElementChild);
+        });
+
+        // 삭제 버튼 (이벤트 위임)
+        group.addEventListener('click', function(e) {
+          var btn = e.target.closest('.btn-remove');
+          if (!btn) return;
+          var row = btn.closest('.form-row-inline');
+          if (row) row.remove();
+        });
+      })();
+
+      // =============================================
+      // 공구 관리: + 공구 추가 / 공구 삭제 / + 인원 추가 / 인원 삭제
+      // =============================================
+      (function() {
+        var panelBody = document.getElementById('gongguPanelBody');
+        if (!panelBody) return;
+
+        var PERSON_ROW =
+          '<div class="data-row" style="display: contents;">'
+          + '<div class="data-td"><input type="text" class="input-center"></div>'
+          + '<div class="data-td"><input type="text" class="input-center"></div>'
+          + '<div class="data-td"><input type="text" class="input-center"></div>'
+          + '<div class="data-td"><input type="text" class="input-center"></div>'
+          + '<div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>'
+          + '</div>';
+
+        function createFormArea() {
+          var el = document.createElement('div');
+          el.className = 'form-area';
+          el.innerHTML =
+            '<div class="form-table form-auto">'
+            + '<div class="form-row-inline">'
+            + '<div class="form-row"><div class="form-cell"><div class="form-row-inline">'
+            + '<input class="input-auto" type="text" placeholder="공구명">'
+            + '<span class="input-label">공구</span>'
+            + '<button type="button" class="btn btn-remove btn-xs">—</button>'
+            + '</div></div></div>'
+            + '<div class="form-row"><div class="form-th">업체명</div><div class="form-cell"><div class="form-row-inline">'
+            + '<input class="input-lg" type="text" placeholder="업체명">'
+            + '</div></div></div>'
+            + '</div>'
+            + '<div class="form-row-inline">'
+            + '<div class="form-row flex-1"><div class="form-th">공사구간</div><div class="form-cell"><div class="form-row-inline">'
+            + '<input type="text" placeholder="시작 위치"><span class="sep">~</span><input type="text" placeholder="종료 위치">'
+            + '</div></div></div>'
+            + '<div class="form-row-inline"><div class="form-th fw-medium">STA.</div><div class="form-cell"><div class="form-row-inline">'
+            + '<input type="text" value="0+000" class="input-md"><span class="sep">~</span><input type="text" value="0+000" class="input-md">'
+            + '</div></div></div>'
+            + '</div>'
+            + '</div>'
+            + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 80px;">'
+            + '<div class="data-thead" style="display: contents;"><div class="data-row" style="display: contents;">'
+            + '<div class="data-th">부서</div><div class="data-th">담당자</div>'
+            + '<div class="data-th">전화번호</div><div class="data-th">메일 주소</div>'
+            + '<div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>'
+            + '</div></div>'
+            + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
+            + '</div>';
+          return el;
+        }
+
+        // + 공구 버튼
+        panelBody.querySelector('.title-box .btn-add-primary').addEventListener('click', function() {
+          panelBody.appendChild(createFormArea());
+        });
+
+        // 이벤트 위임
+        panelBody.addEventListener('click', function(e) {
+          // + 인원 버튼
+          var addPersonBtn = e.target.closest('.btn-add-person');
+          if (addPersonBtn) {
+            var tbody = addPersonBtn.closest('.data-table').querySelector('.data-tbody');
+            var tmp = document.createElement('div');
+            tmp.innerHTML = PERSON_ROW;
+            tbody.appendChild(tmp.firstElementChild);
+            return;
+          }
+          // 삭제 버튼
+          var removeBtn = e.target.closest('.btn-remove');
+          if (!removeBtn) return;
+          if (removeBtn.closest('.data-td')) {
+            // 인원 행 삭제
+            removeBtn.closest('.data-row').remove();
+          } else if (removeBtn.closest('.form-cell')) {
+            // 공구 전체 삭제
+            removeBtn.closest('.form-area').remove();
+          }
+        });
+      })();
 
       // ESC 키로 닫기
       document.addEventListener('keydown', function(e) {
