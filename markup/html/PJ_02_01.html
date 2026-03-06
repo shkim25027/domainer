@@ -756,7 +756,7 @@
           + '</div>'
           + '<div class="form-row-inline">'
           + '<div class="form-row"><div class="form-th">조사지역</div><div class="form-cell">'
-          + '<select class="select select-md"><option>1공구</option><option>2공구</option><option>3공구</option></select>'
+          + '<select class="select select-md select-multiple" multiple><option>1공구</option><option>2공구</option><option>3공구</option><option>4공구</option><option>5공구</option></select>'
           + '</div></div>'
           + '<div class="form-row form-fix"><div class="form-th">조사기간</div><div class="form-cell">'
           + '<div class="form-row-inline"><input type="date" class="input input-md" placeholder="시작일" aria-label="시작일"><span class="sep">~</span><input type="date" class="input input-md" placeholder="종료일" aria-label="종료일"></div>'
@@ -772,6 +772,8 @@
           + '</div></div>'
           + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
           + '</div>';
+        el.querySelectorAll('select.select-multiple').forEach(initMultiSelect);
+        el.querySelectorAll('input[type="date"]').forEach(initDateInput);
         return el;
       }
 
@@ -817,150 +819,145 @@
           + '</div></div>'
           + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
           + '</div>';
+        el.querySelectorAll('select.select-multiple').forEach(initMultiSelect);
+        el.querySelectorAll('input[type="date"]').forEach(initDateInput);
         return el;
       }
 
       initManagedPanel('hyeobuiPanelBody', createArea, PERSON_ROW);
     })();
 
-    (function () {
-      document.querySelectorAll('select.select-multiple').forEach(function (sel) {
-        var cols = sel.dataset.cols || 5;
-        var placeholder = sel.dataset.placeholder || '조사지역';
+    function initMultiSelect(sel) {
+      var cols = sel.dataset.cols || 5;
+      var placeholder = sel.dataset.placeholder || '조사지역';
 
-        sel.style.display = 'none';
+      sel.style.display = 'none';
 
-        // 래퍼
-        var wrap = document.createElement('div');
-        wrap.className = 'ms-wrap';
-        ['select-sm','select-md','select-lg'].forEach(function(c){ if(sel.classList.contains(c)) wrap.classList.add(c); });
-        sel.parentNode.insertBefore(wrap, sel);
-        wrap.appendChild(sel);
+      // 래퍼
+      var wrap = document.createElement('div');
+      wrap.className = 'ms-wrap';
+      ['select-sm','select-md','select-lg'].forEach(function(c){ if(sel.classList.contains(c)) wrap.classList.add(c); });
+      sel.parentNode.insertBefore(wrap, sel);
+      wrap.appendChild(sel);
 
-        // 트리거
-        var trigger = document.createElement('button');
-        trigger.type = 'button';
-        trigger.className = 'ms-trigger is-placeholder';
-        trigger.textContent = placeholder;
-        wrap.insertBefore(trigger, sel);
+      // 트리거
+      var trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'ms-trigger is-placeholder';
+      trigger.textContent = placeholder;
+      wrap.insertBefore(trigger, sel);
 
-        // 드롭다운 → overflow 탈출을 위해 body에 append, position:fixed
-        var dropdown = document.createElement('div');
-        dropdown.className = 'ms-dropdown';
-        dropdown.style.setProperty('--ms-cols', cols);
-        dropdown.style.position = 'fixed';
-        dropdown.style.zIndex = '9999';
-        document.body.appendChild(dropdown);
+      // 드롭다운 → overflow 탈출을 위해 body에 append, position:fixed
+      var dropdown = document.createElement('div');
+      dropdown.className = 'ms-dropdown';
+      dropdown.style.setProperty('--ms-cols', cols);
+      dropdown.style.position = 'fixed';
+      dropdown.style.zIndex = '9999';
+      document.body.appendChild(dropdown);
 
-        function positionDropdown() {
-          var rect = trigger.getBoundingClientRect();
-          var vw = window.innerWidth;
-          var vh = window.innerHeight;
-          var dropW = Math.max(rect.width, 160);
+      function positionDropdown() {
+        var rect = trigger.getBoundingClientRect();
+        var vw = window.innerWidth;
+        var vh = window.innerHeight;
+        var dropW = Math.max(rect.width, 160);
 
-          // 드롭다운 임시 표시 후 실제 높이 측정
-          dropdown.style.visibility = 'hidden';
-          dropdown.style.display = 'block';
-          var dropH = dropdown.offsetHeight;
-          dropdown.style.display = '';
-          dropdown.style.visibility = '';
+        dropdown.style.visibility = 'hidden';
+        dropdown.style.display = 'block';
+        var dropH = dropdown.offsetHeight;
+        dropdown.style.display = '';
+        dropdown.style.visibility = '';
 
-          // 좌우 경계 보정
-          var left = rect.left;
-          if (left + dropW > vw - 8) left = vw - dropW - 8;
-          if (left < 8) left = 8;
+        var left = rect.left;
+        if (left + dropW > vw - 8) left = vw - dropW - 8;
+        if (left < 8) left = 8;
 
-          // 아래 공간 부족 시 위로 펼침
-          var top;
-          if (rect.bottom + dropH + 2 > vh - 8) {
-            top = rect.top - dropH - 2;
-          } else {
-            top = rect.bottom + 2;
-          }
-
-          dropdown.style.left  = left + 'px';
-          dropdown.style.top   = top + 'px';
-          dropdown.style.width = dropW + 'px';
+        var top;
+        if (rect.bottom + dropH + 2 > vh - 8) {
+          top = rect.top - dropH - 2;
+        } else {
+          top = rect.bottom + 2;
         }
 
-        // 전체선택
-        var allLabel = document.createElement('label');
-        allLabel.className = 'ms-all';
-        var allChk = document.createElement('input');
-        allChk.type = 'checkbox';
-        allLabel.appendChild(allChk);
-        allLabel.appendChild(document.createTextNode('[전체 선택]'));
-        dropdown.appendChild(allLabel);
+        dropdown.style.left  = left + 'px';
+        dropdown.style.top   = top + 'px';
+        dropdown.style.width = dropW + 'px';
+      }
 
-        // 그리드
-        var grid = document.createElement('div');
-        grid.className = 'ms-grid';
-        dropdown.appendChild(grid);
+      // 전체선택
+      var allLabel = document.createElement('label');
+      allLabel.className = 'ms-all';
+      var allChk = document.createElement('input');
+      allChk.type = 'checkbox';
+      allLabel.appendChild(allChk);
+      allLabel.appendChild(document.createTextNode('[전체 선택]'));
+      dropdown.appendChild(allLabel);
 
-        // 옵션 → 체크박스
-        var checkboxes = [];
-        Array.from(sel.options).forEach(function (opt) {
-          var label = document.createElement('label');
-          label.className = 'ms-item';
-          var chk = document.createElement('input');
-          chk.type = 'checkbox';
-          chk.value = opt.value || opt.text;
-          chk.checked = opt.selected;
-          if (chk.checked) label.classList.add('is-checked');
-          checkboxes.push({ chk: chk, label: label });
-          label.appendChild(chk);
-          label.appendChild(document.createTextNode(opt.text));
-          grid.appendChild(label);
-          chk.addEventListener('change', syncAll);
-        });
+      // 그리드
+      var grid = document.createElement('div');
+      grid.className = 'ms-grid';
+      dropdown.appendChild(grid);
 
-        function syncAll() {
-          checkboxes.forEach(function (item, i) {
-            sel.options[i].selected = item.chk.checked;
-            item.label.classList.toggle('is-checked', item.chk.checked);
-          });
-          var chks = checkboxes.map(function(i){ return i.chk; });
-          var all  = chks.every(function (c) { return c.checked; });
-          var none = chks.every(function (c) { return !c.checked; });
-          allChk.checked = all;
-          allChk.indeterminate = !all && !none;
-          var selected = chks.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
-          trigger.textContent = selected.length ? selected.join(', ') : placeholder;
-          trigger.classList.toggle('is-placeholder', !selected.length);
-        }
-
-        allChk.addEventListener('change', function () {
-          checkboxes.forEach(function (item) { item.chk.checked = allChk.checked; });
-          syncAll();
-        });
-
-        // 열기/닫기
-        trigger.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var opening = !wrap.classList.contains('is-open');
-          // 다른 열린 드롭다운 닫기
-          document.querySelectorAll('.ms-dropdown.is-open').forEach(function(d) { d.classList.remove('is-open'); });
-          document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) { w.classList.remove('is-open'); });
-          if (opening) {
-            positionDropdown();
-            wrap.classList.add('is-open');
-            dropdown.classList.add('is-open');
-          }
-        });
-
-        document.addEventListener('click', function (e) {
-          if (!wrap.contains(e.target) && !dropdown.contains(e.target)) {
-            wrap.classList.remove('is-open');
-            dropdown.classList.remove('is-open');
-          }
-        });
+      // 옵션 → 체크박스
+      var checkboxes = [];
+      Array.from(sel.options).forEach(function (opt) {
+        var label = document.createElement('label');
+        label.className = 'ms-item';
+        var chk = document.createElement('input');
+        chk.type = 'checkbox';
+        chk.value = opt.value || opt.text;
+        chk.checked = opt.selected;
+        if (chk.checked) label.classList.add('is-checked');
+        checkboxes.push({ chk: chk, label: label });
+        label.appendChild(chk);
+        label.appendChild(document.createTextNode(opt.text));
+        grid.appendChild(label);
+        chk.addEventListener('change', syncAll);
       });
-    })();
 
-    // input[type="date"] placeholder + yyyy.mm.dd 표시 + 캘린더 아이콘 처리
-    document.querySelectorAll('input[type="date"]').forEach(function(input) {
+      function syncAll() {
+        checkboxes.forEach(function (item, i) {
+          sel.options[i].selected = item.chk.checked;
+          item.label.classList.toggle('is-checked', item.chk.checked);
+        });
+        var chks = checkboxes.map(function(i){ return i.chk; });
+        var all  = chks.every(function (c) { return c.checked; });
+        var none = chks.every(function (c) { return !c.checked; });
+        allChk.checked = all;
+        allChk.indeterminate = !all && !none;
+        var selected = chks.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
+        trigger.textContent = selected.length ? selected.join(', ') : placeholder;
+        trigger.classList.toggle('is-placeholder', !selected.length);
+      }
+
+      allChk.addEventListener('change', function () {
+        checkboxes.forEach(function (item) { item.chk.checked = allChk.checked; });
+        syncAll();
+      });
+
+      // 열기/닫기
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var opening = !wrap.classList.contains('is-open');
+        document.querySelectorAll('.ms-dropdown.is-open').forEach(function(d) { d.classList.remove('is-open'); });
+        document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) { w.classList.remove('is-open'); });
+        if (opening) {
+          positionDropdown();
+          wrap.classList.add('is-open');
+          dropdown.classList.add('is-open');
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!wrap.contains(e.target) && !dropdown.contains(e.target)) {
+          wrap.classList.remove('is-open');
+          dropdown.classList.remove('is-open');
+        }
+      });
+    }
+
+    function initDateInput(input) {
       var placeholder = input.getAttribute('placeholder') || input.getAttribute('aria-label') || '';
-      var dateValue = input.value; // yyyy-mm-dd 실제 값 보관
+      var dateValue = input.value;
 
       function showText() {
         input.type = 'text';
@@ -990,7 +987,10 @@
         showText();
       });
       showText();
-    });
+    }
+
+    document.querySelectorAll('select.select-multiple').forEach(initMultiSelect);
+    document.querySelectorAll('input[type="date"]').forEach(initDateInput);
   </script>
   </body>
 </html>
