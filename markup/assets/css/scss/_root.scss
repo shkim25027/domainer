@@ -222,7 +222,7 @@ $z-index-tooltip: 1070;
   /* Stroke */
   --nav-text-stroke: -1px -1px 0 rgba(0, 0, 0, 0.30), 1px -1px 0 rgba(0, 0, 0, 0.30), -1px 1px 0 rgba(0, 0, 0, 0.30), 1px 1px 0 rgba(0, 0, 0, 0.30);
   --text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-
+  --text-stroke-white: -1px -1px 0 rgba(255, 255, 255, 0.50), 1px -1px 0 rgba(255, 255, 255, 0.50), -1px 1px 0 rgba(255, 255, 255, 0.50), 1px 1px 0 rgba(255, 255, 255, 0.50);
   /* Shadow */
   --bg-shadow: drop-shadow(0 -8px 15px rgba(0, 0, 0, 0.05));
   --text-shadow: drop-shadow(0 0 0.5px #000);
@@ -242,7 +242,7 @@ $z-index-tooltip: 1070;
   --border-gra-depth02: linear-gradient(180deg, #196d54 0%, transparent 80%);
 
   /* 레이아웃(헤더·네비) 텍스트 */
-  --text-page-title: #1d1d1d;
+  --text-page-title: #000;
   --text-nav-title: #fff;
   --text-accent-lnb: #FFC600;
 

@@ -95,35 +95,43 @@
   // Style variants
   &-save {
     min-width: $input-width-sm;
-    background-color: $primary;
-    border-color: $primary;
+    background: url('../images/bg_btn_save.svg');
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     color: $white;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
 
     @include hover-support {
-      background-color: $primary-hover;
-      border-color: $primary-hover;
+     // background-color: $primary-hover;
+     // border-color: $primary-hover;
     }
 
     &:active:not(:disabled) {
-      background-color: $primary-active;
-      border-color: $primary-active;
+      //background-color: $primary-active;
+     // border-color: $primary-active;
     }
   }
 
   &-cancel {
     min-width: $input-width-sm;
-    background-color: $gray-700 ;
-    border-color: $secondary;
-    color: $white;
+    background: url('../images/bg_btn_cancel.svg');
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: #000;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
 
     @include hover-support {
-      background-color: $secondary-hover;
-      border-color: $secondary-hover;
+      //background-color: $secondary-hover;
+      //border-color: $secondary-hover;
     }
 
     &:active:not(:disabled) {
-      background-color: $secondary-active;
-      border-color: $secondary-active;
+      //background-color: $secondary-active;
+      //border-color: $secondary-active;
     }
   }
 
@@ -163,6 +171,30 @@
         top: -2px;
         left: -2px;
         background: linear-gradient(180deg, #325E33 0%, #84B085 100%);
+      }
+    }
+    &-person {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
+      border:1px solid #fff;
+      font-weight: $font-weight-bold;
+      border-radius: $radius-md;
+      writing-mode: vertical-rl;
+      padding: 0;
+      width: 24px;
+      height: 56px;
+      color: rgba(0, 0, 0, 0.80);
+      &::before {
+        content: '';
+        position: absolute;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        @include maskContents;
+        top: -2px;
+        right: -2px;
+        background: linear-gradient(180deg, rgba(225, 225, 232, 1) 0%, rgba(211, 211, 218, 1) 100%);
       }
     }
   }

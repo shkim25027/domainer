@@ -10,13 +10,13 @@
         <!-- =============================================
              사업정보 관리 (1번 시안: 상단 3열 + 하단 공구관리)
              ============================================= -->
-        <div class="panel project-info-panel">
-
+             
+        <div class="panel page-title">
           <!-- 패널 헤더 -->
           <div class="panel-header">
             <h2 class="panel-title">
               <img src="./assets/images/ico/ico_setting.svg" alt="" class="ico-title" aria-hidden="true">
-              사업정보 관리
+              공사정보 관리
             </h2>
             <div class="d-flex gap-1">
               <button type="button" class="btn btn-cancel btn-sm">취소</button>
@@ -24,32 +24,191 @@
             </div>
           </div>
           <!-- // 패널 헤더 -->
+        </div>     
+        <div class="panel-inline project-info-wrap">
+          <div class="panel panel-radius-tl-0">
+            <div class="panel-body">
+              <!-- 상단 섹션: 지도 | 사업 기본정보 | 주요시설물 (3열) -->
+              <div class="project-info">
+                <!-- 좌: 지도 썸네일 -->
+                <div class="project-info-map">
+                  <div class="map-thumb">
+                    <img src="./assets/images/map_sample.jpg" alt="지도">
+                  </div>
+                </div>
+                <!-- 중: 사업 기본정보 폼 -->
+                <div class="project-info-form ">
+                  <div class="form-table">
+                    <div class="form-row">
+                      <div class="form-th"><strong class="form-th-label">공사명</strong></div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <select class="select select-md">
+                            <option>고속국도</option>
+                          </select>
+                          <input type="text" placeholder="노선명" value="제30호 서산명덕선">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">공사구간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" value="충청남도 서산시 대산읍 화곡리">
+                          <span class="sep">~</span>
+                          <input type="text" value="충청남도 당진시 사기소동">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">공사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline ">
+                          <input type="date" value="2023-11-13">
+                          <span class="sep">~</span>
+                          <input type="date" value="2030-12-20">
+                          <span class="note">착공일로부터 <strong>36</strong>개월</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row-inline">
+                      <div class="form-row">
+                        <div class="form-th">공사연장</div>
+                        <div class="form-cell">
+                          <div class="form-row-inline">
+                            <input type="text" value="25.36">
+                            <span class="unit">km</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-th">공사비</div>
+                        <div class="form-cell">
+                          <div class="form-row-inline">
+                            <input type="text" value="9,131,000,000,000">
+                            <span class="unit">원</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">과업목적</div>
+                      <div class="form-cell">
+                        <textarea class="textarea-no-resize" placeholder="내용을 입력하세요">황해권 물류거점인...</textarea>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">사업자</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <div class="form-row flex-1">
+                            <input type="text" class="input" value="한국도로공사" readonly aria-label="사업자명">
+                          </div>
+                          <div class="form-row flex-1">
+                            <div class="input-group-inline">
+                              <input type="text" class="input-xs" value="D412565" aria-label="사업자코드">
+                              <button type="button" class="btn btn-secondary btn-xs btn-input-append">Q 코드검색</button>
+                            </div>
+                          </div>
+                          <div class="flex-1">
+                            <input type="text" class="input" placeholder="추가 입력" aria-label="추가" value="본사(토지공간실)">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div class="panel-body">
-
-            <!-- 상단 섹션: 지도 | 사업 기본정보 | 주요시설물 (3열) -->
-            <div class="project-info-top">
-              <!-- 좌: 지도 썸네일 -->
-              <div class="project-info-map">
-                <div class="map-thumb">
-                  <img src="./assets/images/map_sample.jpg" alt="지도">
+              </div>
+              <!-- // project-info-top -->
+            </div>
+            <!-- // panel-body -->
+          </div>
+          <!-- // panel -->
+           <div class="panel panel-radius-tr-0 panel-border-dashed-left ">
+            <div class="panel-body">
+              <div class="title-box">
+                <h3 class="title">주요시설물</h3>
+                <button type="button" class="btn btn-add-primary btn-xs">+ 시설물</button>
+              </div>
+              <div class="form-group">
+                <div class="form-row-inline">
+                  <select class="select-md">
+                    <option>나들목</option>
+                  </select>
+                  <div class="d-flex flex-1 align-center gap-1">
+                    <input type="text" value="대산, 대호지, 정미">
+                  </div>
+                </div>
+                <div class="form-row-inline">
+                  <select class="select-md">
+                    <option>분기점</option>
+                  </select>
+                  <div class="d-flex flex-1 align-center gap-1">
+                    <input type="text" value="당진">
+                    <button type="button" class="btn btn-remove btn-xs">—</button>
+                  </div>
+                </div>
+                <div class="form-row-inline">
+                  <select class="select-md">
+                    <option>교 량</option>
+                  </select>
+                  <div class="d-flex flex-1 align-center gap-2">
+                    <input type="number" value="46">
+                    <span class="unit">개소</span>
+                    <input type="number" value="3.85">
+                    <span class="unit">km</span>
+                    <button type="button" class="btn btn-remove btn-xs">—</button>
+                  </div>
+                </div>
+                <div class="form-row-inline">
+                  <select class="select-md">
+                    <option>터널</option>
+                  </select>
+                  <div class="d-flex flex-1 align-center gap-2">
+                    <input type="number" value="4">
+                    <span class="unit">개소</span>
+                    <input type="number" value="2.57">
+                    <span class="unit">km</span>
+                    <button type="button" class="btn btn-remove btn-xs">—</button>
+                  </div>
                 </div>
               </div>
-              <!-- 중: 사업 기본정보 폼 -->
-              <div class="project-info-form">
-                <div class="form-table">
+            </div>
+
+           </div>
+        </div>
+        <!-- // panel-inline -->
+
+        <div class="panel flex-1 panel-border-dashed-top">
+          <div class="panel-body">
+            <div class="title-box">
+              <h3 class="title">공구 관리</h3>
+              <button type="button" class="btn btn-add-primary btn-xs">+ 공구</button>
+            </div>
+            <div class="form-area">
+              <div class="form-table form-auto">
+                <div class="form-row-inline">
                   <div class="form-row">
-                    <div class="form-th">사업명</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <select class="select select-md">
-                          <option>고속국도</option>
-                        </select>
-                        <input type="text" placeholder="노선명" value="제30호 서산명덕선">
+                        <input class="input-auto" type="text" value="공구명이 텍스트로 길어질경우 예시입니다. 공구명이 텍스트로 길어질경우 예시입니다.">
+                        <span class="input-label">공구</span>
+                        <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
                     </div>
                   </div>
                   <div class="form-row">
+                    <div class="form-th">업체명</div>
+                    <div class="form-cell">
+                      <div class="form-row-inline">
+                        <input class="input-lg" type="text" value="코오롱글로벌(주)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row-inline">
+                  <div class="form-row flex-1">
                     <div class="form-th">공사구간</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
@@ -59,304 +218,186 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-row">
-                    <div class="form-th">공사기간</div>
+                  <div class="form-row-inline">
+                    <div class="form-th fw-medium ">STA.</div>
                     <div class="form-cell">
-                      <div class="form-row-inline">
-                        <input type="date" value="2023-11-13">
-                        <span class="sep">~</span>
-                        <input type="date" value="2030-12-20">
-                      </div>
-                      <span class="note">착공일로부터 <strong>36</strong>개월</span>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-th">공사연장</div>
-                    <div class="form-cell">
-                      <div class="form-row-inline">
-                        <input type="text" value="25.36">
-                        <span class="unit">km</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-th">공사비</div>
-                    <div class="form-cell">
-                      <div class="form-row-inline">
-                        <input type="text" value="9,131,000,000,000">
-                        <span class="unit">원</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-th">과업목적</div>
-                    <div class="form-cell">
-                      <textarea placeholder="내용을 입력하세요">황해권 물류거점인...</textarea>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-th">도로구역 결정 고시</div>
-                    <div class="form-cell">
-                      <a href="#" class="link-file">2025-00-00 국토교통부고시 제2023-635호 [pdf, 17KB]
-                        <img src="./assets/images/ico/ico_link_out.svg" alt="외부링크" class="ico-link">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-th">사업자</div>
-                    <div class="form-cell">
-                      <div class="form-row-inline">
-                        <input type="text" class="input" value="한국도로공사" readonly aria-label="사업자명" />
-                        <div class="input-group-inline">
-                          <input type="text" class="input" value="D412565" aria-label="사업자코드" />
-                          <button type="button" class="btn btn-secondary btn-xs btn-input-append">Q 코드검색</button>
+                        <div class="form-row-inline">
+                          <input type="text" value="0+000" class="input-md">
+                          <span class="sep">~</span>
+                          <input type="text" value="0+000" class="input-md">
                         </div>
-                        <input type="text" class="input" placeholder="추가 입력" aria-label="추가" value="본사(토지공간실)"  />
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- 우: 주요시설물 -->
-              <div class="project-info-facility">
-                <div class="form-group">
-                  <div class="section-row d-flex align-center gap-2 mb-1">
-                    <span class="section-label">주요시설물</span>
-                    <button type="button" class="btn btn-add-primary btn-xs">+ 시설물</button>
+              <div class="data-table" style="display: grid; grid-template-columns: 140px 140px 140px 1fr 80px;">
+                <div class="data-thead" style="display: contents;">
+                  <div class="data-row" style="display: contents;">
+                    <div class="data-th">부서</div>
+                    <div class="data-th">담당자</div>
+                    <div class="data-th">전화번호</div>
+                    <div class="data-th">메일 주소</div>
+                    <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                   </div>
-                  <div class="facility-row form-grid gap-2 mb-1">
-                    <div class="form-row-inline">
-                      <select class="select-md">
-                        <option>나들목</option>
-                      </select>
-                      <div class="d-flex flex-1 align-center gap-1">
-                        <input type="text" value="대산, 대호지, 정미">
-                      </div>
-                    </div>
-                    <div class="form-row-inline">
-                      <select class="select-md">
-                        <option>분기점</option>
-                      </select>
-                      <div class="d-flex flex-1 align-center gap-1">
-                        <input type="text" value="당진">
-                        <button type="button" class="btn btn-remove btn-xs">—</button>
-                      </div>
-                    </div>
-                    <div class="form-row-inline">
-                      <select class="select-md">
-                        <option>고 량</option>
-                      </select>
-                      <div class="d-flex flex-1 align-center gap-2">
-                        <input type="number" value="46">
-                        <span class="unit">개소</span>
-                        <input type="number" value="3.85">
-                        <span class="unit">km</span>
-                        <button type="button" class="btn btn-remove btn-xs">—</button>
-                      </div>
-                    </div>
-                    <div class="form-row-inline">
-                      <select class="select-md">
-                        <option>터널</option>
-                      </select>
-                      <div class="d-flex flex-1 align-center gap-2">
-                        <input type="number" value="4">
-                        <span class="unit">개소</span>
-                        <input type="number" value="2.57">
-                        <span class="unit">km</span>
-                        <button type="button" class="btn btn-remove btn-xs">—</button>
-                      </div>
-                    </div>
+                </div>
+                <div class="data-tbody" style="display: contents;">
+                  <div class="data-row" style="display: contents;">
+                    <div class="data-td"><input type="text" value="토목사업본부"></div>
+                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
+                    <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                    <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- // project-info-top -->
-
-            <!-- 하단 섹션: 공구관리 (전체 폭, 2번 시안 스타일 참고) -->
-            <div class="project-info-bottom">
-              <div class="form-title form-title-row">
-                <div class="d-flex align-center gap-2">
-                  <span class="panel-title">공구 관리</span>
-                  <button type="button" class="btn btn-add-primary btn-xs">+ 공구</button>
-                </div>
-                <button type="button" class="btn btn-add-secondary btn-xs" data-modal-open="modalPersonInfo">
-                  <i class="ico-excel"></i>
-                  인원정보 등록
-                  <span class="badge-count">1</span>
-                </button>
-              </div>
-              <p class="form-desc">공구명이 텍스트로 길어질경우 예시입니다.</p>
-
-              <!-- 공구 1 -->
-              <div class="form-group gonggu-block">
-                <div class="gonggu-header d-flex align-center gap-2 flex-wrap">
-                  <input class="input-auto" type="text" placeholder="공구명 입력" value="1">
-                  <span class="input-label">공구</span>
-                  <span class="gonggu-company">업체명 <strong>코오롱글로벌(주)</strong></span>
-                </div>
-                <div class="form-row-inline gap-2 mb-2">
-                  <dl class="form-row-inline flex-1">
-                    <dt>공사 구간</dt>
-                    <dd class="flex-1 form-row-inline gap-2">
-                      <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
-                      <span class="sep">~</span>
-                      <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
-                    </dd>
-                  </dl>
-                  <dl class="form-row-inline">
-                    <dt class="lbl">STA.</dt>
-                    <dd>
+            
+            <div class="form-area">
+              <div class="form-table form-auto">
+                <div class="form-row-inline">
+                  <div class="form-row">
+                    <div class="form-cell">
                       <div class="form-row-inline">
-                        <input type="text" value="0+000" class="input-sm">
-                        <span class="sep">~</span>
-                        <input type="text" value="6+000" class="input-sm">
+                        <input class="input-auto" type="text" value="2">
+                        <span class="input-label">공구</span>
+                        <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
-                    </dd>
-                  </dl>
-                </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 140px 140px 140px 1fr 80px;">
-                  <div class="data-thead" style="display: contents;">
-                    <div class="data-row" style="display: contents;">
-                      <div class="data-th">부서</div>
-                      <div class="data-th">담당자</div>
-                      <div class="data-th">전화번호</div>
-                      <div class="data-th">메일 주소</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
                     </div>
                   </div>
-                  <div class="data-tbody" style="display: contents;">
-                    <div class="data-row" style="display: contents;">
-                      <div class="data-td"><input type="text" value="토목사업본부"></div>
-                      <div class="data-td"><input type="text" value="김수현"></div>
-                      <div class="data-td"><input type="text" value="010-3595-3511"></div>
-                      <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
-                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- // 공구 1 -->
-
-              <!-- 공구 2 -->
-              <div class="form-group gonggu-block">
-                <div class="gonggu-header d-flex align-center gap-2 flex-wrap">
-                  <input class="input-auto" type="text" placeholder="공구명 입력" value="2">
-                  <span class="input-label">공구</span>
-                  <span class="gonggu-company">업체명 <strong>(주)케이씨씨건설</strong></span>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
-                </div>
-                <div class="form-row-inline gap-2 mb-2">
-                  <dl class="form-row-inline flex-1">
-                    <dt>공사 구간</dt>
-                    <dd class="flex-1 form-row-inline gap-2">
-                      <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
-                      <span class="sep">~</span>
-                      <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
-                    </dd>
-                  </dl>
-                  <dl class="form-row-inline">
-                    <dt class="lbl">STA.</dt>
-                    <dd>
+                  <div class="form-row">
+                    <div class="form-th">업체명</div>
+                    <div class="form-cell">
                       <div class="form-row-inline">
-                        <input type="text" value="6+000" class="input-sm">
-                        <span class="sep">~</span>
-                        <input type="text" value="12+000" class="input-sm">
+                        <input class="input-lg" type="text" value="(주)케이씨씨건설">
                       </div>
-                    </dd>
-                  </dl>
-                </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 140px 140px 140px 1fr 80px;">
-                  <div class="data-thead" style="display: contents;">
-                    <div class="data-row" style="display: contents;">
-                      <div class="data-th">부서</div>
-                      <div class="data-th">담당자</div>
-                      <div class="data-th">전화번호</div>
-                      <div class="data-th">메일 주소</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
-                    </div>
-                  </div>
-                  <div class="data-tbody" style="display: contents;">
-                    <div class="data-row" style="display: contents;">
-                      <div class="data-td"><input type="text" value="토목사업본부"></div>
-                      <div class="data-td"><input type="text" value="김수현"></div>
-                      <div class="data-td"><input type="text" value="010-3595-3511"></div>
-                      <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
-                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
-                    </div>
-                    <div class="data-row" style="display: contents;">
-                      <div class="data-td"><input type="text" placeholder="부서명"></div>
-                      <div class="data-td"><input type="text" placeholder="담당자"></div>
-                      <div class="data-td"><input type="text" placeholder="전화번호"></div>
-                      <div class="data-td"><input type="text" placeholder="your@email.com"></div>
-                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- // 공구 2 -->
-
-              <!-- 공구 3 -->
-              <div class="form-group gonggu-block">
-                <div class="gonggu-header d-flex align-center gap-2 flex-wrap">
-                  <input class="input-auto" type="text" placeholder="공구명 입력" value="3">
-                  <span class="input-label">공구</span>
-                  <span class="gonggu-company">업체명 <strong>(주)케이씨씨건설</strong></span>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
-                </div>
-                <div class="form-row-inline gap-2 mb-2">
-                  <dl class="form-row-inline flex-1">
-                    <dt>공사 구간</dt>
-                    <dd class="flex-1 form-row-inline gap-2">
-                      <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
-                      <span class="sep">~</span>
-                      <input type="text" value="전북특별자치도 전주시 완산구 주화산동1가">
-                    </dd>
-                  </dl>
-                  <dl class="form-row-inline">
-                    <dt class="lbl">STA.</dt>
-                    <dd>
+                <div class="form-row-inline">
+                  <div class="form-row flex-1">
+                    <div class="form-th">공사구간</div>
+                    <div class="form-cell">
                       <div class="form-row-inline">
-                        <input type="text" value="12+000" class="input-sm">
+                        <input type="text" value="충청남도 서산시 대산읍 화곡리">
                         <span class="sep">~</span>
-                        <input type="text" value="18+000" class="input-sm">
+                        <input type="text" value="충청남도 당진시 사기소동">
                       </div>
-                    </dd>
-                  </dl>
-                </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 140px 140px 140px 1fr 80px;">
-                  <div class="data-thead" style="display: contents;">
-                    <div class="data-row" style="display: contents;">
-                      <div class="data-th">부서</div>
-                      <div class="data-th">담당자</div>
-                      <div class="data-th">전화번호</div>
-                      <div class="data-th">메일 주소</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
                     </div>
                   </div>
-                  <div class="data-tbody" style="display: contents;">
-                    <div class="data-row" style="display: contents;">
-                      <div class="data-td"><input type="text" value="토목사업본부"></div>
-                      <div class="data-td"><input type="text" value="김수현"></div>
-                      <div class="data-td"><input type="text" value="010-3595-3511"></div>
-                      <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
-                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                  <div class="form-row-inline">
+                    <div class="form-th fw-medium ">STA.</div>
+                    <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" value="0+000" class="input-md">
+                          <span class="sep">~</span>
+                          <input type="text" value="0+000" class="input-md">
+                        </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- // 공구 3 -->
-
+              <div class="data-table" style="display: grid; grid-template-columns: 140px 140px 140px 1fr 80px;">
+                <div class="data-thead" style="display: contents;">
+                  <div class="data-row" style="display: contents;">
+                    <div class="data-th">부서</div>
+                    <div class="data-th">담당자</div>
+                    <div class="data-th">전화번호</div>
+                    <div class="data-th">메일 주소</div>
+                    <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
+                  </div>
+                </div>
+                <div class="data-tbody" style="display: contents;">
+                  <div class="data-row" style="display: contents;">
+                    <div class="data-td"><input type="text" value="토목사업본부"></div>
+                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
+                    <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                    <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                  </div>
+                  <div class="data-row" style="display: contents;">
+                    <div class="data-td"><input type="text" value="토목사업본부"></div>
+                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
+                    <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                    <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- // project-info-bottom -->
+            <div class="form-area">
+              <div class="form-table form-auto">
+                <div class="form-row-inline">
+                  <div class="form-row">
+                    <div class="form-cell">
+                      <div class="form-row-inline">
+                        <input class="input-auto" type="text" value="3">
+                        <span class="input-label">공구</span>
+                        <button type="button" class="btn btn-remove btn-xs">—</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-th">업체명</div>
+                    <div class="form-cell">
+                      <div class="form-row-inline">
+                        <input class="input-lg" type="text" value="(주)케이씨씨건설">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row-inline">
+                  <div class="form-row flex-1">
+                    <div class="form-th">공사구간</div>
+                    <div class="form-cell">
+                      <div class="form-row-inline">
+                        <input type="text" value="충청남도 서산시 대산읍 화곡리">
+                        <span class="sep">~</span>
+                        <input type="text" value="충청남도 당진시 사기소동">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row-inline">
+                    <div class="form-th fw-medium ">STA.</div>
+                    <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" value="0+000" class="input-md">
+                          <span class="sep">~</span>
+                          <input type="text" value="0+000" class="input-md">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="data-table" style="display: grid; grid-template-columns: 140px 140px 140px 1fr 80px;">
+                <div class="data-thead" style="display: contents;">
+                  <div class="data-row" style="display: contents;">
+                    <div class="data-th">부서</div>
+                    <div class="data-th">담당자</div>
+                    <div class="data-th">전화번호</div>
+                    <div class="data-th">메일 주소</div>
+                    <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
+                  </div>
+                </div>
+                <div class="data-tbody" style="display: contents;">
+                  <div class="data-row" style="display: contents;">
+                    <div class="data-td"><input type="text" value="토목사업본부"></div>
+                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
+                    <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                    <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
-          <!-- // panel-body -->
-
         </div>
-        <!-- // panel -->
+
 
       </div>
+      <!-- // container -->
     </div>
+    <!-- // wrap -->
 
     <!-- =============================================
          MODAL : 시공사 인원정보 등록

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 @use '../import/mixin' as *;
+@use '../root' as *;
 
 /* ============================================================
    Base (전역)
@@ -43,18 +44,22 @@ body {
    ============================================================ */
 .wrap {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 211px 1fr;
   width: 100%;
   height: var(--window-inner-height);
   overflow: hidden;
 }
 
 .container {
+  position: relative;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: var(--window-inner-height);
+  min-height: 0;
   background-color: #0D241D;
   overflow: hidden;
+
 }
 
 /* 사이드바 없이 container만 있을 때(예: guide) 전체 폭 사용 */
@@ -78,29 +83,19 @@ body {
    사이드바 (.nav-wrap) — 로고, 프로젝트 선택, 메뉴, 사용자
    ============================================================ */
 .nav-wrap {
-  background: linear-gradient(90deg, #103D2E 0%, #1A523F 38%, #12352A 87.51%, #0D231C 100%);
-  position: relative;
+  background: url('../images/bg_sidebar.png'), linear-gradient(180deg, #124233 0%, #14705F 100%);
+  position: relative;      
+  padding: 30px 0;
+  height: 100vh; 
   display: flex;
   flex-direction: column;
-  padding: 30px 0;
-  height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 190px;
-    background: url('../images/bg_sidebar.png') center/cover no-repeat;
-    mix-blend-mode: color-dodge;
-    pointer-events: none;
-  }
+ 
 
   .logo {
-    display: flex;
+    display: flex; 
     align-items: center;
     justify-content: center;
     width: 140px;
@@ -120,8 +115,10 @@ body {
 .project-selector {
   position: relative;
   margin: 0 12px;
-  background: #225C4A;
-  border: 1px solid #000;
+  background: url('../images/bg_pj_selector.png');
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border-radius: var(--radius-md);
   padding: 8px 16px;
   color: #fff;
@@ -133,16 +130,17 @@ body {
   gap: 6px;
   user-select: none;
 
-  span:not(.arrow) {
+  span:not(.arrow):not(.nav-arrow) {
     filter: var(--text-shadow);
   }
 
-  .arrow {
+  .arrow,
+  .nav-arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 13px;
-    height: 11px;
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
     transition: transform 0.2s ease;
 
@@ -167,6 +165,14 @@ body {
     filter: drop-shadow(0 0 0.891px #000);
   }
 
+  /* .nav-arrow: 빈 span용 배경 아이콘 (nav 메뉴와 동일 스타일) */
+  .nav-arrow {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.7526 8.1667C5.38568 8.57948 5.42286 9.21155 5.83565 9.57847L11 14.169L16.1644 9.57847C16.5771 9.21155 16.6143 8.57948 16.2474 8.1667C15.8805 7.75392 15.2484 7.71674 14.8356 8.08366L11 11.4931L7.16437 8.08366C6.75159 7.71674 6.11952 7.75392 5.7526 8.1667Z' fill='%23ffffff'/%3E%3Cpath d='M5.23828 7.70996C4.61934 8.40654 4.68242 9.47367 5.37891 10.0928L10.543 14.6826L11 15.0889L11.457 14.6826L16.6211 10.0928C17.3176 9.47367 17.3807 8.40654 16.7617 7.70996C16.1426 7.01347 15.0755 6.9504 14.3789 7.56934L11 10.5723L7.62109 7.56934C6.92452 6.9504 5.85738 7.01347 5.23828 7.70996Z' stroke='black' stroke-opacity='0.8' stroke-width='1.375' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   &-label {
     flex: 1;
     overflow: hidden;
@@ -176,7 +182,7 @@ body {
 
   &-dropdown {
     position: absolute;
-    top: calc(100% + 4px);
+    top: calc(100% + 0px);
     left: 0;
     right: 0;
     margin: 0;
@@ -210,7 +216,8 @@ body {
   }
 
   &.is-open {
-    .arrow {
+    .arrow,
+    .nav-arrow {
       transform: rotate(180deg);
     }
 
@@ -223,8 +230,9 @@ body {
 }
 
 .nav-menu {
+  margin-top: $spacing-2xl;
   list-style: none;
-  padding: 0 0 0 12px;
+  padding: 0 0 0 10px;
   flex: 1;
 
   .nav-group {
@@ -241,7 +249,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 12px;
+    padding: 6px 12px 6px 16px;
     color: #fff;
     text-decoration: none;
     font-size: var(--font-base);
@@ -272,9 +280,19 @@ body {
     }
   }
 
-  li.active > a {
-    color: #FFC600;
-  }
+  li.active{
+    > a {
+        color: #084732;
+        font-weight: 700;
+        text-shadow:var(--text-stroke-white);
+        filter: none;
+        &:has(+ .depth02){
+          color: #FFC600;
+          font-weight: 500;
+          text-shadow: var(--text-stroke);
+        }
+      }
+  } 
 }
 
 .nav-sub {
@@ -301,15 +319,30 @@ body {
 }
 
 .user-info {
-  padding-left: 36px;
-  color: #fff;
+  justify-content: center;
+  color: #B7C8C4;
   font-size: var(--font-base);
   font-weight: 700;
-  text-shadow: 0 0 0.891px #000;
-  filter: var(--text-shadow);
   text-shadow: var(--text-stroke);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   .user-name {
     font-size: 1rem;
+    color: #fff;
+  }
+  .user-photo {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    border:1px solid rgba(255, 255, 255, 0.3)
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   }
 }
 
@@ -323,7 +356,6 @@ body {
     display: flex;
     align-items: center;
     text-shadow: var(--text-stroke);
-    filter: var(--text-shadow);
     width: 100%;
     font-size: 14px;
     font-weight: 500;
@@ -344,51 +376,69 @@ body {
         display: inline-block;
         width: 22px;
         height: 22px;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.7526 8.1667C5.38568 8.57948 5.42286 9.21155 5.83565 9.57847L11 14.169L16.1644 9.57847C16.5771 9.21155 16.6143 8.57948 16.2474 8.1667C15.8805 7.75392 15.2484 7.71674 14.8356 8.08366L11 11.4931L7.16437 8.08366C6.75159 7.71674 6.11952 7.75392 5.7526 8.1667Z' fill='%23ffffff'/%3E%3Cpath d='M5.23828 7.70996C4.61934 8.40654 4.68242 9.47367 5.37891 10.0928L10.543 14.6826L11 15.0889L11.457 14.6826L16.6211 10.0928C17.3176 9.47367 17.3807 8.40654 16.7617 7.70996C16.1426 7.01347 15.0755 6.9504 14.3789 7.56934L11 10.5723L7.62109 7.56934C6.92452 6.9504 5.85738 7.01347 5.23828 7.70996Z' stroke='black' stroke-opacity='0.8' stroke-width='1.375' stroke-linecap='round'/%3E%3C/svg%3E");
-        transform: rotate(-180deg);
+         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.7526 8.1667C5.38568 8.57948 5.42286 9.21155 5.83565 9.57847L11 14.169L16.1644 9.57847C16.5771 9.21155 16.6143 8.57948 16.2474 8.1667C15.8805 7.75392 15.2484 7.71674 14.8356 8.08366L11 11.4931L7.16437 8.08366C6.75159 7.71674 6.11952 7.75392 5.7526 8.1667Z' fill='%23ffffff'/%3E%3Cpath d='M5.23828 7.70996C4.61934 8.40654 4.68242 9.47367 5.37891 10.0928L10.543 14.6826L11 15.0889L11.457 14.6826L16.6211 10.0928C17.3176 9.47367 17.3807 8.40654 16.7617 7.70996C16.1426 7.01347 15.0755 6.9504 14.3789 7.56934L11 10.5723L7.62109 7.56934C6.92452 6.9504 5.85738 7.01347 5.23828 7.70996Z' stroke='black' stroke-opacity='0.8' stroke-width='1.375' stroke-linecap='round'/%3E%3C/svg%3E");        
+        transform: rotate(-0deg);
         transition: transform 0.3s ease, border-color 0.3s ease;
         margin-left: auto;
         flex-shrink: 0;
       }
 
       &.has-depth.active > a .nav-arrow {
-        transform: rotate(0deg);
+        transform: rotate(-180deg);
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.7526 8.1667C5.38568 8.57948 5.42286 9.21155 5.83565 9.57847L11 14.169L16.1644 9.57847C16.5771 9.21155 16.6143 8.57948 16.2474 8.1667C15.8805 7.75392 15.2484 7.71674 14.8356 8.08366L11 11.4931L7.16437 8.08366C6.75159 7.71674 6.11952 7.75392 5.7526 8.1667Z' fill='%23FFC600'/%3E%3Cpath d='M5.23828 7.70996C4.61934 8.40654 4.68242 9.47367 5.37891 10.0928L10.543 14.6826L11 15.0889L11.457 14.6826L16.6211 10.0928C17.3176 9.47367 17.3807 8.40654 16.7617 7.70996C16.1426 7.01347 15.0755 6.9504 14.3789 7.56934L11 10.5723L7.62109 7.56934C6.92452 6.9504 5.85738 7.01347 5.23828 7.70996Z' stroke='black' stroke-opacity='0.8' stroke-width='1.375' stroke-linecap='round'/%3E%3C/svg%3E");
       }
 
       &.active {
-        padding-bottom: 8px;
-        border-radius: 4px 0 0 4px;
-        background: rgba(0, 0, 0, 0.3);
+        border-radius: $radius-squicle 0 0 $radius-squicle;
+        background: linear-gradient(270deg, rgba(19, 68, 61, 0.20) 0%, #13443D 100%);
 
-        > .depth02 {
-          max-height: 500px;
-          transition: max-height 0.4s ease-in;
-        }
-        &::before,
-        &::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          padding: 1px;
-          pointer-events: none;
-          width: 100%;
+        // depth02가 있을 때: 기존 border 효과 유지
+        &.has-depth {
+          padding-bottom: 8px;
+          > .depth02 {
+            max-height: 500px;
+            transition: max-height 0.4s ease-in;
+          }
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            width: 100%;
+          }
+          &::before {
+            left: 0;
+            box-sizing: border-box;
+            border: 2px solid #001F15;
+            opacity: 0.6;
+            filter: blur(1.5px);
+          }
+          &::after {
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+            background: linear-gradient(90deg, rgba(42, 121, 97, 0.6) 0%, rgba(0, 186, 131, 0.306) 100%);
+          }
         }
 
-        &::before {
-          border-top: 2px solid #000;
-          border-bottom: 2px solid #000;
-          border-left: 2px solid #000;
-          left: 0;
-        }
-
-        &::after {
-          background: linear-gradient(90deg, #035E43, rgba(3, 94, 67, 0.3) 100%);
+        // depth02가 없을 때: 이미지 적용
+        &:not(.has-depth) {
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 209px;
+            height: 56px;
+            background: url(../images/bg_nav_depth_01.png) no-repeat center / 100% 100%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: -1;
+          }
         }
       }
 
@@ -405,14 +455,14 @@ body {
     }
   }
   .depth02 {
-    padding-left: 24px;
-    overflow: hidden;
+    padding-left: 33px;
     max-height: 0;
-    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+    //transition: max-height 0.3s ease-out;
     > li {
       > a {
-        height: 38px;
-        line-height: 38px;
+        height: 42px;
+        line-height: 42px;
         @include ellipsis(1);
       }
     }
@@ -420,44 +470,30 @@ body {
   
 
   /* depth02·depth03 활성 링크 (노란 테두리·그라데이션) */
-  ul:not(.depth01) li.active > a {
-    color: #000;
-    filter: none;
-    font-weight: 700;
+  ul:not(.depth01) li.active{
     position: relative;
-    text-shadow: none;
-    background: linear-gradient(0deg, #ebe2d080 0%, #ebe2d080 100%), #fff;
-
-    &:hover {
-      background: linear-gradient(0deg, #ebe2d080 0%, #ebe2d080 100%), #fff;
-    }
-
-    &::before,
-    &::after {
+    &::before{
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      padding: 1px;
+      top: 50%;
+      right: 0;
+      width: 209px;
+      height: 56px;
+      background: url(../images/bg_nav_depth_02.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      transform: translateY(-50%);
       pointer-events: none;
-      width: 100%;
+      z-index: -1;
     }
-
-    &::before {
-      border-top: 2px solid #000;
-      border-bottom: 2px solid #000;
-      border-left: 2px solid #000;
-      left: 0;
+    > a {
+      color: #084732;
+      filter: none;
+      font-weight: 700;
+      position: relative;      
     }
-
-    &::after {
-      background: linear-gradient(90deg, #a67d03, #ffe873 25%, rgba(242, 204, 15, 0) 68%);
-    }
-  }
+  } 
 }
 
 
@@ -469,6 +505,8 @@ body {
 }
 .flex-1 {
   flex: 1;
+  min-height: 0;
+  min-width: 0;
 }
 
 .align-center {

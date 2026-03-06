@@ -7,6 +7,30 @@
 // 사업정보 관리 (1번 시안: 상단 3열 + 하단 공구관리)
 // =============================================
 
+// container 내 공구 관리 패널: 남은 높이 채우고 panel-body만 스크롤
+.container .panel.flex-1 {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+
+  .panel-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
+    flex: 1;
+    padding-right: 8px;
+  }
+}
+
+.project-info-wrap {
+  .panel {
+    &:first-child {
+      min-width: 52.5vw;
+    }
+  }
+}
+
 .project-info-panel {
   .panel-body {
     display: flex;
@@ -17,15 +41,24 @@
 // 상단 3열: 지도 | 사업 기본정보 | 주요시설물
 .project-info-top {
   display: grid;
-  grid-template-columns: 200px 1fr 0.8fr;
+  grid-template-columns: 280px 1fr;
   gap: $spacing-xl;
   align-items: start;
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
 }
+.project-info {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  .project-info-form {
+    width: 100%;
+  }
+}
 
 .project-info-map {
+  min-width: 280px;
   .map-thumb {
     border-radius: $radius-lg;
     overflow: hidden;
@@ -41,35 +74,6 @@
   }
 }
 
-.project-info-form {
-  .form-table {
-    width: 100%;
-  }
-  .form-table th,
-  .form-table .form-th {
-    width: 140px;
-    padding: $spacing-sm $spacing-md $spacing-sm 0;
-    font-weight: $font-weight-medium;
-    color: $gray-700;
-    vertical-align: top;
-  }
-  .form-table td,
-  .form-table .form-cell {
-    padding: $spacing-sm 0;
-  }
-  .note {
-    margin-left: $spacing-sm;
-    font-size: $font-size-xs;
-    color: $gray-500;
-  }
-  .link-file {
-    display: inline-flex;
-    align-items: center;
-    gap: $spacing-xs;
-  }
-
-}
-
 // 사업자 행: 사업자명 | [코드 + Q 코드검색] | 본사 버튼 | 추가 입력 (이미지 시안)
 .project-info-business-row {
   display: flex;
@@ -83,8 +87,6 @@
 }
 
 .project-info-facility {
-  border-left: 1px solid $gray-200;
-  padding-left: $spacing-xl;
   @media (max-width: 1024px) {
     border-left: none;
     padding-left: 0;
@@ -137,31 +139,5 @@
       color: $gray-900;
       font-weight: $font-weight-semibold;
     }
-  }
-}
-
-// =============================================
-// 조사·협의 관리 (PJ_02_01)
-// =============================================
-.survey-consult-panel {
-  .panel-body.survey-consult-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: $spacing-xl;
-    align-items: start;
-    @media (max-width: 1024px) {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-.survey-consult-column {
-  .form-title-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: $spacing-md;
-    margin-bottom: $spacing-md;
   }
 }

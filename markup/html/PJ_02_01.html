@@ -10,8 +10,8 @@
         <!-- =============================================
              조사·협의 관리
              ============================================= -->
-        <div class="panel survey-consult-panel">
 
+        <div class="panel page-title">
           <!-- 패널 헤더 -->
           <div class="panel-header">
             <h2 class="panel-title">
@@ -24,32 +24,64 @@
             </div>
           </div>
           <!-- // 패널 헤더 -->
+        </div>
 
-          <div class="panel-body survey-consult-body">
-
-            <!-- 좌: 조사업체 -->
-            <div class="survey-consult-column">
-              <div class="form-title form-title-row">
-                <span class="panel-title">조사업체</span>
+        <div class="panel-inline flex-1">
+          <!-- 좌: 조사업체 -->
+          <div class="panel panel-radius-tl-0">
+            <div class="panel-body">
+              <div class="title-box">
+                <h3 class="title">조사업체</h3>
                 <button type="button" class="btn btn-add-primary btn-xs">+ 업체</button>
               </div>
 
               <!-- 조사업체 1 -->
-              <div class="form-group">
-                <div class="d-flex flex-wrap align-center gap-2">
-                  <div class="form-row-inline flex-1">
-                    <select class="select select-md">
-                      <option>현장조사</option>
-                      <option>감정평가</option>
-                    </select>
-                    <input type="text" class="input flex-1" value="(주)케이씨씨건설" placeholder="업체명">
-                    <input type="text" class="input flex-1" value="1,3공구" placeholder="조사 지역">
-                    <span class="lbl">조사 기간</span>
-                    <input type="date" class="input" placeholder="시작일" aria-label="시작일">
-                    <span class="sep">~</span>
-                    <input type="date" class="input" placeholder="종료일" aria-label="종료일">
+              <div class="form-area">
+                <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">업체구분</div>
+                      <div class="form-cell">
+                        <select class="select select-md">
+                          <option>현장조사</option>
+                          <option>감정평가</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">업체 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="(주)케이씨씨건설" placeholder="업체명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">조사지역</div>
+                      <div class="form-cell">
+                        <select class="select select-md select-multiple" multiple>
+                          <option>1공구</option>
+                          <option>2공구</option>
+                          <option>3공구</option>
+                          <option>4공구</option>
+                          <option>5공구</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">조사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="date" class="input" placeholder="시작일" aria-label="시작일">
+                          <span class="sep">~</span>
+                          <input type="date" class="input" placeholder="종료일" aria-label="종료일">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 120px 100px 120px 1fr 80px 60px;">
                   <div class="data-thead" style="display: contents;">
@@ -59,7 +91,7 @@
                       <div class="data-th">전화번호</div>
                       <div class="data-th">메일 주소</div>
                       <div class="data-th">특기사항</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                     </div>
                   </div>
                   <div class="data-tbody" style="display: contents;">
@@ -85,21 +117,53 @@
               <!-- // 조사업체 1 -->
 
               <!-- 조사업체 2 -->
-              <div class="form-group">
-                <div class="d-flex flex-wrap align-center gap-2">
-                  <div class="form-row-inline flex-1">
-                    <select class="select select-md">
-                      <option>현장조사</option>
-                      <option selected>감정평가</option>
-                    </select>
-                    <input type="text" class="input flex-1" value="(주)태영건설" placeholder="업체명">
-                    <input type="text" class="input flex-1" value="전주시 주화산동1가, 전주시 주화산동2가, 전주시 주화산..." placeholder="조사 지역">
-                    <span class="lbl">조사 기간</span>
-                    <input type="date" class="input" value="2023-08-01" aria-label="시작일">
-                    <span class="sep">~</span>
-                    <input type="date" class="input" value="2023-08-01" aria-label="종료일">
+              <div class="form-area">
+                <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">업체구분</div>
+                      <div class="form-cell">
+                        <select class="select select-md">
+                          <option>현장조사</option>
+                          <option selected>감정평가</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">업체 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="(주)태영건설" placeholder="업체명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">조사지역</div>
+                      <div class="form-cell">
+                        <select class="select select-md select-multiple" multiple>
+                          <option>전주시 주화산동1가</option>
+                          <option>전주시 주화산동2가</option>
+                          <option>전주시 주화산동3가</option>
+                          <option>전주시 주화산동4가</option>
+                          <option>전주시 주화산동5가</option>
+                          <option>전주시 주화산동6가</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">조사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="date" class="input" value="2023-08-01" placeholder="시작일" aria-label="시작일">
+                          <span class="sep">~</span>
+                          <input type="date" class="input" value="2023-08-01" placeholder="종료일" aria-label="종료일">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 120px 100px 120px 1fr 80px 60px;">
                   <div class="data-thead" style="display: contents;">
@@ -109,7 +173,7 @@
                       <div class="data-th">전화번호</div>
                       <div class="data-th">메일 주소</div>
                       <div class="data-th">특기사항</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                     </div>
                   </div>
                   <div class="data-tbody" style="display: contents;">
@@ -127,21 +191,53 @@
               <!-- // 조사업체 2 -->
 
               <!-- 조사업체 3 -->
-              <div class="form-group">
-                <div class="d-flex flex-wrap align-center gap-2">
-                  <div class="form-row-inline flex-1">
-                    <select class="select select-md">
-                      <option>현장조사</option>
-                      <option selected>감정평가</option>
-                    </select>
-                    <input type="text" class="input flex-1" value="(주)금호건설" placeholder="업체명">
-                    <input type="text" class="input flex-1" value="전주시 주화산동1가, 전주시 주화산동2가, 전주시 주화산..." placeholder="조사 지역">
-                    <span class="lbl">조사 기간</span>
-                    <input type="date" class="input" value="2023-08-01" aria-label="시작일">
-                    <span class="sep">~</span>
-                    <input type="date" class="input" value="2023-08-01" aria-label="종료일">
+              <div class="form-area">
+                <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">업체구분</div>
+                      <div class="form-cell">
+                        <select class="select select-md">
+                          <option>현장조사</option>
+                          <option selected>감정평가</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">업체 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="(주)금호건설" placeholder="업체명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">조사지역</div>
+                      <div class="form-cell">
+                        <select class="select select-md select-multiple" multiple>
+                          <option>전주시 주화산동1가</option>
+                          <option>전주시 주화산동2가</option>
+                          <option>전주시 주화산동3가</option>
+                          <option>전주시 주화산동4가</option>
+                          <option>전주시 주화산동5가</option>
+                          <option>전주시 주화산동6가</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">조사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="date" class="input" value="2023-08-01" placeholder="시작일" aria-label="시작일">
+                          <span class="sep">~</span>
+                          <input type="date" class="input" value="2023-08-01" placeholder="종료일" aria-label="종료일">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 120px 100px 120px 1fr 80px 60px;">
                   <div class="data-thead" style="display: contents;">
@@ -151,7 +247,85 @@
                       <div class="data-th">전화번호</div>
                       <div class="data-th">메일 주소</div>
                       <div class="data-th">특기사항</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
+                    </div>
+                  </div>
+                  <div class="data-tbody" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-td"><input type="text" value="토목사업본부"></div>
+                      <div class="data-td"><input type="text" value="김수현"></div>
+                      <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                      <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                      <div class="data-td"><input type="text" placeholder="특기사항"></div>
+                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                    </div>
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-td"><input type="text" value="토목사업본부"></div>
+                      <div class="data-td"><input type="text" value="김수현"></div>
+                      <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                      <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                      <div class="data-td"><input type="text" placeholder="특기사항"></div>
+                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- // 조사업체 3 -->
+
+                            <!-- 조사업체 4 -->
+              <div class="form-area">
+                <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">업체구분</div>
+                      <div class="form-cell">
+                        <select class="select select-md">
+                          <option>현장조사</option>
+                          <option selected>감정평가</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">업체 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="(주)금호건설" placeholder="업체명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">조사지역</div>
+                      <div class="form-cell">
+                        <select class="select select-md select-multiple" multiple>
+                          <option>현장조사</option>
+                          <option>감정평가</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">조사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="date" class="input" value="2023-08-01" placeholder="시작일" aria-label="시작일">
+                          <span class="sep">~</span>
+                          <input type="date" class="input" value="2023-08-01" placeholder="종료일" aria-label="종료일">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="data-table" style="display: grid; grid-template-columns: 120px 100px 120px 1fr 80px 60px;">
+                  <div class="data-thead" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-th">부서</div>
+                      <div class="data-th">담당자</div>
+                      <div class="data-th">전화번호</div>
+                      <div class="data-th">메일 주소</div>
+                      <div class="data-th">특기사항</div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                     </div>
                   </div>
                   <div class="data-tbody" style="display: contents;">
@@ -177,28 +351,43 @@
               <!-- // 조사업체 3 -->
 
             </div>
-            <!-- // 좌: 조사업체 -->
+            <!-- // panel-body -->
+          </div>
+          <!-- // panel: 조사업체 -->
 
-            <!-- 우: 협의기관 -->
-            <div class="survey-consult-column">
-              <div class="form-title form-title-row">
-                <span class="panel-title">협의기관</span>
+          <!-- 우: 협의기관 -->
+          <div class="panel panel-border-dashed-left panel-radius-tr-0">
+            <div class="panel-body">
+              <div class="title-box">
+                <h3 class="title">협의기관</h3>
                 <button type="button" class="btn btn-add-primary btn-xs">+ 기관</button>
               </div>
 
               <!-- 협의기관 1 -->
-              <div class="form-group">
-                <div class="d-flex flex-wrap align-center gap-2">
-                  <div class="form-row-inline flex-1">
-                    <select class="select select-md">
-                      <option selected>관리기관</option>
-                      <option>관계기관</option>
-                      <option>보상협의회</option>
-                      <option>토지 수용 위원회</option>
-                    </select>
-                    <input type="text" class="input flex-1" value="전북특별자치도" placeholder="기관명">
+              <div class="form-area">
+                <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                       <div class="form-th">기관 구분</div>
+                       <div class="form-cell">
+                        <select class="select select-lg">
+                          <option selected>관리기관</option>
+                          <option>관계기관</option>
+                          <option>보상협의회</option>
+                          <option>토지 수용 위원회</option>
+                        </select>
+                       </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">기관 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="전북특별자치도" placeholder="기관명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 110px 90px 110px 100px 1fr 80px 60px;">
                   <div class="data-thead" style="display: contents;">
@@ -209,7 +398,7 @@
                       <div class="data-th">팩스번호</div>
                       <div class="data-th">메일 주소</div>
                       <div class="data-th">특기사항</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                     </div>
                   </div>
                   <div class="data-tbody" style="display: contents;">
@@ -237,18 +426,30 @@
               <!-- // 협의기관 1 -->
 
               <!-- 협의기관 2 -->
-              <div class="form-group">
-                <div class="d-flex flex-wrap align-center gap-2">
-                  <div class="form-row-inline flex-1">
-                    <select class="select select-md">
-                      <option>관리기관</option>
-                      <option selected>관계기관</option>
-                      <option>보상협의회</option>
-                      <option>토지 수용 위원회</option>
-                    </select>
-                    <input type="text" class="input flex-1" value="전주시" placeholder="기관명">
+              <div class="form-area">
+                <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">기관 구분</div>
+                      <div class="form-cell">
+                        <select class="select select-lg">
+                          <option>관리기관</option>
+                          <option selected>관계기관</option>
+                          <option>보상협의회</option>
+                          <option>토지 수용 위원회</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">기관 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="전주시" placeholder="기관명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 110px 90px 110px 100px 1fr 80px 60px;">
                   <div class="data-thead" style="display: contents;">
@@ -259,7 +460,7 @@
                       <div class="data-th">팩스번호</div>
                       <div class="data-th">메일 주소</div>
                       <div class="data-th">특기사항</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                     </div>
                   </div>
                   <div class="data-tbody" style="display: contents;">
@@ -288,17 +489,29 @@
 
               <!-- 협의기관 3 -->
               <div class="form-group">
-                <div class="d-flex flex-wrap align-center gap-2">
-                  <div class="form-row-inline flex-1">
-                    <select class="select select-md">
-                      <option>관리기관</option>
-                      <option>관계기관</option>
-                      <option selected>보상협의회</option>
-                      <option>토지 수용 위원회</option>
-                    </select>
-                    <input type="text" class="input flex-1" value="한국토지주택공사" placeholder="기관명">
+               <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">기관 구분</div>
+                      <div class="form-cell">
+                        <select class="select select-lg">
+                          <option>관리기관</option>
+                          <option >관계기관</option>
+                          <option selected>보상협의회</option>
+                          <option>토지 수용 위원회</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">기관 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="전주시" placeholder="기관명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 110px 90px 110px 100px 1fr 80px 60px;">
                   <div class="data-thead" style="display: contents;">
@@ -309,7 +522,7 @@
                       <div class="data-th">팩스번호</div>
                       <div class="data-th">메일 주소</div>
                       <div class="data-th">특기사항</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                     </div>
                   </div>
                   <div class="data-tbody" style="display: contents;">
@@ -338,17 +551,29 @@
 
               <!-- 협의기관 4 -->
               <div class="form-group">
-                <div class="d-flex flex-wrap align-center gap-2">
-                  <div class="form-row-inline flex-1">
-                    <select class="select select-md">
-                      <option>관리기관</option>
-                      <option>관계기관</option>
-                      <option>보상협의회</option>
-                      <option selected>토지 수용 위원회</option>
-                    </select>
-                    <input type="text" class="input flex-1" value="중앙토지수용위원회" placeholder="기관명">
+                 <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">기관 구분</div>
+                      <div class="form-cell">
+                        <select class="select select-lg">
+                          <option>관리기관</option>
+                          <option>관계기관</option>
+                          <option>보상협의회</option>
+                          <option selected>토지 수용 위원회</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">기관 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="전주시" placeholder="기관명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <button type="button" class="btn btn-remove btn-xs">—</button>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 110px 90px 110px 100px 1fr 80px 60px;">
                   <div class="data-thead" style="display: contents;">
@@ -359,7 +584,68 @@
                       <div class="data-th">팩스번호</div>
                       <div class="data-th">메일 주소</div>
                       <div class="data-th">특기사항</div>
-                      <div class="data-th"><button type="button" class="btn btn-add-primary btn-xs">+ 인원</button></div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
+                    </div>
+                  </div>
+                  <div class="data-tbody" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-td"><input type="text" value="사무국"></div>
+                      <div class="data-td"><input type="text" value="김수현"></div>
+                      <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                      <div class="data-td"><input type="text" value="041-123-4567"></div>
+                      <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                      <div class="data-td"><input type="text" placeholder="특기사항"></div>
+                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                    </div>
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-td"><input type="text" value="사무국"></div>
+                      <div class="data-td"><input type="text" value="김수현"></div>
+                      <div class="data-td"><input type="text" value="010-3595-3511"></div>
+                      <div class="data-td"><input type="text" value="041-123-4567"></div>
+                      <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                      <div class="data-td"><input type="text" placeholder="특기사항"></div>
+                      <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- // 협의기관 4 -->
+                <!-- 협의기관 5 -->
+              <div class="form-group">
+                 <div class="form-table form-auto">
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">기관 구분</div>
+                      <div class="form-cell">
+                        <select class="select select-lg">
+                          <option>관리기관</option>
+                          <option>관계기관</option>
+                          <option>보상협의회</option>
+                          <option selected>토지 수용 위원회</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-th">기관 명</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input flex-1" value="전주시" placeholder="기관명">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="data-table" style="display: grid; grid-template-columns: 110px 90px 110px 100px 1fr 80px 60px;">
+                  <div class="data-thead" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-th">부서</div>
+                      <div class="data-th">담당자</div>
+                      <div class="data-th">전화번호</div>
+                      <div class="data-th">팩스번호</div>
+                      <div class="data-th">메일 주소</div>
+                      <div class="data-th">특기사항</div>
+                      <div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>
                     </div>
                   </div>
                   <div class="data-tbody" style="display: contents;">
@@ -387,17 +673,110 @@
               <!-- // 협의기관 4 -->
 
             </div>
-            <!-- // 우: 협의기관 -->
-
+            <!-- // panel-body -->
           </div>
-          <!-- // panel-body -->
+          <!-- // panel: 협의기관 -->
 
         </div>
-        <!-- // panel -->
+        <!-- // panel-inline -->
 
       </div>
+      <!-- // container -->
     </div>
+    <!-- // wrap -->
+  <script>
+    (function () {
+      document.querySelectorAll('select.select-multiple').forEach(function (sel) {
+        var cols = sel.dataset.cols || 5;
+        var placeholder = sel.dataset.placeholder || '선택';
 
+        // 네이티브 select 숨김
+        sel.style.display = 'none';
 
+        // 래퍼
+        var wrap = document.createElement('div');
+        wrap.className = 'ms-wrap ' + (sel.className.replace('select-multiple', '').replace('select', '').trim() ? '' : '');
+        // 너비 클래스 복사
+        ['select-sm','select-md','select-lg'].forEach(function(c){ if(sel.classList.contains(c)) wrap.classList.add(c); });
+        sel.parentNode.insertBefore(wrap, sel);
+        wrap.appendChild(sel);
+
+        // 트리거 버튼
+        var trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'ms-trigger';
+        trigger.textContent = placeholder;
+        wrap.insertBefore(trigger, sel);
+
+        // 드롭다운
+        var dropdown = document.createElement('div');
+        dropdown.className = 'ms-dropdown';
+        dropdown.style.setProperty('--ms-cols', cols);
+        wrap.appendChild(dropdown);
+
+        // 전체선택
+        var allLabel = document.createElement('label');
+        allLabel.className = 'ms-all';
+        var allChk = document.createElement('input');
+        allChk.type = 'checkbox';
+        allLabel.appendChild(allChk);
+        allLabel.appendChild(document.createTextNode('[전체 선택]'));
+        dropdown.appendChild(allLabel);
+
+        // 그리드
+        var grid = document.createElement('div');
+        grid.className = 'ms-grid';
+        dropdown.appendChild(grid);
+
+        // 옵션 → 체크박스
+        var checkboxes = [];
+        Array.from(sel.options).forEach(function (opt) {
+          var label = document.createElement('label');
+          label.className = 'ms-item';
+          var chk = document.createElement('input');
+          chk.type = 'checkbox';
+          chk.value = opt.value || opt.text;
+          chk.checked = opt.selected;
+          if (chk.checked) label.classList.add('is-checked');
+          checkboxes.push({ chk: chk, label: label });
+          label.appendChild(chk);
+          label.appendChild(document.createTextNode(opt.text));
+          grid.appendChild(label);
+          chk.addEventListener('change', syncAll);
+        });
+
+        function syncAll() {
+          // 체크 상태별 배경 처리
+          checkboxes.forEach(function (item, i) {
+            sel.options[i].selected = item.chk.checked;
+            item.label.classList.toggle('is-checked', item.chk.checked);
+          });
+          // 전체선택 상태
+          var chks = checkboxes.map(function(i){ return i.chk; });
+          var all = chks.every(function (c) { return c.checked; });
+          var none = chks.every(function (c) { return !c.checked; });
+          allChk.checked = all;
+          allChk.indeterminate = !all && !none;
+          // 트리거 텍스트
+          var selected = chks.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
+          trigger.textContent = selected.length ? selected.join(', ') : placeholder;
+        }
+
+        allChk.addEventListener('change', function () {
+          checkboxes.forEach(function (item) { item.chk.checked = allChk.checked; });
+          syncAll();
+        });
+
+        // 열기/닫기
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          wrap.classList.toggle('is-open');
+        });
+        document.addEventListener('click', function (e) {
+          if (!wrap.contains(e.target)) wrap.classList.remove('is-open');
+        });
+      });
+    })();
+  </script>
   </body>
 </html>

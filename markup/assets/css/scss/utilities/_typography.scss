@@ -20,7 +20,7 @@
 .text-title-3 { font-size: $font-title-3; }   // 18px
 
 // ----- Font Weight -----
-.font-normal   { font-weight: $font-weight-normal; }   // 400
-.font-medium   { font-weight: $font-weight-medium; }     // 500
-.font-semibold { font-weight: $font-weight-semibold; }  // 600
-.font-bold     { font-weight: $font-weight-bold; }      // 700
+.fw-normal   { font-weight: $font-weight-normal !important; }   // 400
+.fw-medium   { font-weight: $font-weight-medium !important; }     // 500
+.fw-semibold { font-weight: $font-weight-semibold !important; }  // 600
+.fw-bold     { font-weight: $font-weight-bold !important; }      // 700

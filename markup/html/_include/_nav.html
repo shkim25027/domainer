@@ -2,7 +2,7 @@
   <div class="nav-group">
     <ul class="depth01">
       <li>
-        <a href="#">
+        <a href="./index.html">
           <span class="nav-ico">
             <img src="./assets/images/ico/ico_nav_pie.svg" alt="보상현황">
           </span>보상현황
@@ -11,13 +11,13 @@
       <li>
         <a href="#">
           <span class="nav-ico">
-            <img src="./assets/images/ico/ico_nav_grid.svg" alt="보상관리">
+            <img src="./assets/images/ico/ico_nav_hand.svg" alt="보상관리">
           </span>보상관리
         </a>
       </li>
       <li>
         <a href="#">
-          <span class="nav-ico"> <img src="./assets/images/ico/ico_nav_complaint.svg" alt="민원관리"></span>민원관리
+          <span class="nav-ico"> <img src="./assets/images/ico/ico_nav_complain.svg" alt="민원관리"></span>민원관리
         </a>
       </li>
     </ul>
@@ -45,27 +45,69 @@
       </li>
       <li>
         <a href="#">
-          <span class="nav-ico"><img src="./assets/images/ico/ico_nav_procedure.svg" alt="보상기준 절차"></span>
+          <span class="nav-ico"><img src="./assets/images/ico/ico_nav_system.svg" alt="보상기준 절차"></span>
           보상기준 절차
           <span class="nav-ico out-link">
             <img src="./assets/images/ico/ico_nav_popup.svg" alt="새창열기">
           </span>
         </a>
       </li>
-      <li class="active has-depth">
+      <li class="has-depth">
         <a href="#">
           <span class="nav-ico"><img src="./assets/images/ico/ico_nav_setting.svg" alt="프로젝트 관리"></span>프로젝트 관리
           <span class="nav-arrow"></span>
         </a>
         <ul class="depth02">
-          <li class="active">
-            <a href="./project_info.html">사업정보 관리</a>
+          <li>
+            <a href="./pj_01_01.html">사업정보 관리</a>
           </li>
           <li>
-            <a href="#">조사업체 협의기관 관리</a>
+            <a href="./pj_02_01.html">조사·협의 관리</a>
           </li>
         </ul>
       </li>
     </ul>
   </div>
 </div>
+
+<script>
+  (function () {
+    var current = (location.pathname.split('/').pop() || location.href.split('/').pop()).split('?')[0].toLowerCase();
+    function setDepthIcon(li, isOn) {
+      var ico = li.querySelector(':scope > a > .nav-ico img');
+      if (!ico) return;
+      ico.src = isOn
+        ? ico.src.replace(/ico_nav_\w+\.svg/, 'ico_nav_setting_on.svg')
+        : ico.src.replace('ico_nav_setting_on.svg', 'ico_nav_setting.svg');
+    }
+
+    document.querySelectorAll('.has-depth > a').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var li = a.parentElement;
+        var isOpen = li.classList.toggle('open');
+        setDepthIcon(li, isOpen);
+      });
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      var hrefFile = href.split('/').pop().split('?')[0].toLowerCase();
+      if (hrefFile && hrefFile === current) {
+        var li = a.parentElement;
+        li.classList.add('active');
+        var parentUl = li.parentElement;
+        if (parentUl && parentUl.classList.contains('depth02')) {
+          var parentLi = parentUl.parentElement;
+          if (parentLi) {
+            parentLi.classList.add('active');
+            if (parentLi.classList.contains('has-depth')) {
+              setDepthIcon(parentLi, true);
+            }
+          }
+        }
+      }
+    });
+  })();
+</script>
