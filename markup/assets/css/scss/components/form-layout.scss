@@ -193,8 +193,9 @@ hr {
 
     }
     > .form-row-inline {
-    gap: $spacing-lg;
-  }
+      gap: $spacing-lg;
+      max-width: calc(100vw - 211px - 88px);
+    }
   }
   > .form-row-inline {
     gap: $spacing-2xl;
@@ -369,5 +370,8 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.form-table .form-row.form-fix {
+  min-width: max-content;
 }
 

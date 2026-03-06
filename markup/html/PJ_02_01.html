@@ -30,7 +30,7 @@
         <div class="panel-inline flex-1">
           <!-- 좌: 조사업체 -->
           <div class="panel panel-radius-tl-0">
-            <div class="panel-body">
+            <div class="panel-body" id="josaPanelBody">
               <div class="title-box">
                 <h3 class="title">조사업체</h3>
                 <button type="button" class="btn btn-add-primary btn-xs">+ 업체</button>
@@ -72,11 +72,11 @@
                         </select>
                       </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row form-fix">
                       <div class="form-th">조사기간</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
-                          <input type="date" class="input" placeholder="시작일" aria-label="시작일">
+                          <input type="date" class="input " placeholder="시작일" aria-label="시작일">
                           <span class="sep">~</span>
                           <input type="date" class="input" placeholder="종료일" aria-label="종료일">
                         </div>
@@ -154,7 +154,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row form-fix">
                       <div class="form-th">조사기간</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
@@ -228,7 +228,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row form-fix">
                       <div class="form-th">조사기간</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
@@ -301,12 +301,16 @@
                       <div class="form-th">조사지역</div>
                       <div class="form-cell">
                         <select class="select select-md select-multiple" multiple>
-                          <option>현장조사</option>
-                          <option>감정평가</option>
+                          <option>전주시 주화산동1가</option>
+                          <option>전주시 주화산동2가</option>
+                          <option>전주시 주화산동3가</option>
+                          <option>전주시 주화산동4가</option>
+                          <option>전주시 주화산동5가</option>
+                          <option>전주시 주화산동6가</option>
                         </select>
                       </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row form-fix">
                       <div class="form-th">조사기간</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
@@ -358,7 +362,7 @@
 
           <!-- 우: 협의기관 -->
           <div class="panel panel-border-dashed-left panel-radius-tr-0">
-            <div class="panel-body">
+            <div class="panel-body" id="hyeobuiPanelBody">
               <div class="title-box">
                 <h3 class="title">협의기관</h3>
                 <button type="button" class="btn btn-add-primary btn-xs">+ 기관</button>
@@ -373,7 +377,6 @@
                        <div class="form-cell">
                         <select class="select select-lg">
                           <option selected>관리기관</option>
-                          <option>관계기관</option>
                           <option>보상협의회</option>
                           <option>토지 수용 위원회</option>
                         </select>
@@ -489,7 +492,7 @@
               <!-- // 협의기관 2 -->
 
               <!-- 협의기관 3 -->
-              <div class="form-group">
+              <div class="form-area">
                <div class="form-table form-auto">
                   <div class="form-row-inline">
                     <div class="form-row">
@@ -551,7 +554,7 @@
               <!-- // 협의기관 3 -->
 
               <!-- 협의기관 4 -->
-              <div class="form-group">
+              <div class="form-area">
                  <div class="form-table form-auto">
                   <div class="form-row-inline">
                     <div class="form-row">
@@ -559,7 +562,6 @@
                       <div class="form-cell">
                         <select class="select select-lg">
                           <option>관리기관</option>
-                          <option>관계기관</option>
                           <option>보상협의회</option>
                           <option selected>토지 수용 위원회</option>
                         </select>
@@ -612,7 +614,7 @@
               </div>
               <!-- // 협의기관 4 -->
                 <!-- 협의기관 5 -->
-              <div class="form-group">
+              <div class="form-area">
                  <div class="form-table form-auto">
                   <div class="form-row-inline">
                     <div class="form-row">
@@ -620,7 +622,6 @@
                       <div class="form-cell">
                         <select class="select select-lg">
                           <option>관리기관</option>
-                          <option>관계기관</option>
                           <option>보상협의회</option>
                           <option selected>토지 수용 위원회</option>
                         </select>
@@ -688,34 +689,192 @@
     </div>
     <!-- // wrap -->
   <script>
+    // =============================================
+    // 공통: 패널 추가/삭제/인원 관리
+    // =============================================
+    function initManagedPanel(panelBodyId, createAreaFn, personRowHTML) {
+      var panelBody = document.getElementById(panelBodyId);
+      if (!panelBody) return;
+
+      panelBody.querySelector('.title-box .btn-add-primary').addEventListener('click', function() {
+        panelBody.appendChild(createAreaFn());
+      });
+
+      panelBody.addEventListener('click', function(e) {
+        var addPersonBtn = e.target.closest('.btn-add-person');
+        if (addPersonBtn) {
+          var tbody = addPersonBtn.closest('.data-table').querySelector('.data-tbody');
+          var tmp = document.createElement('div');
+          tmp.innerHTML = personRowHTML;
+          tbody.appendChild(tmp.firstElementChild);
+          return;
+        }
+        var removeBtn = e.target.closest('.btn-remove');
+        if (!removeBtn) return;
+        if (removeBtn.closest('.data-td')) {
+          removeBtn.closest('.data-row').remove();
+        } else if (removeBtn.closest('.form-cell')) {
+          removeBtn.closest('.form-area').remove();
+        }
+      });
+    }
+
+    // =============================================
+    // 조사업체 패널
+    // =============================================
+    (function() {
+      var PERSON_ROW =
+        '<div class="data-row" style="display: contents;">'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center" placeholder="특기사항"></div>'
+        + '<div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>'
+        + '</div>';
+
+      function createArea() {
+        var el = document.createElement('div');
+        el.className = 'form-area';
+        el.innerHTML =
+          '<div class="form-table form-auto">'
+          + '<div class="form-row-inline">'
+          + '<div class="form-row"><div class="form-th">업체구분</div><div class="form-cell">'
+          + '<select class="select select-md"><option>현장조사</option><option>감정평가</option></select>'
+          + '</div></div>'
+          + '<div class="form-row"><div class="form-th">업체 명</div><div class="form-cell">'
+          + '<div class="form-row-inline"><input type="text" class="input flex-1" placeholder="업체명">'
+          + '<button type="button" class="btn btn-remove btn-xs">—</button></div>'
+          + '</div></div>'
+          + '</div>'
+          + '<div class="form-row-inline">'
+          + '<div class="form-row"><div class="form-th">조사지역</div><div class="form-cell">'
+          + '<select class="select select-md"><option>1공구</option><option>2공구</option><option>3공구</option></select>'
+          + '</div></div>'
+          + '<div class="form-row form-fix"><div class="form-th">조사기간</div><div class="form-cell">'
+          + '<div class="form-row-inline"><input type="date" class="input" aria-label="시작일"><span class="sep">~</span><input type="date" class="input" aria-label="종료일"></div>'
+          + '</div></div>'
+          + '</div>'
+          + '</div>'
+          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 60px;">'
+          + '<div class="data-thead" style="display: contents;"><div class="data-row" style="display: contents;">'
+          + '<div class="data-th">부서</div><div class="data-th">담당자</div>'
+          + '<div class="data-th">전화번호</div><div class="data-th">메일 주소</div>'
+          + '<div class="data-th">특기사항</div>'
+          + '<div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>'
+          + '</div></div>'
+          + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
+          + '</div>';
+        return el;
+      }
+
+      initManagedPanel('josaPanelBody', createArea, PERSON_ROW);
+    })();
+
+    // =============================================
+    // 협의기관 패널
+    // =============================================
+    (function() {
+      var PERSON_ROW =
+        '<div class="data-row" style="display: contents;">'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center"></div>'
+        + '<div class="data-td"><input type="text" class="input-center" placeholder="특기사항"></div>'
+        + '<div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>'
+        + '</div>';
+
+      function createArea() {
+        var el = document.createElement('div');
+        el.className = 'form-area';
+        el.innerHTML =
+          '<div class="form-table form-auto">'
+          + '<div class="form-row-inline">'
+          + '<div class="form-row"><div class="form-th">기관 구분</div><div class="form-cell">'
+          + '<select class="select select-lg"><option>관리기관</option><option>보상협의회</option><option>토지 수용 위원회</option></select>'
+          + '</div></div>'
+          + '<div class="form-row"><div class="form-th">기관 명</div><div class="form-cell">'
+          + '<div class="form-row-inline"><input type="text" class="input flex-1" placeholder="기관명">'
+          + '<button type="button" class="btn btn-remove btn-xs">—</button></div>'
+          + '</div></div>'
+          + '</div>'
+          + '</div>'
+          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 80px;">'
+          + '<div class="data-thead" style="display: contents;"><div class="data-row" style="display: contents;">'
+          + '<div class="data-th">부서</div><div class="data-th">담당자</div>'
+          + '<div class="data-th">전화번호</div><div class="data-th">팩스번호</div>'
+          + '<div class="data-th">메일 주소</div><div class="data-th">특기사항</div>'
+          + '<div class="data-th"><button type="button" class="btn btn-add-person btn-xs">+ 인원</button></div>'
+          + '</div></div>'
+          + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
+          + '</div>';
+        return el;
+      }
+
+      initManagedPanel('hyeobuiPanelBody', createArea, PERSON_ROW);
+    })();
+
     (function () {
       document.querySelectorAll('select.select-multiple').forEach(function (sel) {
         var cols = sel.dataset.cols || 5;
         var placeholder = sel.dataset.placeholder || '선택';
 
-        // 네이티브 select 숨김
         sel.style.display = 'none';
 
         // 래퍼
         var wrap = document.createElement('div');
-        wrap.className = 'ms-wrap ' + (sel.className.replace('select-multiple', '').replace('select', '').trim() ? '' : '');
-        // 너비 클래스 복사
+        wrap.className = 'ms-wrap';
         ['select-sm','select-md','select-lg'].forEach(function(c){ if(sel.classList.contains(c)) wrap.classList.add(c); });
         sel.parentNode.insertBefore(wrap, sel);
         wrap.appendChild(sel);
 
-        // 트리거 버튼
+        // 트리거
         var trigger = document.createElement('button');
         trigger.type = 'button';
         trigger.className = 'ms-trigger';
         trigger.textContent = placeholder;
         wrap.insertBefore(trigger, sel);
 
-        // 드롭다운
+        // 드롭다운 → overflow 탈출을 위해 body에 append, position:fixed
         var dropdown = document.createElement('div');
         dropdown.className = 'ms-dropdown';
         dropdown.style.setProperty('--ms-cols', cols);
-        wrap.appendChild(dropdown);
+        dropdown.style.position = 'fixed';
+        dropdown.style.zIndex = '9999';
+        document.body.appendChild(dropdown);
+
+        function positionDropdown() {
+          var rect = trigger.getBoundingClientRect();
+          var vw = window.innerWidth;
+          var vh = window.innerHeight;
+          var dropW = Math.max(rect.width, 160);
+
+          // 드롭다운 임시 표시 후 실제 높이 측정
+          dropdown.style.visibility = 'hidden';
+          dropdown.style.display = 'block';
+          var dropH = dropdown.offsetHeight;
+          dropdown.style.display = '';
+          dropdown.style.visibility = '';
+
+          // 좌우 경계 보정
+          var left = rect.left;
+          if (left + dropW > vw - 8) left = vw - dropW - 8;
+          if (left < 8) left = 8;
+
+          // 아래 공간 부족 시 위로 펼침
+          var top;
+          if (rect.bottom + dropH + 2 > vh - 8) {
+            top = rect.top - dropH - 2;
+          } else {
+            top = rect.bottom + 2;
+          }
+
+          dropdown.style.left  = left + 'px';
+          dropdown.style.top   = top + 'px';
+          dropdown.style.width = dropW + 'px';
+        }
 
         // 전체선택
         var allLabel = document.createElement('label');
@@ -749,18 +908,15 @@
         });
 
         function syncAll() {
-          // 체크 상태별 배경 처리
           checkboxes.forEach(function (item, i) {
             sel.options[i].selected = item.chk.checked;
             item.label.classList.toggle('is-checked', item.chk.checked);
           });
-          // 전체선택 상태
           var chks = checkboxes.map(function(i){ return i.chk; });
-          var all = chks.every(function (c) { return c.checked; });
+          var all  = chks.every(function (c) { return c.checked; });
           var none = chks.every(function (c) { return !c.checked; });
           allChk.checked = all;
           allChk.indeterminate = !all && !none;
-          // 트리거 텍스트
           var selected = chks.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
           trigger.textContent = selected.length ? selected.join(', ') : placeholder;
         }
@@ -773,13 +929,46 @@
         // 열기/닫기
         trigger.addEventListener('click', function (e) {
           e.stopPropagation();
-          wrap.classList.toggle('is-open');
+          var opening = !wrap.classList.contains('is-open');
+          // 다른 열린 드롭다운 닫기
+          document.querySelectorAll('.ms-dropdown.is-open').forEach(function(d) { d.classList.remove('is-open'); });
+          document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) { w.classList.remove('is-open'); });
+          if (opening) {
+            positionDropdown();
+            wrap.classList.add('is-open');
+            dropdown.classList.add('is-open');
+          }
         });
+
         document.addEventListener('click', function (e) {
-          if (!wrap.contains(e.target)) wrap.classList.remove('is-open');
+          if (!wrap.contains(e.target) && !dropdown.contains(e.target)) {
+            wrap.classList.remove('is-open');
+            dropdown.classList.remove('is-open');
+          }
         });
       });
     })();
+
+    // input[type="date"] placeholder + 캘린더 아이콘 처리
+    document.querySelectorAll('input[type="date"]').forEach(function(input) {
+      var placeholder = input.getAttribute('placeholder') || input.getAttribute('aria-label') || '';
+      function setTextMode() {
+        input.type = 'text';
+        input.placeholder = placeholder;
+        input.classList.add('input-date-icon');
+      }
+      function setDateMode() {
+        input.type = 'date';
+        input.classList.remove('input-date-icon');
+      }
+      input.addEventListener('focus', function() {
+        if (input.type === 'text') setDateMode();
+      });
+      input.addEventListener('blur', function() {
+        if (!input.value) setTextMode();
+      });
+      if (!input.value) setTextMode();
+    });
   </script>
   </body>
 </html>

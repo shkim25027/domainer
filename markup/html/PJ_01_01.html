@@ -52,10 +52,10 @@
                       <div class="form-th"><strong class="form-th-label">공사명</strong></div>
                       <div class="form-cell">
                         <div class="form-row-inline">
-                          <select class="select select-md">
+                          <select class="select select-md" aria-placeholder="도로구분">
                             <option>고속국도</option>
                           </select>
-                          <input type="text" placeholder="노선명" value="제30호 서산명덕선">
+                          <input type="text" placeholder="노선명" value="제30호 서산명덕선" >
                         </div>
                       </div>
                     </div>
@@ -63,9 +63,9 @@
                       <div class="form-th">공사구간</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
-                          <input type="text" value="충청남도 서산시 대산읍 화곡리">
+                          <input type="text" value="충청남도 서산시 대산읍 화곡리" placeholder="시점(읍·면·동·리)">
                           <span class="sep">~</span>
-                          <input type="text" value="충청남도 당진시 사기소동">
+                          <input type="text" value="충청남도 당진시 사기소동" placeholder="종점(읍·면·동·리)">
                         </div>
                       </div>
                     </div>
@@ -73,9 +73,9 @@
                       <div class="form-th">공사기간</div>
                       <div class="form-cell">
                         <div class="form-row-inline ">
-                          <input type="date" value="2023-11-13">
+                          <input type="date" value="2023-11-13" placeholder="시작일">
                           <span class="sep">~</span>
-                          <input type="date" value="2030-12-20">
+                          <input type="date" value="2030-12-20" placeholder="종료일">
                           <span class="note">착공일로부터 <strong>36</strong>개월</span>
                         </div>
                       </div>
@@ -85,7 +85,7 @@
                         <div class="form-th">공사연장</div>
                         <div class="form-cell">
                           <div class="form-row-inline">
-                            <input type="text" value="25.36">
+                            <input type="text" value="25.36" placeholder="00.00">
                             <span class="unit">km</span>
                           </div>
                         </div>
@@ -94,7 +94,7 @@
                         <div class="form-th">공사비</div>
                         <div class="form-cell">
                           <div class="form-row-inline">
-                            <input type="text" value="9,131,000,000,000">
+                            <input type="text" value="9,131,000,000,000" placeholder="0,000">
                             <span class="unit">원</span>
                           </div>
                         </div>
@@ -111,16 +111,16 @@
                       <div class="form-cell">
                         <div class="form-row-inline">
                           <div class="form-row flex-1">
-                            <input type="text" class="input" value="한국도로공사" readonly aria-label="사업자명">
+                            <input type="text" class="input" value="한국도로공사" readonly aria-label="사업자" placeholder="사업자">
                           </div>
                           <div class="form-row flex-1">
                             <div class="input-group-inline">
-                              <input type="text" class="" value="D412565" aria-label="사업자코드">
-                              <button type="button" class="btn btn-secondary btn-xs btn-input-append">Q 코드검색</button>
+                              <input type="text" class="" value="D412565" aria-label="사업자코드" placeholder="기관코드">
+                              <button type="button" class="btn btn-secondary btn-xs btn-input-append"><img src="../assets/images/ico/ico_search.svg" width="14" height="14" alt="" aria-hidden="true"> 코드검색</button>
                             </div>
                           </div>
                           <div class="flex-1">
-                            <input type="text" class="input" placeholder="추가 입력" aria-label="추가" value="본사(토지공간실)">
+                            <input type="text" class="input" placeholder="관리부서(부서명/사업단명)" aria-label="추가" value="본사(토지공간실)">
                           </div>
                         </div>
                       </div>
@@ -219,7 +219,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-row">
+                  <div class="form-row form-fix">
                     <div class="form-th">업체명</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
@@ -285,7 +285,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-row">
+                  <div class="form-row form-fix">
                     <div class="form-th">업체명</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
@@ -357,7 +357,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-row">
+                  <div class="form-row form-fix">
                     <div class="form-th">업체명</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
@@ -605,7 +605,7 @@
             + '<span class="input-label">공구</span>'
             + '<button type="button" class="btn btn-remove btn-xs">—</button>'
             + '</div></div></div>'
-            + '<div class="form-row"><div class="form-th">업체명</div><div class="form-cell"><div class="form-row-inline">'
+            + '<div class="form-row form-fix"><div class="form-th">업체명</div><div class="form-cell"><div class="form-row-inline">'
             + '<input class="input-lg" type="text" placeholder="업체명">'
             + '</div></div></div>'
             + '</div>'
