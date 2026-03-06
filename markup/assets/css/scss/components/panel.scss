@@ -19,6 +19,17 @@
     border-radius: $radius-xl $radius-xl 0 0;
     > .panel-header { padding: 20px $spacing-lg $spacing-sm; }
   }
+
+  &:first-child,
+  &.panel-border-dashed-top {
+    .panel-body {
+      padding-left: 44px;
+    }
+  }
+  &:last-child {
+    padding-right: 20px;
+    
+  }
   > .panel-header,
   > .title-box {
     padding: 20px $spacing-lg $spacing-sm;
@@ -30,7 +41,8 @@
   flex: 1;
   overflow-y: auto;
   min-height: 0;
-  padding: $spacing-lg;
+  padding: $spacing-lg ;
+  z-index: 1;
 }
 
 .panel-inline {

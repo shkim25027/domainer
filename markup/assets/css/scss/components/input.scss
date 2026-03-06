@@ -84,7 +84,7 @@ input,
     width: auto;
     min-width: 80px;
     max-width: 100%;
-    box-sizing: content-box;
+    box-sizing: border-box;
 
     @supports (field-sizing: content) {
       field-sizing: content;
@@ -200,13 +200,14 @@ textarea,
 
 // Input + 버튼 인라인 그룹 (한 덩어리처럼 보이는 입력+추가 버튼)
 .input-group-inline {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   border: $input-border-width solid $input-border-color;
   border-radius: $radius-lg;
   overflow: hidden;
   background: $input-bg;
-  min-width: max-content;
+  min-width: 0;
+  width: 100%;
 
   .input,
   input {
@@ -348,6 +349,15 @@ select,
       position: relative;
       display: inline-block;
       width: 100%;
+  &.select-sm {
+    min-width: $input-width-sm;
+  }
+  &.select-md {
+    min-width: $input-width-md;
+  }
+  &.select-lg {
+    min-width: $input-width-lg;
+  }
     }
     .ms-trigger {
       display: flex;

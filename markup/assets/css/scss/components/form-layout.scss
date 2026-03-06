@@ -182,6 +182,16 @@ hr {
     .form-th {
       min-width: auto;
     }
+    .form-th,
+    .form-cell {
+      &:first-child{
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+
+    }
     > .form-row-inline {
     gap: $spacing-lg;
   }
@@ -211,6 +221,7 @@ hr {
   .form-row {
     display: flex;
     align-items: flex-start;
+    min-width: 0;
   }
   .form-th,
   .form-cell {
@@ -249,13 +260,19 @@ hr {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
+  overflow: hidden;
 
+  > .flex-1 {
+    min-width: 0;
+    overflow: hidden;
+  }
 
   .sep   { min-width: 20px; color: var(--gray-400); flex-shrink: 0; text-align: center; }
   .unit  { min-width: 20px; color: var(--gray-600); font-size: var(--font-sm); flex-shrink: 0; }
   .lbl   { font-size: var(--font-sm); font-weight: 500; flex-shrink: 0; }
   .note  { font-size: var(--font-xs); color: #555; flex-shrink: 0;  strong {color:#000;}}
-} 
+}
 
 // ────────────────────────────────────────────────
 // Data Row Inline
@@ -320,6 +337,7 @@ hr {
   .data-th {
     position: relative;
     padding: 6px 10px;
+    margin-bottom: 3px;
     text-align: center;
     font-weight: 500;
     color: #A69F9A;
@@ -336,7 +354,7 @@ hr {
     padding: 2px 3px;
     text-align: center;
     color: var(--gray-800);
-    background: var(--white);
+    //background: var(--white);
     input { width: 100%; }
     &:has(.btn-remove) {
       padding-right: 38px;
