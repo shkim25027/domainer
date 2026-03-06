@@ -111,12 +111,12 @@
                       <div class="form-cell">
                         <div class="form-row-inline">
                           <div class="form-row flex-1">
-                            <input type="text" class="input" value="한국도로공사" readonly aria-label="사업자" placeholder="사업자">
+                            <input type="text" class="input" value="한국도로공사"  aria-label="사업자" placeholder="사업자">
                           </div>
                           <div class="form-row flex-1">
                             <div class="input-group-inline">
                               <input type="text" class="" value="D412565" aria-label="사업자코드" placeholder="기관코드">
-                              <button type="button" class="btn btn-secondary btn-xs btn-input-append"><img src="../assets/images/ico/ico_search.svg" width="14" height="14" alt="" aria-hidden="true"> 코드검색</button>
+                              <button type="button" class="btn btn-secondary btn-xs btn-input-append">Q 코드검색</button>
                             </div>
                           </div>
                           <div class="flex-1">
@@ -142,54 +142,54 @@
               </div>
               <div class="form-group" id="facilityGroup">
                 <div class="form-row-inline">
-                  <select class="select-md">
+                  <select class="select-md" aria-placeholder="종류">
                     <option selected>나들목</option>
                     <option>분기점</option>
                     <option>교 량</option>
                     <option>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-1">
-                    <input type="text" value="대산, 대호지, 정미">
+                    <input type="text" value="대산, 대호지, 정미" placeholder="시설명, 구분">
                   </div>
                 </div>
                 <div class="form-row-inline">
-                  <select class="select-md">
+                  <select class="select-md" aria-placeholder="종류">
                     <option>나들목</option>
                     <option selected>분기점</option>
                     <option>교 량</option>
                     <option>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-1">
-                    <input type="text" value="당진">
+                    <input type="text" value="당진" placeholder="시설명, 구분">
                     <button type="button" class="btn btn-remove btn-xs">—</button>
                   </div>
                 </div>
                 <div class="form-row-inline">
-                  <select class="select-md">
+                  <select class="select-md" aria-placeholder="종류">
                     <option>나들목</option>
                     <option>분기점</option>
                     <option selected>교 량</option>
                     <option>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-2">
-                    <input type="number" value="46">
+                    <input type="number" value="46" placeholder="0">
                     <span class="unit">개소</span>
-                    <input type="number" value="3.85">
+                    <input type="number" value="3.85" placeholder="0.00">
                     <span class="unit">km</span>
                     <button type="button" class="btn btn-remove btn-xs">—</button>
                   </div>
                 </div>
                 <div class="form-row-inline">
-                  <select class="select-md">
+                  <select class="select-md" aria-placeholder="종류">
                     <option>나들목</option>
                     <option>분기점</option>
                     <option>교 량</option>
                     <option selected>터널</option>
                   </select>
                   <div class="d-flex flex-1 align-center gap-2">
-                    <input type="number" value="4">
+                    <input type="number" value="4" placeholder="0">
                     <span class="unit">개소</span>
-                    <input type="number" value="2.57">
+                    <input type="number" value="2.57" placeholder="0.00">
                     <span class="unit">km</span>
                     <button type="button" class="btn btn-remove btn-xs">—</button>
                   </div>
@@ -213,7 +213,7 @@
                   <div class="form-row">
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input class="input-auto" type="text" value="공구명이 텍스트로 길어질경우 예시입니다. 공구명이 텍스트로 길어질경우 예시입니다.">
+                        <input class="input-auto" type="text" placeholder="공구명" value="공구명이 텍스트로 길어질경우 예시입니다. 공구명이 텍스트로 길어질경우 예시입니다.">
                         <span class="input-label">공구</span>
                         <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
@@ -223,7 +223,7 @@
                     <div class="form-th">업체명</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input class="input-lg" type="text" value="코오롱글로벌(주)">
+                        <input class="input-lg" type="text" value="코오롱글로벌(주)" placeholder="업체명">
                       </div>
                     </div>
                   </div>
@@ -233,9 +233,9 @@
                     <div class="form-th">공사구간</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input type="text" value="충청남도 서산시 대산읍 화곡리">
+                        <input type="text" value="충청남도 서산시 대산읍 화곡리" placeholder="시점(읍·면·동·리)">
                         <span class="sep">~</span>
-                        <input type="text" value="충청남도 당진시 사기소동">
+                        <input type="text" value="충청남도 당진시 사기소동" placeholder="종점(읍·면·동·리)">
                       </div>
                     </div>
                   </div>
@@ -243,9 +243,9 @@
                     <div class="form-th fw-medium ">STA.</div>
                     <div class="form-cell">
                         <div class="form-row-inline">
-                          <input type="text" value="0+000" class="input-md">
+                          <input type="text" value="0+000" placeholder="0+000" class="input-md">
                           <span class="sep">~</span>
-                          <input type="text" value="0+000" class="input-md">
+                          <input type="text" value="6+000" placeholder="0+000" class="input-md">
                         </div>
                     </div>
                   </div>
@@ -263,10 +263,10 @@
                 </div>
                 <div class="data-tbody" style="display: contents;">
                   <div class="data-row" style="display: contents;">
-                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부"></div>
-                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511"></div>
-                    <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부" placeholder="부서명"></div>
+                    <div class="data-td"><input type="text" class="input input-center"  value="김수현" placeholder="담당자"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511" placeholder="전화번호"></div>
+                    <div class="data-td"><input type="text" value="hanmacdesign@hanmaceng.co.kr" placeholder="your@email.com"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
                 </div>
@@ -279,7 +279,7 @@
                   <div class="form-row">
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input class="input-auto" type="text" value="2">
+                        <input class="input-auto" type="text" value="2" placeholder="공구명">
                         <span class="input-label">공구</span>
                         <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
@@ -289,7 +289,7 @@
                     <div class="form-th">업체명</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input class="input-lg" type="text" value="(주)케이씨씨건설">
+                        <input class="input-lg" type="text" value="(주)케이씨씨건설" placeholder="업체명">
                       </div>
                     </div>
                   </div>
@@ -299,9 +299,9 @@
                     <div class="form-th">공사구간</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input type="text" value="충청남도 서산시 대산읍 화곡리">
+                        <input type="text" value="충청남도 서산시 대산읍 화곡리" placeholder="시점(읍·면·동·리)">
                         <span class="sep">~</span>
-                        <input type="text" value="충청남도 당진시 사기소동">
+                        <input type="text" value="충청남도 당진시 사기소동" placeholder="종점(읍·면·동·리)">
                       </div>
                     </div>
                   </div>
@@ -309,9 +309,9 @@
                     <div class="form-th fw-medium ">STA.</div>
                     <div class="form-cell">
                         <div class="form-row-inline">
-                          <input type="text" value="0+000" class="input-md">
+                          <input type="text" value="0+000" placeholder="0+000" class="input-md">
                           <span class="sep">~</span>
-                          <input type="text" value="0+000" class="input-md">
+                          <input type="text" value="12+000" placeholder="0+000" class="input-md">
                         </div>
                     </div>
                   </div>
@@ -329,17 +329,17 @@
                 </div>
                 <div class="data-tbody" style="display: contents;">
                   <div class="data-row" style="display: contents;">
-                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부"></div>
-                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부" placeholder="부서명"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="김수현" placeholder="담당자"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511" placeholder="전화번호"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr" placeholder="your@email.com"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
                   <div class="data-row" style="display: contents;">
-                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부"></div>
-                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부" placeholder="부서명"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="김수현" placeholder="담당자"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511" placeholder="전화번호"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr" placeholder="your@email.com"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
                 </div>
@@ -351,7 +351,7 @@
                   <div class="form-row">
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input class="input-auto" type="text" value="3">
+                        <input class="input-auto" type="text" value="3" placeholder="공구명">
                         <span class="input-label">공구</span>
                         <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
@@ -361,7 +361,7 @@
                     <div class="form-th">업체명</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input class="input-lg" type="text" value="(주)케이씨씨건설">
+                        <input class="input-lg" type="text" value="(주)케이씨씨건설" placeholder="업체명">
                       </div>
                     </div>
                   </div>
@@ -371,9 +371,9 @@
                     <div class="form-th">공사구간</div>
                     <div class="form-cell">
                       <div class="form-row-inline">
-                        <input type="text" value="충청남도 서산시 대산읍 화곡리">
+                        <input type="text" value="충청남도 서산시 대산읍 화곡리" placeholder="시점(읍·면·동·리)">
                         <span class="sep">~</span>
-                        <input type="text" value="충청남도 당진시 사기소동">
+                        <input type="text" value="충청남도 당진시 사기소동" placeholder="종점(읍·면·동·리)">
                       </div>
                     </div>
                   </div>
@@ -381,11 +381,11 @@
                     <div class="form-th fw-medium ">STA.</div>
                     <div class="form-cell">
                         <div class="form-row-inline">
-                          <input type="text" value="0+000" class="input-md">
+                          <input type="text" value="0+000" placeholder="0+000" class="input-md">
                           <span class="sep">~</span>
-                          <input type="text" value="0+000" class="input-md">
+                          <input type="text" value="18+000" placeholder="0+000" class="input-md">
                         </div>
-                    </div>
+                    </div> 
                   </div>
                 </div>
               </div>
@@ -401,10 +401,10 @@
                 </div>
                 <div class="data-tbody" style="display: contents;">
                   <div class="data-row" style="display: contents;">
-                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부"></div>
-                    <div class="data-td"><input type="text" class="input input-center"  value="김수현"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="토목사업본부" placeholder="부서명"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="김수현" placeholder="담당자"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511" placeholder="전화번호"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr" placeholder="your@email.com"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
                 </div>
@@ -523,15 +523,15 @@
           var removeBtn = removable ? '<button type="button" class="btn btn-remove btn-xs">—</button>' : '';
           if (type === '교 량' || type === '터널') {
             return '<div class="d-flex flex-1 align-center gap-2">'
-              + '<input type="number">'
+              + '<input type="number" placeholder="0">'
               + '<span class="unit">개소</span>'
-              + '<input type="number">'
+              + '<input type="number" placeholder="0.00">'
               + '<span class="unit">km</span>'
               + removeBtn
               + '</div>';
           }
           return '<div class="d-flex flex-1 align-center gap-1">'
-            + '<input type="text">'
+            + '<input type="text" placeholder="시설명, 구분">'
             + removeBtn
             + '</div>';
         }
@@ -587,10 +587,10 @@
 
         var PERSON_ROW =
           '<div class="data-row" style="display: contents;">'
-          + '<div class="data-td"><input type="text" class="input-center"></div>'
-          + '<div class="data-td"><input type="text" class="input-center"></div>'
-          + '<div class="data-td"><input type="text" class="input-center"></div>'
-          + '<div class="data-td"><input type="text" class="input-center"></div>'
+          + '<div class="data-td"><input type="text" class="input-center" placeholder="부서명"></div>'
+          + '<div class="data-td"><input type="text" class="input-center" placeholder="담당자"></div>'
+          + '<div class="data-td"><input type="text" class="input-center" placeholder="전화번호"></div>'
+          + '<div class="data-td"><input type="text" class="input-center" placeholder="your@email.com"></div>'
           + '<div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>'
           + '</div>';
 
@@ -611,10 +611,10 @@
             + '</div>'
             + '<div class="form-row-inline">'
             + '<div class="form-row flex-1"><div class="form-th">공사구간</div><div class="form-cell"><div class="form-row-inline">'
-            + '<input type="text" placeholder="시작 위치"><span class="sep">~</span><input type="text" placeholder="종료 위치">'
+            + '<input type="text" placeholder="시점(읍·면·동·리)"><span class="sep">~</span><input type="text" placeholder="종점(읍·면·동·리)">'
             + '</div></div></div>'
             + '<div class="form-row-inline"><div class="form-th fw-medium">STA.</div><div class="form-cell"><div class="form-row-inline">'
-            + '<input type="text" value="0+000" class="input-md"><span class="sep">~</span><input type="text" value="0+000" class="input-md">'
+            + '<input type="text" value="" placeholder="0+000" class="input-md"><span class="sep">~</span><input type="text" value="" placeholder="0+000" class="input-md">'
             + '</div></div></div>'
             + '</div>'
             + '</div>'
@@ -657,6 +657,63 @@
           }
         });
       })();
+
+      // select placeholder 처리
+      (function() {
+        function initSelectPlaceholder(sel) {
+          var ph = sel.getAttribute('aria-placeholder');
+          if (!ph) return;
+          var hasSelected = Array.from(sel.options).some(function(o) { return o.defaultSelected; });
+          var opt = document.createElement('option');
+          opt.value = '';
+          opt.textContent = ph;
+          opt.disabled = true;
+          opt.hidden = true;
+          sel.insertBefore(opt, sel.firstChild);
+          if (!hasSelected) sel.value = '';
+          function update() {
+            sel.classList.toggle('is-placeholder', sel.value === '');
+          }
+          sel.addEventListener('change', update);
+          update();
+        }
+        document.querySelectorAll('select[aria-placeholder]').forEach(initSelectPlaceholder);
+      })();
+
+      // input[type="date"] placeholder + yyyy.mm.dd 표시 + 캘린더 아이콘 처리
+      document.querySelectorAll('input[type="date"]').forEach(function(input) {
+        var placeholder = input.getAttribute('placeholder') || input.getAttribute('aria-label') || '';
+        var dateValue = input.value;
+
+        function showText() {
+          input.type = 'text';
+          input.classList.add('input-date-icon');
+          if (dateValue) {
+            input.value = dateValue.replace(/-/g, '.');
+          } else {
+            input.value = '';
+            input.placeholder = placeholder;
+          }
+        }
+
+        function showDate() {
+          input.type = 'date';
+          input.classList.remove('input-date-icon');
+          input.value = dateValue;
+        }
+
+        input.addEventListener('focus', function() {
+          if (input.type === 'text') showDate();
+        });
+        input.addEventListener('change', function() {
+          dateValue = input.value;
+        });
+        input.addEventListener('blur', function() {
+          dateValue = input.value;
+          showText();
+        });
+        showText();
+      });
 
       // ESC 키로 닫기
       document.addEventListener('keydown', function(e) {

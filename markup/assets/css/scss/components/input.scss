@@ -343,6 +343,11 @@ textarea,
   }
 }
 
+// Select placeholder
+select.is-placeholder {
+  color: $input-placeholder-color;
+}
+
 // Select
 select,
 .select {
