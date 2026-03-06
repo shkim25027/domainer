@@ -344,7 +344,7 @@ textarea,
 }
 
 // Select placeholder
-select.is-placeholder {
+select:has(option[value=""]:checked) {
   color: $input-placeholder-color;
 }
 
@@ -419,6 +419,9 @@ select,
       white-space: nowrap;
       text-overflow: ellipsis;
       min-width: 0;
+    }
+    .ms-trigger.is-placeholder {
+      color: $input-placeholder-color;
     }
     .ms-trigger:focus {
       outline: none;
