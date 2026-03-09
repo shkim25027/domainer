@@ -17,6 +17,7 @@
   padding: $spacing-lg 0;
   overflow: hidden;
   &:has(.panel-header:last-child) {
+    padding-bottom: 0;
     border-radius: $radius-xl $radius-xl 0 0;
     > .panel-header { padding: 20px $spacing-lg $spacing-sm; }
   }
