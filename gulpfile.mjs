@@ -52,6 +52,13 @@ const paths = {
     dest: "./dist/assets/js",
   },
   jscopy: { src: "./markup/assets/js/lib/**/*", dest: "./dist/assets/js/lib" },
+  jsextra: {
+    src: [
+      "./markup/assets/js/datepicker.js",
+      "./markup/assets/js/custom-select.js",
+    ],
+    dest: "./dist/assets/js",
+  },
   img: {
     src: "./markup/assets/images/**/*.{png,jpg,jpeg,svg,gif}",
     base: "./markup/assets/images",
@@ -143,6 +150,11 @@ function jscopy() {
   return src(paths.jscopy.src).pipe(dest(paths.jscopy.dest));
 }
 
+// JS 개별 파일 복사 (datepicker, custom-select 등 - common.min.js에 합치지 않고 그대로 복사)
+function jsextra() {
+  return src(paths.jsextra.src).pipe(dest(paths.jsextra.dest));
+}
+
 // Coding list: _coding_list 폴더 복사
 function codingListCopy() {
   return src(paths.codingList.src).pipe(dest(paths.codingList.dest));
@@ -195,6 +207,7 @@ function serve() {
   watch(paths.csscopy.src, csscopy);
   watch(paths.js.src, scripts);
   watch(paths.jscopy.src, jscopy);
+  watch(paths.jsextra.src, jsextra);
   watch(paths.img.src, images);
   watch(paths.fonts.src, fonts);
   watch(paths.html.src, html);
@@ -207,13 +220,13 @@ function serve() {
 // ------------------------------------
 const build = series(
   clean,
-  parallel(fonts, images, scss, csscopy, scripts, jscopy, html, codingListCopy, codingListPage),
+  parallel(fonts, images, scss, csscopy, scripts, jscopy, jsextra, html, codingListCopy, codingListPage),
   cache
 );
 
 const dev = series(
   clean,
-  parallel(fonts, images, scss, csscopy, scripts, jscopy, html, codingListCopy, codingListPage),
+  parallel(fonts, images, scss, csscopy, scripts, jscopy, jsextra, html, codingListCopy, codingListPage),
   parallel(serve)
 );
 

@@ -151,6 +151,14 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('select').forEach(initSelect);
+
+    // .btn-add-primary 클릭 시 추가된 select에 커스텀 셀렉트 적용
+    document.body.addEventListener('click', function (e) {
+      if (!e.target.closest || !e.target.closest('.btn-add-primary')) return;
+      setTimeout(function () {
+        document.querySelectorAll('select:not([data-ms-init])').forEach(initSelect);
+      }, 50);
+    });
   });
 
   new MutationObserver(function (mutations) {
