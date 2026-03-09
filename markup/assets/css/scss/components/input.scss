@@ -32,6 +32,10 @@ input,
     opacity: 1;
   }
 
+  &[type="number"] {
+    text-align: right;
+  }
+
   // Hover state
   @include hover-support {
     border-color: $input-border-color-hover;
@@ -394,17 +398,21 @@ select,
   // 단일: width
   &.select-sm {
     width: $input-width-sm;
+    max-width: 100%;
   }
   &.select-md {
     width: $input-width-md;
+    max-width: 100%;
   }
   &.select-lg {
     width: $input-width-lg;
+    max-width: 100%;
   }
 
   // multiple: min-width
   &.ms-wrap--multiple {
     width: auto;
+    
     &.select-sm {
       min-width: $input-width-sm;
     }
@@ -414,12 +422,13 @@ select,
     &.select-lg {
       min-width: $input-width-lg;
     }
+      
   }
 }
     .ms-trigger {
       display: block;
       width: 100%;
-      height: 30px;
+      height: 34px;
       padding: 0 28px 0 8px;
       font-size: 13px;
       color: #111;
@@ -448,6 +457,12 @@ select,
       outline: none;
       border-color: #22c55e;
 
+      ~ .ms-dropdown {
+        border-left-color: #22c55e;
+        border-right-color: #22c55e;
+        border-bottom-color: #22c55e;
+      }
+
     }
     .ms-dropdown {
       display: none;
@@ -463,6 +478,7 @@ select,
       z-index: 999;
       padding: 4px 0;
       box-sizing: border-box;
+
     }
     .ms-wrap.is-open .ms-dropdown { display: block; }
     .ms-dropdown.is-open { display: block; }

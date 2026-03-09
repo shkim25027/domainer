@@ -43,7 +43,7 @@
                     <div class="form-row">
                       <div class="form-th">업체구분</div>
                       <div class="form-cell">
-                        <select class="select select-md">
+                        <select class="select select-lg">
                           <option value="" disabled hidden selected>업체구분</option>
                           <option>현장조사</option>
                           <option>감정평가</option>
@@ -64,7 +64,7 @@
                     <div class="form-row">
                       <div class="form-th">조사지역</div>
                       <div class="form-cell">
-                        <select class="select select-md select-multiple" multiple>
+                        <select class="select select-lg select-multiple" multiple>
                           <option>1공구</option>
                           <option>2공구</option>
                           <option>3공구</option>
@@ -125,7 +125,7 @@
                     <div class="form-row">
                       <div class="form-th">업체구분</div>
                       <div class="form-cell">
-                        <select class="select select-md">
+                        <select class="select select-lg">
                           <option value="" disabled hidden>업체구분</option>
                           <option>현장조사</option>
                           <option selected>감정평가</option>
@@ -146,7 +146,7 @@
                     <div class="form-row">
                       <div class="form-th">조사지역</div>
                       <div class="form-cell">
-                        <select class="select select-md select-multiple" multiple>
+                        <select class="select select-lg select-multiple" multiple>
                           <option>전주시 주화산동1가</option>
                           <option>전주시 주화산동2가</option>
                           <option>전주시 주화산동3가</option>
@@ -200,7 +200,7 @@
                     <div class="form-row">
                       <div class="form-th">업체구분</div>
                       <div class="form-cell">
-                        <select class="select select-md">
+                        <select class="select select-lg">
                           <option value="" disabled hidden>업체구분</option>
                           <option>현장조사</option>
                           <option selected>감정평가</option>
@@ -221,7 +221,7 @@
                     <div class="form-row">
                       <div class="form-th">조사지역</div>
                       <div class="form-cell">
-                        <select class="select select-md select-multiple" multiple>
+                        <select class="select select-lg select-multiple" multiple>
                           <option>전주시 주화산동1가</option>
                           <option>전주시 주화산동2가</option>
                           <option>전주시 주화산동3가</option>
@@ -283,7 +283,7 @@
                     <div class="form-row">
                       <div class="form-th">업체구분</div>
                       <div class="form-cell">
-                        <select class="select select-md">
+                        <select class="select select-lg">
                           <option value="" disabled hidden>업체구분</option>
                           <option>현장조사</option>
                           <option selected>감정평가</option>
@@ -304,7 +304,7 @@
                     <div class="form-row">
                       <div class="form-th">조사지역</div>
                       <div class="form-cell">
-                        <select class="select select-md select-multiple" multiple>
+                        <select class="select select-lg select-multiple" multiple>
                           <option>전주시 주화산동1가</option>
                           <option>전주시 주화산동2가</option>
                           <option>전주시 주화산동3가</option>
@@ -951,11 +951,15 @@
         trigger.classList.toggle('is-placeholder', getSelectedText() === placeholder);
       }
 
-      // 열기/닫기
+      // 열기/닫기 (다른 ms-trigger 클릭 시 기존에 열린 항목은 닫기)
       trigger.addEventListener('click', function (e) {
         e.stopPropagation();
         var opening = !wrap.classList.contains('is-open');
-        document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) { w.classList.remove('is-open'); });
+        document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) {
+          w.classList.remove('is-open');
+          var d = w.querySelector('.ms-dropdown');
+          if (d) d.classList.remove('is-open');
+        });
         if (opening) {
           wrap.classList.add('is-open');
           dropdown.classList.add('is-open');

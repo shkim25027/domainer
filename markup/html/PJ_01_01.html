@@ -149,10 +149,10 @@
                     <option value disabled hidden>종류</option>
                     <option selected>나들목</option>
                     <option>분기점</option>
-                    <option>교 량</option>
+                    <option>교량</option>
                     <option>터널</option>
                   </select>
-                  <div class="d-flex flex-1 align-center gap-1">
+                  <div class="form-row flex-1">
                     <input type="text" value="대산, 대호지, 정미" placeholder="시설명, 구분">
                   </div>
                 </div>
@@ -161,10 +161,10 @@
                     <option value="" disabled hidden selected>종류</option>
                     <option>나들목</option>
                     <option>분기점</option>
-                    <option>교 량</option>
+                    <option>교량</option>
                     <option>터널</option>
                   </select>
-                  <div class="d-flex flex-1 align-center gap-1">
+                  <div class="form-row-inline flex-1">
                     <input type="text" value="" placeholder="시설명, 구분">
                     <button type="button" class="btn btn-remove btn-xs">—</button>
                   </div>
@@ -189,7 +189,7 @@
                       <div class="form-row-inline">
                         <input class="input-auto" type="text" placeholder="공구명" value="공구명이 텍스트로 길어질경우 예시입니다. 공구명이 텍스트로 길어질경우 예시입니다.">
                         <span class="input-label">공구</span>
-                        <button type="button" class="btn btn-remove btn-xs">—</button>
+                       
                       </div>
                     </div>
                   </div>
@@ -198,6 +198,7 @@
                     <div class="form-cell">
                       <div class="form-row-inline">
                         <input class="input-lg" type="text" value="코오롱글로벌(주)" placeholder="업체명">
+                        <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
                     </div>
                   </div>
@@ -254,7 +255,7 @@
                       <div class="form-row-inline">
                         <input class="input-auto" type="text" value="" placeholder="공구명">
                         <span class="input-label">공구</span>
-                        <button type="button" class="btn btn-remove btn-xs">—</button>
+                        
                       </div>
                     </div>
                   </div>
@@ -263,6 +264,7 @@
                     <div class="form-cell">
                       <div class="form-row-inline">
                         <input class="input-lg" type="text" value="" placeholder="업체명">
+                        <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
                     </div>
                   </div>
@@ -319,7 +321,7 @@
                       <div class="form-row-inline">
                         <input class="input-auto" type="text" value="3" placeholder="공구명">
                         <span class="input-label">공구</span>
-                        <button type="button" class="btn btn-remove btn-xs">—</button>
+                        
                       </div>
                     </div>
                   </div>
@@ -328,6 +330,7 @@
                     <div class="form-cell">
                       <div class="form-row-inline">
                         <input class="input-lg" type="text" value="(주)케이씨씨건설" placeholder="업체명">
+                        <button type="button" class="btn btn-remove btn-xs">—</button>
                       </div>
                     </div>
                   </div>
@@ -594,13 +597,13 @@
       // 주요시설물: + 시설물 추가 / select 변경 / 삭제
       // =============================================
       (function() {
-        var SELECT_OPTIONS = ['나들목', '분기점', '교 량', '터널'];
+        var SELECT_OPTIONS = ['나들목', '분기점', '교량', '터널'];
 
-        // select 타입에 따른 d-flex 내부 HTML
+        // select 타입에 따른 입력 영역 HTML (form-row-inline flex-1)
         function getFieldHTML(type, removable) {
           var removeBtn = removable ? '<button type="button" class="btn btn-remove btn-xs">—</button>' : '';
-          if (type === '교 량' || type === '터널') {
-            return '<div class="d-flex flex-1 align-center gap-2">'
+          if (type === '교량' || type === '터널') {
+            return '<div class="form-row-inline flex-1">'
               + '<input type="number" placeholder="0">'
               + '<span class="unit">개소</span>'
               + '<input type="number" placeholder="0.00">'
@@ -608,7 +611,7 @@
               + removeBtn
               + '</div>';
           }
-          return '<div class="d-flex flex-1 align-center gap-1">'
+          return '<div class="form-row-inline flex-1">'
             + '<input type="text" placeholder="시설명, 구분">'
             + removeBtn
             + '</div>';
@@ -637,12 +640,13 @@
           });
         }
 
-        // select 변경: d-flex 내용 교체
+        // select 변경: 종류에 따라 입력 영역 교체
         group.addEventListener('change', function(e) {
           if (e.target.tagName !== 'SELECT') return;
           var row = e.target.closest('.form-row-inline');
           var isFirst = row === group.querySelector('.form-row-inline');
-          var oldField = row.querySelector('.d-flex');
+          var oldField = e.target.nextElementSibling; // select 다음 형제 = .form-row.flex-1 또는 .form-row-inline.flex-1
+          if (!oldField) return;
           var tmp = document.createElement('div');
           tmp.innerHTML = getFieldHTML(e.target.value, !isFirst);
           oldField.replaceWith(tmp.firstElementChild);

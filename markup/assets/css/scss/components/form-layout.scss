@@ -49,6 +49,9 @@
   &:not(:last-child) {
     margin-bottom: $spacing-lg;
   }
+  .btn-remove {
+    margin-left: 4px;
+  }
 }
 
 .form-group-full {
@@ -58,6 +61,10 @@
 .form-area {
   &:not(:last-child){
     margin-bottom: $spacing-2xl;
+  }
+
+  .btn-remove {
+    margin-left: 4px;
   }
 }
 // ────────────────────────────────────────────────
