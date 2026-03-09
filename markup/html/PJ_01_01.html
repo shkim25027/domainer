@@ -74,9 +74,9 @@
                       <div class="form-th">공사기간</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
-                          <input type="date" value="2023-11-13" placeholder="시작일">
+                          <input type="text" id="datepicker" class="input-datepicker" value="2023.11.13" placeholder="시작일">
                           <span class="sep">~</span>
-                          <input type="date" value="2030-12-20" placeholder="종료일">
+                          <input type="text" class="input-datepicker" value="2030.12.20" placeholder="종료일">
                           <span class="note">착공일로부터 <strong>36</strong>개월</span>
                         </div>
                       </div>
@@ -782,6 +782,8 @@
           y = parseInt(parts[0], 10); m = parseInt(parts[1], 10); d = parseInt(parts[2], 10);
         } else if (/^\d{8}$/.test(s)) {
           y = parseInt(s.slice(0, 4), 10); m = parseInt(s.slice(4, 6), 10); d = parseInt(s.slice(6, 8), 10);
+        } else if (/^\d{6}$/.test(s)) {
+          y = parseInt(s.slice(0, 4), 10); m = parseInt(s.slice(4, 6), 10); d = 1;
         } else {
           return null;
         }
@@ -792,71 +794,70 @@
         return y + '-' + (m.length === 1 ? '0' + m : m) + '-' + (d.length === 1 ? '0' + d : d);
       }
 
-      // input[type="date"] placeholder + yyyy.mm.dd 표시 + 캘린더 아이콘 처리
-      document.querySelectorAll('input[type="date"]').forEach(function(input) {
-        var placeholder = input.getAttribute('placeholder') || input.getAttribute('aria-label') || '';
-        var dateValue = parseDateForInput(input.value) || input.value || '';
-
-        function openPickerSafely() {
-          if (typeof input.showPicker !== 'function') return;
-          try {
-            input.showPicker();
-          } catch (e) {}
+      /** type="text" 날짜 입력: 유효성 검사 + 숨겨진 type="date"로 캘린더 열기 */
+      function initDatepicker(textInput) {
+        var placeholder = textInput.getAttribute('placeholder') || textInput.getAttribute('aria-label') || '';
+        var raw = (textInput.value || '').trim();
+        var normalized = parseDateForInput(raw);
+        if (normalized) {
+          textInput.value = normalized.replace(/-/g, '.');
+        } else if (raw) {
+          textInput.value = raw;
         }
 
-        function showText() {
-          input.type = 'text';
-          input.classList.add('input-date-icon');
-          if (dateValue) {
-            input.value = dateValue.replace(/-/g, '.');
-          } else {
-            input.value = '';
-            input.placeholder = placeholder;
+        var wrap = document.createElement('div');
+        wrap.className = 'datepicker-wrap';
+        textInput.parentNode.insertBefore(wrap, textInput);
+        wrap.appendChild(textInput);
+
+        var nativeInput = document.createElement('input');
+        nativeInput.type = 'date';
+        nativeInput.className = 'datepicker-native';
+        nativeInput.setAttribute('aria-hidden', 'true');
+        nativeInput.tabIndex = -1;
+        if (normalized) nativeInput.value = normalized;
+        wrap.appendChild(nativeInput);
+
+        var trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'datepicker-trigger';
+        trigger.setAttribute('aria-label', '캘린더 열기');
+        wrap.appendChild(trigger);
+
+        function openPicker() {
+          nativeInput.focus();
+          if (typeof nativeInput.showPicker === 'function') {
+            try { nativeInput.showPicker(); } catch (e) {}
           }
         }
 
-        function showDate() {
-          input.type = 'date';
-          input.classList.remove('input-date-icon');
-          input.value = dateValue;
-        }
+        trigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          var v = (textInput.value || '').trim();
+          if (v) {
+            var n = parseDateForInput(v);
+            if (n) nativeInput.value = n;
+          }
+          openPicker();
+        });
 
-        input.addEventListener('focus', function() {
-          if (input.type === 'text') return;
-          requestAnimationFrame(openPickerSafely);
-        });
-        function switchToDateAndOpenPicker() {
-          if (input.type === 'text') {
-            var v = (input.value || '').trim();
-            if (v) dateValue = parseDateForInput(v) || v;
-            showDate();
+        nativeInput.addEventListener('change', function() {
+          if (nativeInput.value) {
+            textInput.value = nativeInput.value.replace(/-/g, '.');
           }
-          requestAnimationFrame(openPickerSafely);
-        }
-        input.addEventListener('click', function() {
-          switchToDateAndOpenPicker();
         });
-        input.addEventListener('keydown', function(e) {
-          if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'ArrowDown') return;
-          switchToDateAndOpenPicker();
-        });
-        input.addEventListener('change', function() {
-          dateValue = input.value;
-        });
-        input.addEventListener('blur', function() {
-          var normalized = parseDateForInput(input.type === 'date' ? input.value : input.value);
-          if (normalized !== null) {
-            dateValue = normalized;
-          } else if (input.type === 'date') {
-            dateValue = input.value || '';
-          } else {
-            dateValue = (input.value || '').trim();
-            if (dateValue) dateValue = parseDateForInput(dateValue) || dateValue;
+
+        textInput.addEventListener('blur', function() {
+          var v = (textInput.value || '').trim();
+          var n = parseDateForInput(v);
+          if (n) {
+            textInput.value = n.replace(/-/g, '.');
+            nativeInput.value = n;
           }
-          showText();
         });
-        showText();
-      });
+      }
+
+      document.querySelectorAll('.input-datepicker').forEach(initDatepicker);
 
       // ESC 키로 닫기
       document.addEventListener('keydown', function(e) {
