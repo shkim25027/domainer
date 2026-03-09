@@ -432,6 +432,8 @@ select,
       position: absolute;
       top: calc(100% + 2px);
       left: 0;
+      width: 100%;
+      min-width: max-content;
       background: #fff;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -439,10 +441,11 @@ select,
       z-index: 999;
       padding: 4px 0;
       box-sizing: border-box;
-      min-width: max-content;
     }
     .ms-wrap.is-open .ms-dropdown { display: block; }
     .ms-dropdown.is-open { display: block; }
+
+    /* 멀티일 때만: 전체선택 + 체크박스 항목 */
     .ms-all {
       display: flex;
       align-items: center;
@@ -458,7 +461,7 @@ select,
       display: flex;
       flex-direction: column;
     }
-    .ms-item {
+    .ms-wrap--multiple .ms-item {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -468,10 +471,10 @@ select,
       user-select: none;
       white-space: nowrap;
     }
-    .ms-item:hover { background: #f3f4f6; }
-    .ms-item.is-checked { background: #f3f4f6; }
-    .ms-item input[type="checkbox"],
-    .ms-all input[type="checkbox"] {
+    .ms-wrap--multiple .ms-item:hover { background: #f3f4f6; }
+    .ms-wrap--multiple .ms-item.is-checked { background: #f3f4f6; }
+    .ms-wrap--multiple .ms-item input[type="checkbox"],
+    .ms-wrap--multiple .ms-all input[type="checkbox"] {
       display: inline-block;
       width: 14px;
       height: 14px;
@@ -487,3 +490,14 @@ select,
       appearance: auto;
       -webkit-appearance: checkbox;
     }
+
+    /* 단일 선택: 옵션 클릭 (체크박스 없음) */
+    .ms-option {
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .ms-option:hover { background: #f3f4f6; }
+    .ms-option.is-selected { background: #e5e7eb; }

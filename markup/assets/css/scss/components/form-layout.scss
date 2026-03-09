@@ -262,7 +262,7 @@ hr {
   align-items: center;
   gap: 6px;
   min-width: 0;
-  overflow: hidden;
+
 
   > .flex-1 {
     min-width: 0;
@@ -363,6 +363,7 @@ hr {
   }
   .btn-remove {
     border: none;
+    background-color: none;
   }
 }
 

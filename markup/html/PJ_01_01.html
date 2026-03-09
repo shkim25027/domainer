@@ -26,8 +26,8 @@
             </div>
           </div>
           <!-- // 패널 헤더 -->
-        </div>     
-        <div class="panel-inline project-info-wrap">
+        </div>
+        <div class="panel-grid project-info-wrap" style="grid-template-columns: 1008fr 705fr;">
           <div class="panel panel-radius-tl-0">
             <div class="panel-body">
               <!-- 상단 섹션: 지도 | 사업 기본정보 | 주요시설물 (3열) -->
@@ -35,7 +35,7 @@
                 <!-- 좌: 지도 썸네일 -->
                 <div class="project-info-map">
                   <div class="map-thumb">
-                    <img src="./assets/images/img_map.png">
+                    <img src="./assets/images/img_map.png" alt="공사 구간 지도">
                     <a
                       href="https://map.vworld.kr/dtkmap/linkmap.do?mapmode=base&plon=MTQwNzg4MjMuNDEyMTIyMjY2&plat=NDQzMDYwMC4xMzYwODM0NTI=&pzoom=MTI=&player=%EA%B5%AD%EA%B0%80%EB%8F%84%EB%A1%9C%EB%A7%9D%20%EC%A2%85%ED%95%A9%EA%B3%84%ED%9A%8D&nlayer=pmap_road"
                       target="_blank"
@@ -46,7 +46,7 @@
                   </div>
                 </div>
                 <!-- 중: 사업 기본정보 폼 -->
-                <div class="project-info-form ">
+                <div class="project-info-form">
                   <div class="form-table">
                     <div class="form-row">
                       <div class="form-th"><strong class="form-th-label">공사명</strong></div>
@@ -56,7 +56,7 @@
                             <option value="" disabled hidden selected>도로구분</option>
                             <option>고속국도</option>
                           </select>
-                          <input type="text" placeholder="노선명" value="제30호 서산명덕선" >
+                          <input type="text" placeholder="노선명" value="제30호 서산명덕선">
                         </div>
                       </div>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="form-row">
                       <div class="form-th">공사기간</div>
                       <div class="form-cell">
-                        <div class="form-row-inline ">
+                        <div class="form-row-inline">
                           <input type="date" value="2023-11-13" placeholder="시작일">
                           <span class="sep">~</span>
                           <input type="date" value="2030-12-20" placeholder="종료일">
@@ -112,13 +112,13 @@
                       <div class="form-cell">
                         <div class="form-row-inline">
                           <div class="form-row flex-1">
-                            <input type="text" class="input" value="한국도로공사"  aria-label="사업자" placeholder="사업자">
+                            <input type="text" class="input" value="한국도로공사" aria-label="사업자" placeholder="사업자">
                           </div>
                           <div class="form-row flex-1">
                             <div class="input-group-inline">
-                              <input type="text" class="" value="D412565" aria-label="사업자코드" placeholder="기관코드">
+                              <input type="text" value="D412565" aria-label="사업자코드" placeholder="기관코드">
                               <button type="button" class="btn btn-secondary btn-xs btn-input-append">
-                                <img src="../assets/images/ico/ico_search.svg" width="14" height="14" alt="" aria-hidden="true"> 코드검색
+                                <img src="./assets/images/ico/ico_search.svg" width="14" height="14" alt="" aria-hidden="true"> 코드검색
                               </button>
                             </div>
                           </div>
@@ -132,12 +132,12 @@
                 </div>
 
               </div>
-              <!-- // project-info-top -->
+              <!-- // project-info -->
             </div>
             <!-- // panel-body -->
           </div>
           <!-- // panel -->
-           <div class="panel panel-radius-tr-0 panel-border-dashed-left ">
+          <div class="panel panel-radius-tr-0 panel-border-dashed-left">
             <div class="panel-body">
               <div class="title-box">
                 <h3 class="title">주요시설물</h3>
@@ -169,11 +169,9 @@
                     <button type="button" class="btn btn-remove btn-xs">—</button>
                   </div>
                 </div>
-
               </div>
             </div>
-
-           </div>
+          </div>
         </div>
         <!-- // panel-inline -->
 
@@ -216,7 +214,7 @@
                     </div>
                   </div>
                   <div class="form-row-inline">
-                    <div class="form-th fw-medium ">STA.</div>
+                    <div class="form-th fw-medium">STA.</div>
                     <div class="form-cell">
                         <div class="form-row-inline">
                           <input type="text" value="0+000" placeholder="0+000" class="input-md">
@@ -240,15 +238,14 @@
                 <div class="data-tbody" style="display: contents;">
                   <div class="data-row" style="display: contents;">
                     <div class="data-td"><input type="text" class="input input-center" value="토목사업본부" placeholder="부서명"></div>
-                    <div class="data-td"><input type="text" class="input input-center"  value="김수현" placeholder="담당자"></div>
-                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511" placeholder="전화번호"></div>
+                    <div class="data-td"><input type="text" class="input input-center" value="김수현" placeholder="담당자"></div>
+ㄱㄱ                    <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511" placeholder="전화번호"></div>
                     <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr" placeholder="your@email.com"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
                 </div>
               </div>
             </div>
-            
             <div class="form-area">
               <div class="form-table form-auto">
                 <div class="form-row-inline">
@@ -282,7 +279,7 @@
                     </div>
                   </div>
                   <div class="form-row-inline">
-                    <div class="form-th fw-medium ">STA.</div>
+                    <div class="form-th fw-medium">STA.</div>
                     <div class="form-cell">
                         <div class="form-row-inline">
                           <input type="text" value="" placeholder="0+000" class="input-md">
@@ -311,7 +308,6 @@
                     <div class="data-td"><input type="text" class="input input-center" value="" placeholder="your@email.com"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
-                 
                 </div>
               </div>
             </div>
@@ -348,14 +344,14 @@
                     </div>
                   </div>
                   <div class="form-row-inline">
-                    <div class="form-th fw-medium ">STA.</div>
+                    <div class="form-th fw-medium">STA.</div>
                     <div class="form-cell">
                         <div class="form-row-inline">
                           <input type="text" value="0+000" placeholder="0+000" class="input-md">
                           <span class="sep">~</span>
                           <input type="text" value="18+000" placeholder="0+000" class="input-md">
                         </div>
-                    </div> 
+                    </div>
                   </div>
                 </div>
               </div>
@@ -377,7 +373,7 @@
                     <div class="data-td"><input type="text" class="input input-center" value="hanmacdesign@hanmaceng.co.kr" placeholder="your@email.com"></div>
                     <div class="data-td"><button type="button" class="btn btn-remove btn-xs">—</button></div>
                   </div>
-                   <div class="data-row" style="display: contents;">
+                  <div class="data-row" style="display: contents;">
                     <div class="data-td"><input type="text" class="input input-center" value="토목사업본부" placeholder="부서명"></div>
                     <div class="data-td"><input type="text" class="input input-center" value="김수현" placeholder="담당자"></div>
                     <div class="data-td"><input type="text" class="input input-center" value="010-3595-3511" placeholder="전화번호"></div>
@@ -387,10 +383,8 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-
         </div>
       </div>
       <!-- // container -->

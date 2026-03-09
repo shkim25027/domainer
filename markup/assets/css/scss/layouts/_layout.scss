@@ -75,6 +75,7 @@ body {
     height: 100%;
     box-shadow: 0 0 50px 0 #E6DCC0 inset;
     filter: drop-shadow(-6px 0 11.2px rgba(0, 0, 0, 0.32));
+    pointer-events: none;
   }
 }
 

@@ -27,7 +27,7 @@
           <!-- // 패널 헤더 -->
         </div>
 
-        <div class="panel-inline flex-1">
+        <div class="panel-grid flex-1" style="grid-template-columns: repeat(2, 1fr);">
           <!-- 좌: 조사업체 -->
           <div class="panel panel-radius-tl-0">
             <div class="panel-body" id="josaPanelBody">
@@ -772,7 +772,7 @@
           + '</div></div>'
           + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
           + '</div>';
-        el.querySelectorAll('select.select-multiple').forEach(initMultiSelect);
+        el.querySelectorAll('select.select').forEach(initSelect);
         el.querySelectorAll('input[type="date"]').forEach(initDateInput);
         return el;
       }
@@ -819,7 +819,7 @@
           + '</div></div>'
           + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
           + '</div>';
-        el.querySelectorAll('select.select-multiple').forEach(initMultiSelect);
+        el.querySelectorAll('select.select').forEach(initSelect);
         el.querySelectorAll('input[type="date"]').forEach(initDateInput);
         return el;
       }
@@ -827,15 +827,22 @@
       initManagedPanel('hyeobuiPanelBody', createArea, PERSON_ROW);
     })();
 
-    function initMultiSelect(sel) {
+    function initSelect(sel) {
+      var isMultiple = sel.multiple;
       var cols = sel.dataset.cols || 5;
-      var placeholder = sel.dataset.placeholder || '조사지역';
+      var placeholder = isMultiple
+        ? (sel.dataset.placeholder || '조사지역')
+        : (function() {
+            var first = sel.options[0];
+            return (first && (first.disabled || first.value === '')) ? first.text : '';
+          })();
 
       sel.style.display = 'none';
 
       // 래퍼
       var wrap = document.createElement('div');
       wrap.className = 'ms-wrap';
+      if (isMultiple) wrap.classList.add('ms-wrap--multiple');
       ['select-sm','select-md','select-lg'].forEach(function(c){ if(sel.classList.contains(c)) wrap.classList.add(c); });
       sel.parentNode.insertBefore(wrap, sel);
       wrap.appendChild(sel);
@@ -847,108 +854,113 @@
       trigger.textContent = placeholder;
       wrap.insertBefore(trigger, sel);
 
-      // 드롭다운 → overflow 탈출을 위해 body에 append, position:fixed
+      // 드롭다운 (wrap 안쪽)
       var dropdown = document.createElement('div');
       dropdown.className = 'ms-dropdown';
       dropdown.style.setProperty('--ms-cols', cols);
-      dropdown.style.position = 'fixed';
-      dropdown.style.zIndex = '9999';
-      document.body.appendChild(dropdown);
+      wrap.appendChild(dropdown);
 
-      function positionDropdown() {
-        var rect = trigger.getBoundingClientRect();
-        var vw = window.innerWidth;
-        var vh = window.innerHeight;
-        var dropW = Math.max(rect.width, 160);
+      if (isMultiple) {
+        // 전체선택 (멀티일 때만)
+        var allLabel = document.createElement('label');
+        allLabel.className = 'ms-all';
+        var allChk = document.createElement('input');
+        allChk.type = 'checkbox';
+        allLabel.appendChild(allChk);
+        allLabel.appendChild(document.createTextNode('[전체 선택]'));
+        dropdown.appendChild(allLabel);
 
-        dropdown.style.visibility = 'hidden';
-        dropdown.style.display = 'block';
-        var dropH = dropdown.offsetHeight;
-        dropdown.style.display = '';
-        dropdown.style.visibility = '';
-
-        var left = rect.left;
-        if (left + dropW > vw - 8) left = vw - dropW - 8;
-        if (left < 8) left = 8;
-
-        var top;
-        if (rect.bottom + dropH + 2 > vh - 8) {
-          top = rect.top - dropH - 2;
-        } else {
-          top = rect.bottom + 2;
-        }
-
-        dropdown.style.left  = left + 'px';
-        dropdown.style.top   = top + 'px';
-        dropdown.style.width = dropW + 'px';
+        var checkboxes = [];
       }
-
-      // 전체선택
-      var allLabel = document.createElement('label');
-      allLabel.className = 'ms-all';
-      var allChk = document.createElement('input');
-      allChk.type = 'checkbox';
-      allLabel.appendChild(allChk);
-      allLabel.appendChild(document.createTextNode('[전체 선택]'));
-      dropdown.appendChild(allLabel);
 
       // 그리드
       var grid = document.createElement('div');
       grid.className = 'ms-grid';
       dropdown.appendChild(grid);
 
-      // 옵션 → 체크박스
-      var checkboxes = [];
-      Array.from(sel.options).forEach(function (opt) {
-        var label = document.createElement('label');
-        label.className = 'ms-item';
-        var chk = document.createElement('input');
-        chk.type = 'checkbox';
-        chk.value = opt.value || opt.text;
-        chk.checked = opt.selected;
-        if (chk.checked) label.classList.add('is-checked');
-        checkboxes.push({ chk: chk, label: label });
-        label.appendChild(chk);
-        label.appendChild(document.createTextNode(opt.text));
-        grid.appendChild(label);
-        chk.addEventListener('change', syncAll);
-      });
-
-      function syncAll() {
-        checkboxes.forEach(function (item, i) {
-          sel.options[i].selected = item.chk.checked;
-          item.label.classList.toggle('is-checked', item.chk.checked);
+      if (isMultiple) {
+        // 옵션 → 체크박스 (멀티일 때만)
+        Array.from(sel.options).forEach(function (opt) {
+          var label = document.createElement('label');
+          label.className = 'ms-item';
+          var chk = document.createElement('input');
+          chk.type = 'checkbox';
+          chk.value = opt.value || opt.text;
+          chk.checked = opt.selected;
+          if (chk.checked) label.classList.add('is-checked');
+          checkboxes.push({ chk: chk, label: label });
+          label.appendChild(chk);
+          label.appendChild(document.createTextNode(opt.text));
+          grid.appendChild(label);
+          chk.addEventListener('change', syncAll);
         });
-        var chks = checkboxes.map(function(i){ return i.chk; });
-        var all  = chks.every(function (c) { return c.checked; });
-        var none = chks.every(function (c) { return !c.checked; });
-        allChk.checked = all;
-        allChk.indeterminate = !all && !none;
-        var selected = chks.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
-        trigger.textContent = selected.length ? selected.join(', ') : placeholder;
-        trigger.classList.toggle('is-placeholder', !selected.length);
-      }
 
-      allChk.addEventListener('change', function () {
-        checkboxes.forEach(function (item) { item.chk.checked = allChk.checked; });
+        function syncAll() {
+          checkboxes.forEach(function (item, i) {
+            sel.options[i].selected = item.chk.checked;
+            item.label.classList.toggle('is-checked', item.chk.checked);
+          });
+          var chks = checkboxes.map(function(i){ return i.chk; });
+          var all  = chks.every(function (c) { return c.checked; });
+          var none = chks.every(function (c) { return !c.checked; });
+          allChk.checked = all;
+          allChk.indeterminate = !all && !none;
+          var selected = chks.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
+          trigger.textContent = selected.length ? selected.join(', ') : placeholder;
+          trigger.classList.toggle('is-placeholder', !selected.length);
+        }
+
+        allChk.addEventListener('change', function () {
+          checkboxes.forEach(function (item) { item.chk.checked = allChk.checked; });
+          syncAll();
+        });
+
         syncAll();
-      });
+      } else {
+        // 단일: 옵션 클릭으로 선택 (체크박스 없음)
+        function getSelectedText() {
+          var idx = sel.selectedIndex;
+          if (idx < 0) return placeholder;
+          var opt = sel.options[idx];
+          if (opt.disabled && opt.value === '') return placeholder;
+          return opt.text;
+        }
+
+        Array.from(sel.options).forEach(function (opt, i) {
+          var item = document.createElement('div');
+          item.className = 'ms-option';
+          if (opt.selected) item.classList.add('is-selected');
+          item.textContent = opt.text;
+          item.addEventListener('click', function () {
+            if (opt.disabled) return;
+            sel.selectedIndex = i;
+            trigger.textContent = getSelectedText();
+            trigger.classList.toggle('is-placeholder', opt.value === '' && opt.disabled);
+            grid.querySelectorAll('.ms-option').forEach(function(el, j) { el.classList.toggle('is-selected', j === i); });
+            wrap.classList.remove('is-open');
+            dropdown.classList.remove('is-open');
+            sel.dispatchEvent(new Event('change', { bubbles: true }));
+          });
+          grid.appendChild(item);
+        });
+
+        trigger.textContent = getSelectedText();
+        trigger.classList.toggle('is-placeholder', getSelectedText() === placeholder);
+      }
 
       // 열기/닫기
       trigger.addEventListener('click', function (e) {
         e.stopPropagation();
         var opening = !wrap.classList.contains('is-open');
-        document.querySelectorAll('.ms-dropdown.is-open').forEach(function(d) { d.classList.remove('is-open'); });
         document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) { w.classList.remove('is-open'); });
         if (opening) {
-          positionDropdown();
           wrap.classList.add('is-open');
           dropdown.classList.add('is-open');
         }
       });
 
       document.addEventListener('click', function (e) {
-        if (!wrap.contains(e.target) && !dropdown.contains(e.target)) {
+        if (!wrap.contains(e.target)) {
           wrap.classList.remove('is-open');
           dropdown.classList.remove('is-open');
         }
@@ -989,7 +1001,7 @@
       showText();
     }
 
-    document.querySelectorAll('select.select-multiple').forEach(initMultiSelect);
+    document.querySelectorAll('select.select').forEach(initSelect);
     document.querySelectorAll('input[type="date"]').forEach(initDateInput);
   </script>
   </body>
