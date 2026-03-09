@@ -73,9 +73,11 @@
     function setDepthIcon(li, isOn) {
       var ico = li.querySelector(':scope > a > .nav-ico img');
       if (!ico) return;
-      ico.src = isOn
-        ? ico.src.replace(/ico_nav_\w+\.svg/, 'ico_nav_setting_on.svg')
-        : ico.src.replace('ico_nav_setting_on.svg', 'ico_nav_setting.svg');
+      var shouldBeOn = isOn || li.classList.contains('active');
+      // ① _on 있든 없든 일단 제거해서 base src 확보
+      var baseSrc = ico.src.replace(/_on\.svg$/, '.svg');
+      // ② shouldBeOn이면 _on 붙이고, 아니면 그대로
+      ico.src = shouldBeOn ? baseSrc.replace(/\.svg$/, '_on.svg') : baseSrc;
     }
 
     document.querySelectorAll('.has-depth > a').forEach(function (a) {
@@ -83,7 +85,9 @@
         e.preventDefault();
         var li = a.parentElement;
         var isOpen = li.classList.toggle('open');
-        setDepthIcon(li, isOpen);
+        // depth02 안에 active 자식이 있으면 무조건 _on 유지
+        var hasActiveChild = !!li.querySelector('.depth02 .active');
+        setDepthIcon(li, isOpen || hasActiveChild);
       });
     });
 
@@ -105,6 +109,11 @@
           }
         }
       }
+    });
+
+    // .active일 때 프로젝트 관리 아이콘을 ico_nav_setting_on으로 표시
+    document.querySelectorAll('.has-depth.active').forEach(function (li) {
+      setDepthIcon(li, true);
     });
   })();
 </script>
