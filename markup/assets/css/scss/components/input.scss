@@ -386,24 +386,38 @@ select,
 
 
 .ms-wrap {
-      position: relative;
-      display: block;
-      width: 100%;
-      min-width: 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+
+  // 단일: width
   &.select-sm {
-    min-width: $input-width-sm;
+    width: $input-width-sm;
   }
   &.select-md {
-    min-width: $input-width-md;
+    width: $input-width-md;
   }
   &.select-lg {
-    min-width: $input-width-lg;
+    width: $input-width-lg;
   }
+
+  // multiple: min-width
+  &.ms-wrap--multiple {
+    width: auto;
+    &.select-sm {
+      min-width: $input-width-sm;
     }
+    &.select-md {
+      min-width: $input-width-md;
+    }
+    &.select-lg {
+      min-width: $input-width-lg;
+    }
+  }
+}
     .ms-trigger {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: block;
       width: 100%;
       height: 30px;
       padding: 0 28px 0 8px;
@@ -423,20 +437,28 @@ select,
     .ms-trigger.is-placeholder {
       color: $input-placeholder-color;
     }
+    .ms-wrap.is-open,
+    .ms-wrap:has(.is-open) {
+      .ms-trigger {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
     .ms-trigger:focus {
       outline: none;
       border-color: #22c55e;
+
     }
     .ms-dropdown {
       display: none;
       position: absolute;
-      top: calc(100% + 2px);
+      top: calc(100% - 1px);
       left: 0;
       width: 100%;
       min-width: max-content;
       background: #fff;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 0 0 4px 4px;
       box-shadow: 0 4px 12px rgba(0,0,0,.12);
       z-index: 999;
       padding: 4px 0;
@@ -460,6 +482,20 @@ select,
     .ms-grid {
       display: flex;
       flex-direction: column;
+    }
+    /* 단일 선택: .ms-item (커스텀 셀렉트 스크립트 사용 시) */
+    .ms-dropdown .ms-item {
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .ms-dropdown .ms-item:hover {
+      background: #f3f4f6;
+    }
+    .ms-dropdown .ms-item.is-checked {
+      background: #e5e7eb;
     }
     .ms-wrap--multiple .ms-item {
       display: flex;

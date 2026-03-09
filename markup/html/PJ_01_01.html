@@ -460,6 +460,113 @@
     <!-- // MODAL -->
 
     <script>
+      // =============================================
+      // 커스텀 셀렉트 (ms-wrap / ms-trigger / ms-dropdown)
+      // =============================================
+      (function() {
+        function initCustomSelect(sel) {
+          if (sel.multiple || sel.dataset.msInit) return;
+          sel.dataset.msInit = '1';
+
+          var sizeClass = sel.classList.contains('select-sm') ? 'select-sm'
+            : sel.classList.contains('select-md') ? 'select-md'
+            : sel.classList.contains('select-lg') ? 'select-lg' : '';
+
+          var wrap = document.createElement('div');
+          wrap.className = 'ms-wrap' + (sizeClass ? ' ' + sizeClass : '');
+
+          var trigger = document.createElement('button');
+          trigger.type = 'button';
+          trigger.className = 'ms-trigger';
+
+          var dropdown = document.createElement('div');
+          dropdown.className = 'ms-dropdown';
+
+          var grid = document.createElement('div');
+          grid.className = 'ms-grid';
+          dropdown.appendChild(grid);
+
+          function updateTrigger() {
+            var opt = sel.options[sel.selectedIndex];
+            var isPlaceholder = !opt || (opt.value === '' && opt.disabled);
+            trigger.textContent = opt ? opt.textContent.trim() : '';
+            trigger.classList.toggle('is-placeholder', !!isPlaceholder);
+          }
+
+          function buildItems() {
+            grid.innerHTML = '';
+            Array.from(sel.options).forEach(function(opt) {
+              // placeholder 옵션(value="" + disabled/hidden)은 목록에서 제외
+              if (opt.value === '' && (opt.disabled || opt.hidden)) return;
+              if (opt.disabled && opt.hidden) return;
+              var item = document.createElement('div');
+              item.className = 'ms-item' + (opt.selected && opt.value !== '' ? ' is-checked' : '');
+              item.textContent = opt.textContent.trim();
+              item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sel.value = opt.value !== undefined ? opt.value : opt.textContent;
+                updateTrigger();
+                grid.querySelectorAll('.ms-item').forEach(function(i) { i.classList.remove('is-checked'); });
+                item.classList.add('is-checked');
+                wrap.classList.remove('is-open');
+                dropdown.style.display = 'none';
+                sel.dispatchEvent(new Event('change', { bubbles: true }));
+              });
+              grid.appendChild(item);
+            });
+          }
+
+          function openDropdown() {
+            buildItems();
+            dropdown.style.display = 'block';
+            wrap.classList.add('is-open');
+          }
+
+          function closeAll() {
+            document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) { w.classList.remove('is-open'); });
+            document.querySelectorAll('.ms-dropdown[data-ms]').forEach(function(d) { d.style.display = 'none'; });
+          }
+
+          dropdown.dataset.ms = '1';
+
+          trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var isOpen = wrap.classList.contains('is-open');
+            closeAll();
+            if (!isOpen) openDropdown();
+          });
+
+          buildItems();
+          updateTrigger();
+
+          sel.parentNode.insertBefore(wrap, sel);
+          wrap.appendChild(trigger);
+          wrap.appendChild(dropdown);
+          sel.style.display = 'none';
+          wrap.appendChild(sel);
+        }
+
+        // 외부 클릭 시 모든 드롭다운 닫기
+        document.addEventListener('click', function() {
+          document.querySelectorAll('.ms-wrap.is-open').forEach(function(w) { w.classList.remove('is-open'); });
+          document.querySelectorAll('.ms-dropdown[data-ms]').forEach(function(d) { d.style.display = 'none'; });
+        });
+
+        // 초기 셀렉트 변환
+        document.querySelectorAll('select').forEach(initCustomSelect);
+
+        // 동적으로 추가되는 select 처리 (MutationObserver)
+        new MutationObserver(function(mutations) {
+          mutations.forEach(function(m) {
+            m.addedNodes.forEach(function(node) {
+              if (node.nodeType !== 1) return;
+              if (node.tagName === 'SELECT') initCustomSelect(node);
+              if (node.querySelectorAll) node.querySelectorAll('select').forEach(initCustomSelect);
+            });
+          });
+        }).observe(document.body, { childList: true, subtree: true });
+      })();
+
       // 모달 열기 : [data-modal-open="modalId"] 버튼
       document.querySelectorAll('[data-modal-open]').forEach(function(btn) {
         btn.addEventListener('click', function() {

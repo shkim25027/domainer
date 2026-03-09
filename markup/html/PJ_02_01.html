@@ -927,6 +927,8 @@
         }
 
         Array.from(sel.options).forEach(function (opt, i) {
+          // placeholder 옵션(value="" + disabled/hidden)은 목록에서 제외
+          if (opt.value === '' && (opt.disabled || opt.hidden)) return;
           var item = document.createElement('div');
           item.className = 'ms-option';
           if (opt.selected) item.classList.add('is-selected');
@@ -936,7 +938,8 @@
             sel.selectedIndex = i;
             trigger.textContent = getSelectedText();
             trigger.classList.toggle('is-placeholder', opt.value === '' && opt.disabled);
-            grid.querySelectorAll('.ms-option').forEach(function(el, j) { el.classList.toggle('is-selected', j === i); });
+            grid.querySelectorAll('.ms-option').forEach(function(el) { el.classList.remove('is-selected'); });
+            item.classList.add('is-selected');
             wrap.classList.remove('is-open');
             dropdown.classList.remove('is-open');
             sel.dispatchEvent(new Event('change', { bubbles: true }));
