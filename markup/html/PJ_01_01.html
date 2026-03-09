@@ -768,10 +768,34 @@
         });
       })();
 
+      /** 입력값이 날짜 형식인지 검사하고 input[type=date]용 YYYY-MM-DD로 변환. 변환 불가면 null */
+      function parseDateForInput(val) {
+        if (!val || typeof val !== 'string') return null;
+        var s = val.trim().replace(/\s/g, '');
+        if (!s) return null;
+        var y, m, d;
+        if (/^\d{4}-\d{1,2}-\d{1,2}$/.test(s)) {
+          var parts = s.split('-');
+          y = parseInt(parts[0], 10); m = parseInt(parts[1], 10); d = parseInt(parts[2], 10);
+        } else if (/^\d{4}[.\/]\d{1,2}[.\/]\d{1,2}$/.test(s)) {
+          var parts = s.split(/[.\/]/);
+          y = parseInt(parts[0], 10); m = parseInt(parts[1], 10); d = parseInt(parts[2], 10);
+        } else if (/^\d{8}$/.test(s)) {
+          y = parseInt(s.slice(0, 4), 10); m = parseInt(s.slice(4, 6), 10); d = parseInt(s.slice(6, 8), 10);
+        } else {
+          return null;
+        }
+        if (isNaN(y) || isNaN(m) || isNaN(d) || m < 1 || m > 12 || d < 1 || d > 31) return null;
+        var date = new Date(y, m - 1, d);
+        if (date.getFullYear() !== y || date.getMonth() !== m - 1 || date.getDate() !== d) return null;
+        m = String(m); d = String(d);
+        return y + '-' + (m.length === 1 ? '0' + m : m) + '-' + (d.length === 1 ? '0' + d : d);
+      }
+
       // input[type="date"] placeholder + yyyy.mm.dd 표시 + 캘린더 아이콘 처리
       document.querySelectorAll('input[type="date"]').forEach(function(input) {
         var placeholder = input.getAttribute('placeholder') || input.getAttribute('aria-label') || '';
-        var dateValue = input.value;
+        var dateValue = parseDateForInput(input.value) || input.value || '';
 
         function openPickerSafely() {
           if (typeof input.showPicker !== 'function') return;
@@ -798,27 +822,37 @@
         }
 
         input.addEventListener('focus', function() {
-          if (input.type === 'text') {
-            showDate();
-            requestAnimationFrame(openPickerSafely);
-            return;
-          }
+          if (input.type === 'text') return;
           requestAnimationFrame(openPickerSafely);
         });
-        input.addEventListener('click', function() {
-          if (input.type === 'text') showDate();
+        function switchToDateAndOpenPicker() {
+          if (input.type === 'text') {
+            var v = (input.value || '').trim();
+            if (v) dateValue = parseDateForInput(v) || v;
+            showDate();
+          }
           requestAnimationFrame(openPickerSafely);
+        }
+        input.addEventListener('click', function() {
+          switchToDateAndOpenPicker();
         });
         input.addEventListener('keydown', function(e) {
           if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'ArrowDown') return;
-          if (input.type === 'text') showDate();
-          requestAnimationFrame(openPickerSafely);
+          switchToDateAndOpenPicker();
         });
         input.addEventListener('change', function() {
           dateValue = input.value;
         });
         input.addEventListener('blur', function() {
-          dateValue = input.value;
+          var normalized = parseDateForInput(input.type === 'date' ? input.value : input.value);
+          if (normalized !== null) {
+            dateValue = normalized;
+          } else if (input.type === 'date') {
+            dateValue = input.value || '';
+          } else {
+            dateValue = (input.value || '').trim();
+            if (dateValue) dateValue = parseDateForInput(dateValue) || dateValue;
+          }
           showText();
         });
         showText();
