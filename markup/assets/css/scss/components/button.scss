@@ -104,8 +104,11 @@
     font-size: $font-size-md;
 
     @include hover-support {
-     // background-color: $primary-hover;
-     // border-color: $primary-hover;
+       background: url('../images/bg_btn_save_hover.svg');
+       background-position: center center;
+       background-size: 100% 100%;
+       background-repeat: no-repeat;
+       color: #FFED2D;
     }
 
     &:active:not(:disabled) {
@@ -125,8 +128,11 @@
     font-size: $font-size-md;
 
     @include hover-support {
-      //background-color: $secondary-hover;
-      //border-color: $secondary-hover;
+      background: url('../images/bg_btn_cancel_hover.svg');
+      background-position: center center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      //color: #FFED2D;
     }
 
     &:active:not(:disabled) {
@@ -140,8 +146,12 @@
       position: relative;
       background:linear-gradient(180deg, #FCF5DF 0%, #F3E8C6 100%);
       border-color: #FFF;
+      font-size: var(--font-base);
       font-weight: $font-weight-bold;
       border-radius: $radius-md;
+      &:hover{
+        background: linear-gradient(0deg, #EDD898 0%, #EDD898 100%), radial-gradient(30.26% 20.83% at 50% 79.17%, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.00) 100%), linear-gradient(180deg, #FFF8E2 50%, #F0E4C0 100%);
+      }
       &::before {
         content: ' ';
         position: absolute;
@@ -186,6 +196,9 @@
       width: 24px;
       height: 56px;
       color: rgba(0, 0, 0, 0.80);
+      &:hover{
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%), linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
+      }
       &::before {
         content: '';
         position: absolute;
