@@ -197,7 +197,7 @@
       height: 56px;
       color: rgba(0, 0, 0, 0.80);
       &:hover{
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%), linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%), linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
       }
       &::before {
         content: '';
