@@ -186,9 +186,6 @@ hr {
   // table 구조
   border-collapse: collapse;
   &.form-auto {
-    .form-th {
-      min-width: auto;
-    }
     .form-th,
     .form-cell {
       &:first-child{
@@ -241,7 +238,7 @@ hr {
     color: #555;
     white-space: nowrap;
     //width: 90px;
-    min-width: 70px;
+    min-width: 60px;
     flex-shrink: 0;
     text-align: left;
     line-height: calc($input-height-sm);

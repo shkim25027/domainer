@@ -97,8 +97,9 @@
     min-width: $input-width-sm;
     background: url('../images/bg_btn_save.svg');
     background-position: center center;
-    background-size: 100% 100%;
+    background-size: contain;
     background-repeat: no-repeat;
+    width: 86px;
     color: $white;
     font-weight: $font-weight-bold;
     font-size: $font-size-md;
@@ -119,9 +120,10 @@
 
   &-cancel {
     min-width: $input-width-sm;
+    width: 86px;
     background: url('../images/bg_btn_cancel.svg');
     background-position: center center;
-    background-size: 100% 100%;
+    background-size: contain;
     background-repeat: no-repeat;
     color: #000;
     font-weight: $font-weight-bold;
@@ -150,7 +152,7 @@
       font-weight: $font-weight-bold;
       border-radius: $radius-md;
       &:hover{
-        background: linear-gradient(0deg, #EDD898 0%, #EDD898 100%), radial-gradient(30.26% 20.83% at 50% 79.17%, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.00) 100%), linear-gradient(180deg, #FFF8E2 50%, #F0E4C0 100%);
+        background: linear-gradient(180deg, #EDD898 0%, #EDD898 100%), radial-gradient(30.26% 20.83% at 50% 79.17%, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.00) 100%), linear-gradient(180deg, #FFF8E2 50%, #F0E4C0 100%);
       }
       &::before {
         content: ' ';
@@ -187,7 +189,7 @@
       position: absolute;
       top: 6px;
       right: 6px;
-      background: linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
+      background: linear-gradient(-180deg, #E1E1E8 0%, #D3D3DA 100%);
       border:1px solid #fff;
       font-weight: $font-weight-bold;
       border-radius: $radius-md;
@@ -197,7 +199,7 @@
       height: 56px;
       color: rgba(0, 0, 0, 0.80);
       &:hover{
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%), linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%), linear-gradient(-180deg, #E1E1E8 0%, #D3D3DA 100%);
       }
       &::before {
         content: '';

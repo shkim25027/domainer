@@ -12,12 +12,11 @@
 
     var isMultiple = sel.multiple;
     var cols = sel.dataset.cols || 5;
+    var firstOpt = sel.options[0];
+    var firstAsPlaceholder = firstOpt && (firstOpt.disabled || firstOpt.value === '');
     var placeholder = isMultiple
-      ? (sel.dataset.placeholder || '선택')
-      : (function () {
-          var first = sel.options[0];
-          return first && (first.disabled || first.value === '') ? first.text : '';
-        })();
+      ? (sel.getAttribute('aria-placeholder') || sel.dataset.placeholder || (firstAsPlaceholder ? firstOpt.text : '') || '선택')
+      : (firstAsPlaceholder ? firstOpt.text : '');
 
     sel.style.display = 'none';
 
@@ -57,7 +56,8 @@
     dropdown.appendChild(grid);
 
     if (isMultiple) {
-      Array.from(sel.options).forEach(function (opt) {
+      Array.from(sel.options).forEach(function (opt, i) {
+        if (i === 0 && opt.value === '' && (opt.disabled || opt.hidden)) return; // placeholder 옵션은 목록에서 제외
         var label = document.createElement('label');
         label.className = 'ms-item';
         var chk = document.createElement('input');
@@ -65,7 +65,7 @@
         chk.value = opt.value || opt.text;
         chk.checked = opt.selected;
         if (chk.checked) label.classList.add('is-checked');
-        checkboxes.push({ chk: chk, label: label });
+        checkboxes.push({ chk: chk, label: label, optIndex: i });
         label.appendChild(chk);
         label.appendChild(document.createTextNode(opt.text));
         grid.appendChild(label);
@@ -73,8 +73,8 @@
       });
 
       function syncAll() {
-        checkboxes.forEach(function (item, i) {
-          sel.options[i].selected = item.chk.checked;
+        checkboxes.forEach(function (item) {
+          sel.options[item.optIndex].selected = item.chk.checked;
           item.label.classList.toggle('is-checked', item.chk.checked);
         });
         var chks = checkboxes.map(function (i) { return i.chk; });
