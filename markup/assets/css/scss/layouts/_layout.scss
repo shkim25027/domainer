@@ -135,11 +135,14 @@ body {
   margin: 0 12px;
  
   color: #fff;
-  font-size: var(--font-base);
+  font-size: var(--font-xs);
+  text-shadow: var(--nav-text-stroke);
+  filter: var(--text-shadow);
   display: flex;
   align-items: stretch;
   cursor: pointer;
   user-select: none;
+  z-index: 3;
 
   &-trigger {
     flex: 1;
@@ -220,14 +223,14 @@ body {
 
   &-dropdown {
     position: absolute;
-    top: calc(100% - 4px);
+    top: calc(100% - 8px);
     left: 0;
     right: 0;
     margin: 0;
-    padding: 6px 0 4px 0;
+    padding: 4px 0 0px 0;
     list-style: none;
-    background: #225C4A;
-    border: 1px solid #13423B;
+    background: linear-gradient(180deg, rgba(37, 119, 93, 0.60) 4.86%, rgba(27, 87, 67, 0.00) 15.86%, #003624 100%), #113E34;
+    border: 1px solid rgba(216, 255, 243, 0.00);
     border-radius:0 0 var(--radius-md) var(--radius-md);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     max-height: 200px;
@@ -238,16 +241,43 @@ body {
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
     z-index: 100;
     li {
+      position: relative;
       padding: 8px 16px;
       color: #fff;
-      font-size: var(--font-base);
+      font-size: var(--font-xs);
       cursor: pointer;
       transition: background 0.15s;
       filter: var(--text-shadow);
-
       &:hover,
       &[aria-selected="true"] {
-        background: rgba(255, 255, 255, 0.15);
+        background: linear-gradient(90deg, rgba(0, 188, 132, 0.15) 0%, rgba(0, 236, 166, 0.15) 25.69%, rgba(8, 62, 45, 0.15) 66.79%);
+      }
+      &[aria-selected="true"] {
+        &:after {
+          content: "";
+          position: absolute;
+          right: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 16px;
+          width: 16px;
+          background-image: url(../images/ico/ico_nav_selector.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+      &:not(:last-child):before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0px;
+        right: 0px;
+        height: 1px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.10);
+        box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.35);
+        z-index: 1;
       }
     }
   }

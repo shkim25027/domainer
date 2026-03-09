@@ -205,6 +205,9 @@
     font-weight: $font-weight-bold ;
     border-radius: $radius-sm;
     padding: 0;
+    &:hover {
+      background-color:#FFE0CB;
+    }
   }
 
   // Rounded
@@ -219,7 +222,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #007141;
+    background-color: #3ea279;
     color: $white;
     font-size: $font-size-xxs;
     font-weight: $font-weight-bold;

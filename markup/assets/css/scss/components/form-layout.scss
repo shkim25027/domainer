@@ -370,7 +370,9 @@ hr {
   }
   .btn-remove {
     border: none;
-    background: none;
+    &:not(:hover) {
+      background: none;
+    }
   }
 }
 
