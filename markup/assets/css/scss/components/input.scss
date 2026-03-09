@@ -508,10 +508,11 @@ select,
       white-space: nowrap;
     }
     .ms-dropdown .ms-item:hover {
-      background: #f3f4f6;
+      color: #137F66;
+      //background: rgba(19, 127, 102, 0.10);
     }
     .ms-dropdown .ms-item.is-checked {
-      background: #e5e7eb;
+      background: rgba(19, 127, 102, 0.10);
     }
     .ms-wrap--multiple .ms-item {
       display: flex;

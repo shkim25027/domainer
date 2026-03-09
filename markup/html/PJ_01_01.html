@@ -658,8 +658,14 @@
         group.addEventListener('click', function(e) {
           var btn = e.target.closest('.btn-remove');
           if (!btn) return;
+          // btn-remove는 내부 입력영역(.form-row-inline.flex-1)에도 있어
+          // 가장 가까운 .form-row-inline을 지우면 셀렉트(.ms-wrap)만 남을 수 있음.
+          // facilityGroup의 "직계 자식 행"을 찾아 제거한다.
           var row = btn.closest('.form-row-inline');
-          if (row) row.remove();
+          while (row && row.parentElement !== group) {
+            row = row.parentElement ? row.parentElement.closest('.form-row-inline') : null;
+          }
+          if (row && row.parentElement === group) row.remove();
         });
       })();
 
