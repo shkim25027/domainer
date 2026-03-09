@@ -645,7 +645,9 @@
           if (e.target.tagName !== 'SELECT') return;
           var row = e.target.closest('.form-row-inline');
           var isFirst = row === group.querySelector('.form-row-inline');
-          var oldField = e.target.nextElementSibling; // select 다음 형제 = .form-row.flex-1 또는 .form-row-inline.flex-1
+          // 커스텀 셀렉트 사용 시 select는 .ms-wrap 안에 있으므로, 입력 영역은 .ms-wrap 다음 형제
+          var wrap = e.target.closest('.ms-wrap');
+          var oldField = wrap ? wrap.nextElementSibling : e.target.nextElementSibling;
           if (!oldField) return;
           var tmp = document.createElement('div');
           tmp.innerHTML = getFieldHTML(e.target.value, !isFirst);
