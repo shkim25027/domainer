@@ -242,9 +242,13 @@ hr {
     flex-shrink: 0;
     text-align: left;
     line-height: calc($input-height-sm);
+    &.auto-width {
+      min-width: auto;
+    }
     .fw-5 {
       font-weight: 500;
     }
+    
   }
   .form-th-label {
     color: #000;
