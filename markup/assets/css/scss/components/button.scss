@@ -189,7 +189,7 @@
       position: absolute;
       top: 6px;
       right: 6px;
-      background: linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
+      background: linear-gradient(0deg, #E1E1E8 0%, #D3D3DA 100%);
       border:1px solid #fff;
       font-weight: $font-weight-bold;
       border-radius: $radius-md;
@@ -199,7 +199,7 @@
       height: 56px;
       color: rgba(0, 0, 0, 0.80);
       &:hover{
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%), linear-gradient(270deg, #E1E1E8 0%, #D3D3DA 100%);
+        background: linear-gradient(0deg, #CACAD7 0%, #BBBBC5 100%);
       }
       &::before {
         content: '';
