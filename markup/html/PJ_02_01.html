@@ -85,7 +85,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -168,7 +168,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -243,7 +243,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -326,7 +326,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -398,7 +398,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr .8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -460,7 +460,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr .8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -522,7 +522,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr .8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -584,7 +584,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns:1fr 0.8fr 1.2fr 1.2fr 1.5fr .8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -645,7 +645,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 80px;">
+                <div class="data-table" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr .8fr 60px;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>
@@ -719,9 +719,20 @@
         var removeBtn = e.target.closest('.btn-remove');
         if (!removeBtn) return;
         if (removeBtn.closest('.data-td')) {
-          removeBtn.closest('.data-row').remove();
+          var dataRow = removeBtn.closest('.data-row');
+          var tbody = dataRow.parentElement;
+          dataRow.remove();
+          if (tbody.querySelectorAll('.data-row').length === 0) {
+            var tmp = document.createElement('div');
+            tmp.innerHTML = personRowHTML;
+            tbody.appendChild(tmp.firstElementChild);
+          }
         } else if (removeBtn.closest('.form-cell')) {
-          removeBtn.closest('.form-area').remove();
+          var formArea = removeBtn.closest('.form-area');
+          formArea.remove();
+          if (panelBody.querySelectorAll('.form-area').length === 0) {
+            panelBody.appendChild(createAreaFn());
+          }
         }
       });
     }
@@ -763,7 +774,7 @@
           + '</div></div>'
           + '</div>'
           + '</div>'
-          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 80px;">'
+          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 60px;">'
           + '<div class="data-thead" style="display: contents;"><div class="data-row" style="display: contents;">'
           + '<div class="data-th">부서</div><div class="data-th">담당자</div>'
           + '<div class="data-th">전화번호</div><div class="data-th">메일 주소</div>'
@@ -810,7 +821,7 @@
           + '</div></div>'
           + '</div>'
           + '</div>'
-          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 80px;">'
+          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 60px;">'
           + '<div class="data-thead" style="display: contents;"><div class="data-row" style="display: contents;">'
           + '<div class="data-th">부서</div><div class="data-th">담당자</div>'
           + '<div class="data-th">전화번호</div><div class="data-th">팩스번호</div>'
@@ -978,6 +989,13 @@
       var placeholder = input.getAttribute('placeholder') || input.getAttribute('aria-label') || '';
       var dateValue = input.value;
 
+      function openPickerSafely() {
+        if (typeof input.showPicker !== 'function') return;
+        try {
+          input.showPicker();
+        } catch (e) {}
+      }
+
       function showText() {
         input.type = 'text';
         input.classList.add('input-date-icon');
@@ -996,7 +1014,21 @@
       }
 
       input.addEventListener('focus', function() {
+        if (input.type === 'text') {
+          showDate();
+          requestAnimationFrame(openPickerSafely);
+          return;
+        }
+        requestAnimationFrame(openPickerSafely);
+      });
+      input.addEventListener('click', function() {
         if (input.type === 'text') showDate();
+        requestAnimationFrame(openPickerSafely);
+      });
+      input.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'ArrowDown') return;
+        if (input.type === 'text') showDate();
+        requestAnimationFrame(openPickerSafely);
       });
       input.addEventListener('change', function() {
         dateValue = input.value;

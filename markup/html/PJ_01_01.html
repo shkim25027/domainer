@@ -665,7 +665,15 @@
           while (row && row.parentElement !== group) {
             row = row.parentElement ? row.parentElement.closest('.form-row-inline') : null;
           }
-          if (row && row.parentElement === group) row.remove();
+          if (row && row.parentElement === group) {
+            row.remove();
+            if (group.querySelectorAll(':scope > .form-row-inline').length === 0) {
+              var newRow = document.createElement('div');
+              newRow.className = 'form-row-inline';
+              newRow.innerHTML = '<select class="select-md">' + getSelectHTML('') + '</select>' + getFieldHTML('', true);
+              group.appendChild(newRow);
+            }
+          }
         });
       })();
 
@@ -694,10 +702,10 @@
             + '<div class="form-row"><div class="form-cell"><div class="form-row-inline">'
             + '<input class="input-auto" type="text" placeholder="공구명">'
             + '<span class="input-label">공구</span>'
-            + '<button type="button" class="btn btn-remove btn-xs">—</button>'
             + '</div></div></div>'
             + '<div class="form-row form-fix"><div class="form-th">업체명</div><div class="form-cell"><div class="form-row-inline">'
             + '<input class="input-lg" type="text" placeholder="업체명">'
+            + '<button type="button" class="btn btn-remove btn-xs">—</button>'
             + '</div></div></div>'
             + '</div>'
             + '<div class="form-row-inline">'
@@ -741,10 +749,21 @@
           if (!removeBtn) return;
           if (removeBtn.closest('.data-td')) {
             // 인원 행 삭제
-            removeBtn.closest('.data-row').remove();
+            var dataRow = removeBtn.closest('.data-row');
+            var tbody = dataRow.parentElement;
+            dataRow.remove();
+            if (tbody.querySelectorAll('.data-row').length === 0) {
+              var tmp = document.createElement('div');
+              tmp.innerHTML = PERSON_ROW;
+              tbody.appendChild(tmp.firstElementChild);
+            }
           } else if (removeBtn.closest('.form-cell')) {
             // 공구 전체 삭제
-            removeBtn.closest('.form-area').remove();
+            var formArea = removeBtn.closest('.form-area');
+            formArea.remove();
+            if (panelBody.querySelectorAll('.form-area').length === 0) {
+              panelBody.appendChild(createFormArea());
+            }
           }
         });
       })();
@@ -753,6 +772,13 @@
       document.querySelectorAll('input[type="date"]').forEach(function(input) {
         var placeholder = input.getAttribute('placeholder') || input.getAttribute('aria-label') || '';
         var dateValue = input.value;
+
+        function openPickerSafely() {
+          if (typeof input.showPicker !== 'function') return;
+          try {
+            input.showPicker();
+          } catch (e) {}
+        }
 
         function showText() {
           input.type = 'text';
@@ -772,7 +798,21 @@
         }
 
         input.addEventListener('focus', function() {
+          if (input.type === 'text') {
+            showDate();
+            requestAnimationFrame(openPickerSafely);
+            return;
+          }
+          requestAnimationFrame(openPickerSafely);
+        });
+        input.addEventListener('click', function() {
           if (input.type === 'text') showDate();
+          requestAnimationFrame(openPickerSafely);
+        });
+        input.addEventListener('keydown', function(e) {
+          if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'ArrowDown') return;
+          if (input.type === 'text') showDate();
+          requestAnimationFrame(openPickerSafely);
         });
         input.addEventListener('change', function() {
           dateValue = input.value;
