@@ -173,6 +173,7 @@ body {
 
   span:not(.arrow):not(.nav-arrow) {
     filter: var(--text-shadow);
+    text-shadow: var(--text-stroke);
   }
 
   .arrow,
@@ -248,6 +249,7 @@ body {
       cursor: pointer;
       transition: background 0.15s;
       filter: var(--text-shadow);
+      text-shadow: var(--text-stroke);
       &:hover,
       &[aria-selected="true"] {
         background: linear-gradient(90deg, rgba(0, 188, 132, 0.15) 0%, rgba(0, 236, 166, 0.15) 25.69%, rgba(8, 62, 45, 0.15) 66.79%);
