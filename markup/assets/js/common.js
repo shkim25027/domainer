@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 프로젝트 셀렉터 드롭다운 토글
   const projectSelector = document.querySelector(".project-selector");
   if (projectSelector) {
-    const trigger = projectSelector;
+    const trigger = projectSelector.querySelector("#project-selector-trigger") || projectSelector;
     const label = projectSelector.querySelector(".project-selector-label");
     const dropdown = projectSelector.querySelector(".project-selector-dropdown");
 
