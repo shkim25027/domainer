@@ -403,7 +403,7 @@ body {
   background-position: center top;
   padding-top: $spacing-lg;
   .user-name {
-    font-size: 1rem;
+    font-size: var(--font-base);
     color: #fff;
   }
   .user-photo {
