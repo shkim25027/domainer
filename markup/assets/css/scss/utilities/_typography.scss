@@ -24,3 +24,6 @@
 .fw-medium   { font-weight: $font-weight-medium !important; }     // 500
 .fw-semibold { font-weight: $font-weight-semibold !important; }  // 600
 .fw-bold     { font-weight: $font-weight-bold !important; }      // 700
+
+
+.tc-accent { color: var(--text-accent); }

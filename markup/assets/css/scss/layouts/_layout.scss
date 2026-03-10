@@ -101,6 +101,9 @@ body {
    ============================================================ */
 .nav-wrap {
   background: url('../images/bg_sidebar.png'), linear-gradient(180deg, #124233 0%, #14705F 100%);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   position: relative;      
   padding: 30px 0;
   height: 100vh; 

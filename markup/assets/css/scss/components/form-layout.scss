@@ -396,3 +396,31 @@ hr {
   min-width: max-content;
 }
 
+
+.view-area {
+  font-size: var(--font-base);
+}
+.view-table {
+
+  .view-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+.view-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-info-item-label {
+  
+}
