@@ -86,7 +86,7 @@
                         <div class="form-th">공사연장</div>
                         <div class="form-cell">
                           <div class="form-row-inline">
-                            <input type="text" value="25.36" placeholder="00.00">
+                            <input class="input-right" type="text" value="25.36" placeholder="00.00">
                             <span class="unit">km</span>
                           </div>
                         </div>
@@ -95,7 +95,7 @@
                         <div class="form-th">공사비</div>
                         <div class="form-cell">
                           <div class="form-row-inline">
-                            <input type="text" value="9,131,000,000,000" placeholder="0,000">
+                            <input class="input-right" type="text" value="9,131,000,000,000" placeholder="0,000">
                             <span class="unit">원</span>
                           </div>
                         </div>
@@ -138,11 +138,11 @@
           </div>
           <!-- // panel -->
           <div class="panel panel-radius-tr-0 panel-border-dashed-left">
+            <div class="title-box">
+              <h3 class="title">주요시설물</h3>
+              <button type="button" class="btn btn-add-primary btn-xs">+ 시설물</button>
+            </div>
             <div class="panel-body">
-              <div class="title-box">
-                <h3 class="title">주요시설물</h3>
-                <button type="button" class="btn btn-add-primary btn-xs">+ 시설물</button>
-              </div>
               <div class="form-group" id="facilityGroup">
                 <div class="form-row-inline">
                   <select class="select-md" aria-placeholder="종류">
@@ -176,11 +176,11 @@
         <!-- // panel-inline -->
 
         <div class="panel flex-1 panel-border-dashed-top">
+          <div class="title-box">
+            <h3 class="title">공구 관리</h3>
+            <button type="button" class="btn btn-add-primary btn-xs">+ 공구</button>
+          </div>
           <div class="panel-body" id="gongguPanelBody">
-            <div class="title-box">
-              <h3 class="title">공구 관리</h3>
-              <button type="button" class="btn btn-add-primary btn-xs">+ 공구</button>
-            </div>
             <div class="form-area">
               <div class="form-table form-auto">
                 <div class="form-row-inline">
@@ -523,8 +523,8 @@
         var group = document.getElementById('facilityGroup');
         if (!group) return;
 
-        // + 시설물 버튼
-        var addBtn = group.closest('.panel-body').querySelector('.btn-add-primary');
+        // + 시설물 버튼 (.title-box는 .panel-body 형제이므로 .panel 기준으로 탐색)
+        var addBtn = group.closest('.panel').querySelector('.btn-add-primary');
         if (addBtn) {
           addBtn.addEventListener('click', function() {
             var row = document.createElement('div');
@@ -623,12 +623,13 @@
           return el;
         }
 
-        // + 공구 버튼
-        panelBody.querySelector('.title-box .btn-add-primary').addEventListener('click', function() {
+        // + 공구 버튼 (.title-box는 .panel-body 형제이므로 .panel 기준으로 탐색)
+        var addGongguBtn = panelBody.closest('.panel').querySelector('.title-box .btn-add-primary');
+        if (addGongguBtn) addGongguBtn.addEventListener('click', function() {
           panelBody.appendChild(createFormArea());
         });
 
-        // 이벤트 위임
+        // 이벤트 위임 (공구 삭제 / + 인원 / 인원 삭제)
         panelBody.addEventListener('click', function(e) {
           // + 인원 버튼
           var addPersonBtn = e.target.closest('.btn-add-person');

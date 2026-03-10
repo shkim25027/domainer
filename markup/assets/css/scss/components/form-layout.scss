@@ -181,7 +181,7 @@ hr {
 // ────────────────────────────────────────────────
 .form-table {
   width: 100%;
-  font-size: var(--font-sm);
+  font-size: var(--font-base);
 
   // table 구조
   border-collapse: collapse;
@@ -234,8 +234,8 @@ hr {
     vertical-align: middle;
   }
   .form-th {
-    font-weight: 400;
-    color: #555;
+    font-weight: 500;
+    color: #8F8177;
     white-space: nowrap;
     //width: 90px;
     min-width: 60px;
@@ -303,7 +303,7 @@ hr {
   position: relative;
   width: 100%;
   margin-top: 4px;
-  font-size: var(--font-sm);
+  font-size: var(--font-base);
 
   &::before {
     content: '';
@@ -345,15 +345,18 @@ hr {
   // div 구조 (grid)
   .data-th {
     position: relative;
-    padding: 6px 10px;
-    margin-bottom: 3px;
+    height: 36px;
+    margin-bottom: 4px;
     text-align: center;
     font-weight: 500;
-    color: #A69F9A;
+    color: #8F8177;
     background: linear-gradient(180deg, #FFF 0%, rgba(251, 247, 244, 0.00) 100%);
     background-size: 100% 24px;
     background-repeat: no-repeat;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:has(.btn-add-person) {
       padding-right: 38px;
@@ -361,20 +364,25 @@ hr {
   }
   .data-td {
     padding: 2px 3px;
-    text-align: center;
+    text-align: center; 
     color: var(--gray-800);
     //background: var(--white);
-    input { width: 100%; }
+    input { width: 100%; } 
     &:has(.btn-remove) {
       padding-right: 38px;
     }
   }
   .btn-remove {
-    border: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='2' viewBox='0 0 8 2' fill='none'%3E%3Cg opacity='0.8'%3E%3Cline y1='1' x2='8' y2='1' stroke='%23FF2828' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-position: center center;
+    background-size: 8px 2px;
+    background-repeat: no-repeat;
     margin-left: 0;
-    margin-top: 4px;
+    margin-top: 8px;
+    width: 16px;
+    height: 16px;
     &:not(:hover) {
-      background: none;
+      background-color: transparent;
     }
   }
 }

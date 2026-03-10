@@ -30,18 +30,17 @@
         <div class="panel-grid flex-1" style="grid-template-columns: repeat(2, 1fr);">
           <!-- 좌: 조사업체 -->
           <div class="panel panel-radius-tl-0">
+            <div class="title-box">
+              <h3 class="title">조사업체</h3>
+              <button type="button" class="btn btn-add-primary btn-xs">+ 업체</button>
+            </div>
             <div class="panel-body" id="josaPanelBody">
-              <div class="title-box">
-                <h3 class="title">조사업체</h3>
-                <button type="button" class="btn btn-add-primary btn-xs">+ 업체</button>
-              </div>
-
               <!-- 조사업체 1 -->
               <div class="form-area">
                 <div class="form-table form-auto">
                   <div class="form-row-inline">
                     <div class="form-row">
-                      <div class="form-th">업체구분</div>
+                      <div class="form-th auto-width">업체구분</div>
                       <div class="form-cell">
                         <select class="select select-lg">
                           <option value="" disabled hidden selected>업체구분</option>
@@ -51,10 +50,21 @@
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-th">업체명</div>
+                      <div class="form-th auto-width">업체명</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
                           <input type="text" class="input flex-1" value="(주)케이씨씨건설" placeholder="업체명">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row form-fix">
+                      <div class="form-th auto-width">조사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" id="datepicker" class="input input-md input-datepicker" placeholder="시작일" aria-label="시작일">
+                          <span class="sep">~</span>
+                          <input type="text" class="input input-md input-datepicker" placeholder="종료일" aria-label="종료일">
                           <button type="button" class="btn btn-remove btn-xs">—</button>
                         </div>
                       </div>
@@ -62,7 +72,7 @@
                   </div>
                   <div class="form-row-inline">
                     <div class="form-row">
-                      <div class="form-th">조사지역</div>
+                      <div class="form-th auto-width">조사지역</div>
                       <div class="form-cell">
                         <select class="select select-lg select-multiple" multiple aria-placeholder="조사지역">
                           <option value="" disabled hidden selected>조사지역</option>
@@ -74,16 +84,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="form-row form-fix">
-                      <div class="form-th">조사기간</div>
-                      <div class="form-cell">
-                        <div class="form-row-inline">
-                          <input type="text" id="datepicker" class="input input-md input-datepicker" placeholder="시작일" aria-label="시작일">
-                          <span class="sep">~</span>
-                          <input type="text" class="input input-md input-datepicker" placeholder="종료일" aria-label="종료일">
-                        </div>
-                      </div>
-                    </div>
+                   
                   </div>
                 </div>
                 <div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr 70px;">
@@ -134,28 +135,11 @@
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-th">업체명</div>
+                      <div class="form-th auto-width">업체명</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
                           <input type="text" class="input flex-1" value="(주)태영건설" placeholder="업체명">
-                          <button type="button" class="btn btn-remove btn-xs">—</button>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row-inline">
-                    <div class="form-row">
-                      <div class="form-th">조사지역</div>
-                      <div class="form-cell">
-                        <select class="select select-lg select-multiple" multiple multiple aria-placeholder="조사지역">
-                          <option value="" disabled hidden selected>조사지역</option>
-                          <option>전주시 주화산동1가</option>
-                          <option>전주시 주화산동2가</option>
-                          <option>전주시 주화산동3가</option>
-                          <option>전주시 주화산동4가</option>
-                          <option>전주시 주화산동5가</option>
-                          <option>전주시 주화산동6가</option>
-                        </select>
                       </div>
                     </div>
                     <div class="form-row form-fix">
@@ -165,7 +149,24 @@
                           <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="시작일" aria-label="시작일">
                           <span class="sep">~</span>
                           <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="종료일" aria-label="종료일">
+                          <button type="button" class="btn btn-remove btn-xs">—</button>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row-inline">
+                    <div class="form-row">
+                      <div class="form-th">조사지역</div>
+                      <div class="form-cell">
+                        <select class="select select-lg select-multiple" multiple aria-placeholder="조사지역">
+                          <option value="" disabled hidden selected>조사지역</option>
+                          <option>전주시 주화산동1가</option>
+                          <option>전주시 주화산동2가</option>
+                          <option>전주시 주화산동3가</option>
+                          <option>전주시 주화산동4가</option>
+                          <option>전주시 주화산동5가</option>
+                          <option>전주시 주화산동6가</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -210,10 +211,20 @@
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-th">업체명</div>
+                      <div class="form-th auto-width">업체명</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
                           <input type="text" class="input flex-1" value="(주)금호건설" placeholder="업체명">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row form-fix">
+                      <div class="form-th">조사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="시작일" aria-label="시작일">
+                          <span class="sep">~</span>
+                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="종료일" aria-label="종료일">
                           <button type="button" class="btn btn-remove btn-xs">—</button>
                         </div>
                       </div>
@@ -232,16 +243,6 @@
                           <option>전주시 주화산동5가</option>
                           <option>전주시 주화산동6가</option>
                         </select>
-                      </div>
-                    </div>
-                    <div class="form-row form-fix">
-                      <div class="form-th">조사기간</div>
-                      <div class="form-cell">
-                        <div class="form-row-inline">
-                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="시작일" aria-label="시작일">
-                          <span class="sep">~</span>
-                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="종료일" aria-label="종료일">
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -279,7 +280,7 @@
               </div>
               <!-- // 조사업체 3 -->
 
-                            <!-- 조사업체 4 -->
+              <!-- 조사업체 4 -->
               <div class="form-area">
                 <div class="form-table form-auto">
                   <div class="form-row-inline">
@@ -294,10 +295,20 @@
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-th">업체명</div>
+                      <div class="form-th auto-width">업체명</div>
                       <div class="form-cell">
                         <div class="form-row-inline">
                           <input type="text" class="input flex-1" value="(주)금호건설" placeholder="업체명">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row form-fix">
+                      <div class="form-th">조사기간</div>
+                      <div class="form-cell">
+                        <div class="form-row-inline">
+                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="시작일" aria-label="시작일">
+                          <span class="sep">~</span>
+                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="종료일" aria-label="종료일">
                           <button type="button" class="btn btn-remove btn-xs">—</button>
                         </div>
                       </div>
@@ -316,16 +327,6 @@
                           <option>전주시 주화산동5가</option>
                           <option>전주시 주화산동6가</option>
                         </select>
-                      </div>
-                    </div>
-                    <div class="form-row form-fix">
-                      <div class="form-th">조사기간</div>
-                      <div class="form-cell">
-                        <div class="form-row-inline">
-                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="시작일" aria-label="시작일">
-                          <span class="sep">~</span>
-                          <input type="text" class="input input-md input-datepicker" value="2023.08.01" placeholder="종료일" aria-label="종료일">
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -361,7 +362,7 @@
                   </div>
                 </div>
               </div>
-              <!-- // 조사업체 3 -->
+              <!-- // 조사업체 4 -->
 
             </div>
             <!-- // panel-body -->
@@ -370,13 +371,11 @@
 
           <!-- 우: 협의기관 -->
           <div class="panel panel-border-dashed-left panel-radius-tr-0">
-            <div class="panel-body" id="hyeobuiPanelBody">
-              <div class="title-box">
-                <h3 class="title">협의기관</h3>
-                <button type="button" class="btn btn-add-primary btn-xs">+ 기관</button>
-              </div>
-
-              <!-- 협의기관 1 -->
+            <div class="title-box">
+              <h3 class="title">협의기관</h3>
+              <button type="button" class="btn btn-add-primary btn-xs">+ 기관</button>
+            </div>
+            <div class="panel-body" id="hyeobuiPanelBody">              <!-- 협의기관 1 -->
               <div class="form-area">
                 <div class="form-table form-auto">
                   <div class="form-row-inline">
@@ -683,7 +682,7 @@
                   </div>
                 </div>
               </div>
-              <!-- // 협의기관 4 -->
+              <!-- // 협의기관 5 -->
 
             </div>
             <!-- // panel-body -->
@@ -707,35 +706,64 @@
       var panelBody = document.getElementById(panelBodyId);
       if (!panelBody) return;
 
-      panelBody.querySelector('.title-box .btn-add-primary').addEventListener('click', function() {
-        panelBody.appendChild(createAreaFn());
-      });
+      // title-box는 panel-body 밖(형제)에 있음
+      var panel = panelBody.closest('.panel');
+      var addAreaBtn = panel ? panel.querySelector('.title-box .btn-add-primary') : null;
+      function initNewArea(newArea) {
+        if (!newArea) return;
+        if (typeof initSelect === 'function') {
+          newArea.querySelectorAll('select').forEach(initSelect);
+        }
+        if (typeof initDatepicker === 'function') {
+          newArea.querySelectorAll('.input-datepicker').forEach(initDatepicker);
+        }
+      }
+      if (addAreaBtn) {
+        addAreaBtn.addEventListener('click', function() {
+          var newArea = createAreaFn();
+          panelBody.appendChild(newArea);
+          initNewArea(newArea);
+        });
+      }
 
+      // 삭제(—) 버튼: data-td 안 → 인원 행만 삭제 / form-cell 안 → 업체·기관 블록 전체 삭제
       panelBody.addEventListener('click', function(e) {
         var addPersonBtn = e.target.closest('.btn-add-person');
         if (addPersonBtn) {
           var tbody = addPersonBtn.closest('.data-table').querySelector('.data-tbody');
-          var tmp = document.createElement('div');
-          tmp.innerHTML = personRowHTML;
-          tbody.appendChild(tmp.firstElementChild);
-          return;
-        }
-        var removeBtn = e.target.closest('.btn-remove');
-        if (!removeBtn) return;
-        if (removeBtn.closest('.data-td')) {
-          var dataRow = removeBtn.closest('.data-row');
-          var tbody = dataRow.parentElement;
-          dataRow.remove();
-          if (tbody.querySelectorAll('.data-row').length === 0) {
+          if (tbody) {
             var tmp = document.createElement('div');
             tmp.innerHTML = personRowHTML;
             tbody.appendChild(tmp.firstElementChild);
           }
-        } else if (removeBtn.closest('.form-cell')) {
+          return;
+        }
+        var removeBtn = e.target.closest('.btn-remove');
+        if (!removeBtn) return;
+        // 1) 인원 행 삭제: .data-td 안의 — 버튼
+        if (removeBtn.closest('.data-td')) {
+          var dataRow = removeBtn.closest('.data-row');
+          if (dataRow) {
+            var tbody = dataRow.parentElement;
+            dataRow.remove();
+            if (tbody && tbody.querySelectorAll('.data-row').length === 0) {
+              var tmp = document.createElement('div');
+              tmp.innerHTML = personRowHTML;
+              tbody.appendChild(tmp.firstElementChild);
+            }
+          }
+          return;
+        }
+        // 2) 업체/기관 블록 삭제: .form-cell 안의 — 버튼 (조사기간, 기관명 등)
+        if (removeBtn.closest('.form-cell')) {
           var formArea = removeBtn.closest('.form-area');
-          formArea.remove();
-          if (panelBody.querySelectorAll('.form-area').length === 0) {
-            panelBody.appendChild(createAreaFn());
+          if (formArea) {
+            formArea.remove();
+            if (panelBody.querySelectorAll('.form-area').length === 0) {
+              var newArea = createAreaFn();
+              panelBody.appendChild(newArea);
+              initNewArea(newArea);
+            }
           }
         }
       });
@@ -762,23 +790,22 @@
           '<div class="form-table form-auto">'
           + '<div class="form-row-inline">'
           + '<div class="form-row"><div class="form-th">업체구분</div><div class="form-cell">'
-          + '<select class="select select-md"><option value="" disabled hidden selected>업체구분</option><option>현장조사</option><option>감정평가</option></select>'
+          + '<select class="select select-lg"><option value="" disabled hidden selected>업체구분</option><option>현장조사</option><option>감정평가</option></select>'
           + '</div></div>'
-          + '<div class="form-row"><div class="form-th">업체명</div><div class="form-cell">'
-          + '<div class="form-row-inline"><input type="text" class="input flex-1" placeholder="업체명">'
-          + '<button type="button" class="btn btn-remove btn-xs">—</button></div>'
+          + '<div class="form-row"><div class="form-th auto-width">업체명</div><div class="form-cell">'
+          + '<div class="form-row-inline"><input type="text" class="input flex-1" placeholder="업체명"></div>'
+          + '</div></div>'
+          + '<div class="form-row form-fix"><div class="form-th">조사기간</div><div class="form-cell">'
+          + '<div class="form-row-inline"><input type="text" class="input input-md input-datepicker" placeholder="시작일" aria-label="시작일"><span class="sep">~</span><input type="text" class="input input-md input-datepicker" placeholder="종료일" aria-label="종료일"><button type="button" class="btn btn-remove btn-xs">—</button></div>'
           + '</div></div>'
           + '</div>'
           + '<div class="form-row-inline">'
           + '<div class="form-row"><div class="form-th">조사지역</div><div class="form-cell">'
-          + '<select class="select select-md select-multiple" multiple aria-placeholder="조사지역"><option value="" disabled hidden selected>조사지역</option><option>1공구</option><option>2공구</option><option>3공구</option><option>4공구</option><option>5공구</option></select>'
-          + '</div></div>'
-          + '<div class="form-row form-fix"><div class="form-th">조사기간</div><div class="form-cell">'
-          + '<div class="form-row-inline"><input type="text" class="input input-md input-datepicker" placeholder="시작일" aria-label="시작일"><span class="sep">~</span><input type="text" class="input input-md input-datepicker" placeholder="종료일" aria-label="종료일"></div>'
+          + '<select class="select select-lg select-multiple" multiple aria-placeholder="조사지역"><option value="" disabled hidden selected>조사지역</option><option>1공구</option><option>2공구</option><option>3공구</option><option>4공구</option><option>5공구</option></select>'
           + '</div></div>'
           + '</div>'
           + '</div>'
-          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr 0.8fr 70px;">'
+          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr 70px;">'
           + '<div class="data-thead" style="display: contents;"><div class="data-row" style="display: contents;">'
           + '<div class="data-th">부서</div><div class="data-th">담당자</div>'
           + '<div class="data-th">전화번호</div><div class="data-th">메일 주소</div>'
@@ -824,7 +851,7 @@
           + '</div></div>'
           + '</div>'
           + '</div>'
-          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 2fr .8fr 70px;">'
+          + '<div class="data-table" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr .8fr 70px;">'
           + '<div class="data-thead" style="display: contents;"><div class="data-row" style="display: contents;">'
           + '<div class="data-th">부서</div><div class="data-th">담당자</div>'
           + '<div class="data-th">전화번호</div><div class="data-th">팩스번호</div>'
@@ -833,7 +860,6 @@
           + '</div></div>'
           + '<div class="data-tbody" style="display: contents;">' + PERSON_ROW + '</div>'
           + '</div>';
-        el.querySelectorAll('.input-datepicker').forEach(initDatepicker);
         return el;
       }
 

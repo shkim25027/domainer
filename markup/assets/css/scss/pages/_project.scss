@@ -145,3 +145,38 @@
     }
   }
 }
+
+// =============================================
+// 조사·협의 관리 보기 (PJ_02_02)
+// =============================================
+.view-area {
+  .view-block-title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: var(--gray-900);
+    margin-bottom: $spacing-sm;
+    .view-block-label {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-medium;
+      color: $gray-600;
+      margin-left: $spacing-xs;
+    }
+  }
+  .view-info {
+    margin-bottom: $spacing-sm;
+    .view-cell {
+      color: var(--gray-800);
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.data-table-view {
+  .data-td {
+    padding: 6px 10px;
+    text-align: center;
+    color: var(--gray-800);
+    background: var(--white);
+    font-size: $font-size-sm;
+  }
+}

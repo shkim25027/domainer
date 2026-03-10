@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-  padding: $spacing-lg $spacing-lg $spacing-lg 4px;
+  padding: $spacing-lg $spacing-md $spacing-lg 0px;
   overflow: hidden;
   &:has(.panel-header:last-child) {
     padding-bottom: 0;
@@ -24,19 +24,20 @@
 
   &:first-child,
   &.panel-border-dashed-top {
+    > .title-box,
     .panel-body {
       padding-left: 44px;
     }
   }
   &:last-child {
     .panel-body {
-      padding-right: 20px;
+      padding-right: 28px;
       padding-bottom: 20px;
     }
   }
   > .panel-header,
   > .title-box {
-    padding: 20px $spacing-lg $spacing-sm;
+    padding: 0px $spacing-lg $spacing-md;
     flex-shrink: 0;
   }
 }
@@ -45,7 +46,7 @@
   flex: 1;
   overflow-y: auto;
   min-height: 0;
-  padding: 0 calc($spacing-lg - 4px);
+  padding: 0 calc($spacing-lg + 4px) 0 calc($spacing-lg - 4px);
   z-index: 1;
 }
 
@@ -109,8 +110,8 @@
 
   .ico-title {
     padding-top: 2px;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     opacity: 0.33;
     img {
       width: 100%;
@@ -390,6 +391,7 @@
   padding-bottom: $spacing-md;
   padding-top: 2px;
   .title {
-    font-size: $font-size-lg;
+    font-size: $font-title-3;
+    font-weight: $font-weight-medium;
   }
 }

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    @@include("_include/_head.html")
+  </head>
+  <body>
+    <div class="wrap">
+      @@include("_include/_sidebar.html")
+      <div class="container">
+        <div class="contents">
+
+          <!-- =============================================
+               조사·협의 관리 (보기)
+               ============================================= -->
+
+          <div class="panel page-title">
+            <div class="panel-header">
+              <h2 class="panel-title">
+                <img src="./assets/images/ico/ico_setting.svg" alt="" class="ico-title" aria-hidden="true">
+                조사·협의 관리
+              </h2>
+              <div class="d-flex gap-1">
+                <a href="./PJ_02_01.html" class="btn btn-edit btn-sm">수정</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-grid flex-1" style="grid-template-columns: repeat(2, 1fr);">
+            <!-- 좌: 조사업체 (보기) -->
+            <div class="panel panel-radius-tl-0">
+              <div class="title-box">
+                <h3 class="title">조사업체</h3>
+              </div>
+              <div class="panel-body" id="josaPanelBody">
+                <!-- 조사업체 1 -->
+                <div class="view-info">
+                  <div class="view-info-header">
+                    <div class="view-info-item">
+                      <div class="view-info-item-label">업체명</div>
+                      <div class="view-info-item-value">(주)케이씨씨건설</div>
+                    </div>
+                    <div class="view-info-item">
+                      <div class="view-info-item-label">조사기간</div>
+                      <div class="view-info-item-value">2023.08.01 ~ 2024.08.01</div>
+                    </div>
+                  </div>
+                  <div class="view-info-content"></div>
+                  
+                </div>
+                <div class="form-area view-area">
+                  
+                  <div class="form-table form-auto view-info">
+
+                    <div class="form-row-inline">
+                      <div class="form-row">
+                        <div class="form-th">조사지역</div>
+                        <div class="form-cell view-cell">1,3공구</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr;">
+                    <div class="data-thead" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-th">부서</div>
+                        <div class="data-th">담당자</div>
+                        <div class="data-th">전화번호</div>
+                        <div class="data-th">메일 주소</div>
+                        <div class="data-th">특기사항</div>
+                      </div>
+                    </div>
+                    <div class="data-tbody" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 조사업체 2 -->
+                <div class="form-area view-area">
+                  <div class="view-block-title">(주)태영건설 <span class="view-block-label">감정평가</span></div>
+                  <div class="form-table form-auto view-info">
+                    <div class="form-row-inline">
+                      <div class="form-row form-fix">
+                        <div class="form-th">조사기간</div>
+                        <div class="form-cell view-cell">2023.08.01 ~ 2024.08.01</div>
+                      </div>
+                    </div>
+                    <div class="form-row-inline">
+                      <div class="form-row">
+                        <div class="form-th">조사지역</div>
+                        <div class="form-cell view-cell">전주시 주화산동1가, 전주시 주화산동2가, 전주시 주화산동3가, 전주시 주화산동4가</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr;">
+                    <div class="data-thead" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-th">부서</div>
+                        <div class="data-th">담당자</div>
+                        <div class="data-th">전화번호</div>
+                        <div class="data-th">메일 주소</div>
+                        <div class="data-th">특기사항</div>
+                      </div>
+                    </div>
+                    <div class="data-tbody" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 조사업체 3 -->
+                <div class="form-area view-area">
+                  <div class="view-block-title">(주)금호건설 <span class="view-block-label">감정평가</span></div>
+                  <div class="form-table form-auto view-info">
+                    <div class="form-row-inline">
+                      <div class="form-row form-fix">
+                        <div class="form-th">조사기간</div>
+                        <div class="form-cell view-cell">2023.08.01 ~ 2024.08.01</div>
+                      </div>
+                    </div>
+                    <div class="form-row-inline">
+                      <div class="form-row">
+                        <div class="form-th">조사지역</div>
+                        <div class="form-cell view-cell">전주시 주화산동1가, 진주시 주화산동2가, 진주시 주화산동3가, 진주시 주화산동4가, 진주시 주화산동5가, 진주시 주화산동6가, 전주시 주화산동7가, 전주시, 전주시 주화산동8가</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr 0.8fr;">
+                    <div class="data-thead" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-th">부서</div>
+                        <div class="data-th">담당자</div>
+                        <div class="data-th">전화번호</div>
+                        <div class="data-th">메일 주소</div>
+                        <div class="data-th">특기사항</div>
+                      </div>
+                    </div>
+                    <div class="data-tbody" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 우: 협의기관 (보기) -->
+            <div class="panel panel-border-dashed-left panel-radius-tr-0">
+              <div class="title-box">
+                <h3 class="title">협의기관</h3>
+              </div>
+              <div class="panel-body" id="hyeobuiPanelBody">
+                <!-- 협의기관 1 -->
+                <div class="form-area view-area">
+                  <div class="view-block-title">전북특별자치도 <span class="view-block-label">관계기관</span></div>
+                  <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr 0.8fr;">
+                    <div class="data-thead" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-th">부서</div>
+                        <div class="data-th">담당자</div>
+                        <div class="data-th">전화번호</div>
+                        <div class="data-th">팩스번호</div>
+                        <div class="data-th">메일 주소</div>
+                        <div class="data-th">특기사항</div>
+                      </div>
+                    </div>
+                    <div class="data-tbody" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 협의기관 2 -->
+                <div class="form-area view-area">
+                  <div class="view-block-title">전주시 <span class="view-block-label">관계기관</span></div>
+                  <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr 0.8fr;">
+                    <div class="data-thead" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-th">부서</div>
+                        <div class="data-th">담당자</div>
+                        <div class="data-th">전화번호</div>
+                        <div class="data-th">팩스번호</div>
+                        <div class="data-th">메일 주소</div>
+                        <div class="data-th">특기사항</div>
+                      </div>
+                    </div>
+                    <div class="data-tbody" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 협의기관 3 -->
+                <div class="form-area view-area">
+                  <div class="view-block-title">한국토지주택공사 <span class="view-block-label">보상협의회</span></div>
+                  <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr 0.8fr;">
+                    <div class="data-thead" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-th">부서</div>
+                        <div class="data-th">담당자</div>
+                        <div class="data-th">전화번호</div>
+                        <div class="data-th">팩스번호</div>
+                        <div class="data-th">메일 주소</div>
+                        <div class="data-th">특기사항</div>
+                      </div>
+                    </div>
+                    <div class="data-tbody" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 협의기관 4 -->
+                <div class="form-area view-area">
+                  <div class="view-block-title">중앙토지수용위원회 <span class="view-block-label">토지수용위원회</span></div>
+                  <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 0.8fr 1.2fr 1.2fr 1.5fr 0.8fr;">
+                    <div class="data-thead" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-th">부서</div>
+                        <div class="data-th">담당자</div>
+                        <div class="data-th">전화번호</div>
+                        <div class="data-th">팩스번호</div>
+                        <div class="data-th">메일 주소</div>
+                        <div class="data-th">특기사항</div>
+                      </div>
+                    </div>
+                    <div class="data-tbody" style="display: contents;">
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                      <div class="data-row" style="display: contents;">
+                        <div class="data-td">토목사업본부</div>
+                        <div class="data-td">김수현</div>
+                        <div class="data-td">010-3595-3511</div>
+                        <div class="data-td">041-123-456</div>
+                        <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                        <div class="data-td">—</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
