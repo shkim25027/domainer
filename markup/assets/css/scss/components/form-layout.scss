@@ -245,9 +245,6 @@ hr {
     flex-shrink: 0;
     text-align: left;
     line-height: calc($input-height-sm);
-    &.auto-width {
-      min-width: auto;
-    }
     .fw-5 {
       font-weight: 500;
     }
@@ -430,10 +427,56 @@ hr {
 }
 
 .view-table {
+  > .view-row,
+  >.view-row-inline {
+    &:not(:last-child) {  
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 0 0 #FFF;
+      }
+    }
+  }
   .view-row {
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+  
+    
+  }
+  .view-label {
+    height: 46px;
+  }
+  .view-value {
+    display: flex;
+    font-size: var(--font-lg);
+    min-height: 46px;
+    align-items: center;
+    gap: 12px;
+    .text-sub {
+      margin-top: 4px;
+      font-size: var(--font-base);
+      color: #8F8177;
+      font-weight: 400;
+      strong {
+        color: #000;
+        font-size: var(--font-base);
+      }
+    }
+  }
+  .view-value-badge {
+    font-size: var(--font-sm);
+    border-radius: 4px;
+    padding: 2px 8px;
+    background: rgba(229, 220, 214, 0.40);
+    color: #000;
+    font-weight: 500;
   }
 }
 .view-row {
@@ -442,13 +485,25 @@ hr {
   gap: 8px;
 }
 
+.title-label {
+  display: inline-block;
+  min-width: 64px;
+}
+
 .view-row-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
 }
-
+.view-row-inline {
+  display: flex;
+  gap: 64px;
+}
+.view-value-separator {
+  color: #8F8177;
+  font-size: var(--font-sm);
+}
 .view-content {
   background: linear-gradient(270deg, rgba(236, 232, 224, 0.00) 0%, rgba(236, 232, 224, 0.30) 85%, rgba(236, 232, 224, 0.00) 100%);
 }
@@ -463,7 +518,15 @@ hr {
   height: 42px;
   align-self: flex-start;
   align-items: center;
-  
+  .badge {
+    color: #323130;
+  }
+}
+
+// 공통 auto-width 유틸리티: 레이블 너비를 내용 크기에 맞게
+.form-th.auto-width,
+.view-label.auto-width {
+  min-width: auto;
 }
 
 .view-value {
@@ -474,6 +537,10 @@ hr {
   font-size: var(--font-base);
   display: flex;
   align-items: center;
+  strong {
+    font-size: $font-title-3;
+    font-weight: 700;
+  }
 }
 .view-row,
 .view-header  {
@@ -506,6 +573,9 @@ hr {
       height: 10px;
       background: rgba(0, 0, 0, 0.2);
     }
+  }
+  .view-value {
+    height: 42px;
   }
 }
 .data-table-view {

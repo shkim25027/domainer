@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    @@include("_include/_head.html")
+  </head>
+  <body>
+    <div class="wrap">
+      @@include("_include/_sidebar.html")
+      <div class="container">
+        <div class="contents">
+
+          <!-- =============================================
+               공사정보 관리 (보기)
+               ============================================= -->
+
+          <div class="panel page-title">
+            <div class="panel-header">
+              <h2 class="panel-title">
+                <img src="./assets/images/ico/ico_setting.svg" alt="" class="ico-title" aria-hidden="true">
+                공사정보 관리
+              </h2>
+              <div class="d-flex gap-1">
+                <a href="./PJ_01_01.html" class="btn btn-edit btn-sm">수정</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 상단: 공사 기본정보 + 주요시설물 요약 -->
+          <div class="panel-grid project-layout project-layout--summary flex-1" style="grid-template-columns: 1.1fr 0.9fr;">
+            <!-- 좌: 공사 기본정보 (보기) -->
+            <div class="panel project-panel project-panel--overview panel-radius-tl-0">
+              <div class="panel-body project-overview-body">
+                <div class="project-info project-overview">
+                  <!-- 좌: 지도 썸네일 -->
+                  <div class="project-info-map">
+                    <div class="map-thumb">
+                      <img src="./assets/images/img_map.png" alt="공사 구간 지도">
+                      <a
+                        href="https://map.vworld.kr/dtkmap/linkmap.do?mapmode=base&plon=MTQwNzg4MjMuNDEyMTIyMjY2&plat=NDQzMDYwMC4xMzYwODM0NTI=&pzoom=MTI=&player=%EA%B5%AD%EA%B0%80%EB%8F%84%EB%A1%9C%EB%A7%9D%20%EC%A2%85%ED%95%A9%EA%B3%84%ED%9A%8D&nlayer=pmap_road"
+                        target="_blank"
+                        rel="noopener"
+                        style="position:absolute; inset:0; z-index:1;"
+                        aria-label="지도 새창으로 열기"
+                      ></a>
+                    </div>
+                  </div>
+                  <!-- 우: 사업 기본정보 (보기) -->
+                  <div class="project-info-form project-overview-form">
+                    <div class="form-area view-area project-overview-card">
+                      <div class="title-box view-title-box project-section-header">
+                        <h3 class="title"> 
+                          <span class="title-label">공사명</span>
+                          <strong class="tc-accent">고속국도 제30호 서산영덕선(대산~당진) 건설공사</strong>
+                        </h3>
+
+                      </div>
+                      <div class="view-table project-overview-table">
+                        <div class="view-row">
+                          <div class="view-label ">공사명</div>
+                          <div class="view-value">고속국도 제30호 서산영덕선(대산~당진) 건설공사</div>
+                        </div>
+                        <div class="view-row">
+                          <div class="view-label">공사구간</div>
+                          <div class="view-value">충청남도 서산시 대산읍 화곡리 ~ 충청남도 당진시 사기소동</div>
+                        </div>
+                        <div class="view-row">
+                          <div class="view-label">공사기간</div>
+                          <div class="view-value">2023.11.13 ~ 2030.12.20 <span class="text-sub">착공일로부터 <strong>86</strong>개월</span></div>
+                        </div>
+                        <div class="view-row-inline">
+                          <div class="view-row flex-1">
+                            <div class="view-label">공사연장</div>
+                            <div class="view-value gap-0">25.36<span class="fw-normal">km</span></div>
+                          </div>
+                          <div class="view-row flex-1">
+                            <div class="view-label">공사비</div>
+                            <div class="view-value gap-0">9,131,000,000,000 <span class="fw-normal">원</span></div>
+                          </div>
+                        </div>
+                        <div class="view-row">
+                          <div class="view-label">과업목적</div>
+                          <div class="view-value fw-normal">
+                            황해권 물류거점인 대산항 및 대죽자원비축 산업단지 등과 연결되는 고속도로망 확충으로 지역균형 발전 촉진
+                          </div>
+                        </div>
+                        <div class="view-row-inline">
+                          <div class="view-row flex-1">
+                            <div class="view-label">사업자</div>
+                            <div class="view-value">
+                              <span>서산아산건설사업단</span>
+                              <span class="view-value-badge">D412565</span>
+                                <span class="view-value-separator">/</span>  
+                                <span>본사(토지공간실)</span>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 우: 주요시설물 (보기) -->
+            <div class="panel project-panel project-panel--summary panel-border-dashed-left panel-radius-tr-0">
+              <div class="title-box view-title-box project-section-header">
+                <h3 class="title">주요시설물</h3>
+              </div>
+              <div class="panel-body project-summary-body">
+                <div class="form-area view-area project-summary-card">
+                  <div class="view-info project-summary-info">
+                    <div class="view-table project-summary-table">
+                      <div class="view-row">
+                        <div class="view-label">나들목</div>
+                        <div class="view-value">대산, 대호지, 정미</div>
+                      </div>
+                      <div class="view-row">
+                        <div class="view-label">분기점</div>
+                        <div class="view-value">당진</div>
+                      </div>
+                      <div class="view-row">
+                        <div class="view-label">터널</div>
+                        <div class="view-value">4개소 (2.57 km)</div>
+                      </div>
+                      <div class="view-row">
+                        <div class="view-label">교량</div>
+                        <div class="view-value">46개소 (3.85 km)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 하단: 공구 관리 (보기) -->
+          <div class="panel project-panel project-panel--section flex-1 panel-border-dashed-top">
+            <div class="title-box view-title-box project-section-header">
+              <h3 class="title">공구 관리</h3>
+            </div>
+            <div class="panel-body project-section-body">
+              <!-- 공구 1 -->
+              <div class="form-area view-area project-section-item">
+                <div class="view-info project-section-item-header">
+                  <div class="view-header">
+                    <div class="view-row">
+                      <div class="view-label ">
+                        <strong class="tc-accent">공구명이 텍스트로 길어질 경우 예시 공구명이 텍스트로 길어질 경우 예시</strong> <span class="badge">공구</span>
+                      </div>
+                      <div class="view-value">
+                        <strong>코오롱글로벌(주)</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="view-content">
+                    <div class="view-row-inline">
+                      <div class="view-row">
+                        <div class="view-label">공사구간</div>
+                        <div class="view-value">충청남도 천안시 동남구 병천면 가전리 293-1 ~ 충청남도 천안시 동남구 병천면 가전리 293-1</div>
+                      </div>
+                      <div class="view-row">
+                        <div class="view-label auto-width">STA.</div>
+                        <div class="view-value">0+000 ~ 0+000</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="data-table data-table-view project-section-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr;">
+                  <div class="data-thead" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-th">부서</div>
+                      <div class="data-th">담당자</div>
+                      <div class="data-th">전화번호</div>
+                      <div class="data-th">메일 주소</div>
+                    </div>
+                  </div>
+                  <div class="data-tbody" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-td">토목사업본부</div>
+                      <div class="data-td">김수현</div>
+                      <div class="data-td">041-123-456</div>
+                      <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 공구 2 -->
+              <div class="form-area view-area project-section-item">
+                <div class="view-info project-section-item-header">
+                  <div class="view-row-between view-header">
+                    <div class="view-row">
+                      <div class="view-label ">
+                        <strong class="tc-accent">2</strong><span class="badge">공구</span>
+                      </div>
+                      <div class="view-value"><strong>(주)케이씨씨건설</strong></div>
+                    </div>
+                  </div>
+                  <div class="view-content">
+                    <div class="view-row-inline">
+                      <div class="view-row">
+                        <div class="view-label">공사구간</div>
+                        <div class="view-value">전북특별자치도 전주시 완산구 주화산동1가 ~ 전북특별자치도 전주시 완산구 주화산동1가</div>
+                      </div>
+                      <div class="view-row">
+                        <div class="view-label auto-width">STA.</div>
+                        <div class="view-value">0+000 ~ 0+000</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="data-table data-table-view project-section-table" style="display: grid; grid-template-columns: 1fr 1fr 1.2fr 2fr;">
+                  <div class="data-thead" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-th">부서</div>
+                      <div class="data-th">담당자</div>
+                      <div class="data-th">전화번호</div>
+                      <div class="data-th">메일 주소</div>
+                    </div>
+                  </div>
+                  <div class="data-tbody" style="display: contents;">
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-td">토목사업본부</div>
+                      <div class="data-td">김수현</div>
+                      <div class="data-td">041-123-456</div>
+                      <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                    </div>
+                    <div class="data-row" style="display: contents;">
+                      <div class="data-td">토목사업본부</div>
+                      <div class="data-td">김수현</div>
+                      <div class="data-td">041-123-456</div>
+                      <div class="data-td">hanmacdesign@hanmaceng.co.kr</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
