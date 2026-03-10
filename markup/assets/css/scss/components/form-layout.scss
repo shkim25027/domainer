@@ -317,8 +317,18 @@ hr {
     height: 24px;
     @include maskContents;
     border-radius: $radius-md;
-    background: linear-gradient(180deg, rgba(237, 229, 223, 1) 0%, rgba(237, 229, 223, 0) 100%);
+    background: linear-gradient(180deg, rgba(206, 201, 198, 1) 0%, rgba(206, 201, 198, 0) 100%);
     z-index: 1;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    background: linear-gradient(180deg, #FFF 0%, rgba(251, 247, 244, 0.00) 100%);
+    z-index: -1;
   }
 
   // table 구조
@@ -406,8 +416,31 @@ hr {
   }
 }
 
-.view-table {
+// grid(div) 기반 data-table이 긴 텍스트로 화면 밖으로 밀려나지 않도록
+// 컨테이너 안에서만 스크롤/줄바꿈 처리
+.data-table.data-table-view {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 
+  .data-row {
+    min-width: 0;
+  }
+
+  .data-th,
+  .data-td {
+    min-width: 0;
+  }
+
+  .data-td {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+.view-table {
   .view-row {
     display: flex;
     align-items: center;
@@ -427,48 +460,111 @@ hr {
   gap: 8px;
 }
 
-
+.view-content {
+  background: linear-gradient(270deg, rgba(236, 232, 224, 0.00) 0%, rgba(236, 232, 224, 0.30) 85%, rgba(236, 232, 224, 0.00) 100%);
+}
 .view-label {
+  padding: 4px 8px 4px 4px;
   position: relative;
   display: inline-flex;
   color: #8F8177;
   font-weight: 500;
   font-size: var(--font-base);
-  min-width: 60px;
-  &::before {
-    content: '';
-    position: absolute;
-    top: calc(50% - 5px);
-    right: 0;
-    width: 1px;
-    height: 10px;
-    background: rgba(0, 0, 0, 0.2);
-  }
+  min-width: 64px;
+  height: 42px;
+  align-self: flex-start;
+  align-items: center;
+  
 }
 
 .view-value {
+  padding: 4px;
   color: #000;
   font-weight: 500;
+  min-height: 42px;
   font-size: var(--font-base);
+  display: flex;
+  align-items: center;
 }
 .view-row,
-.view-row-line  {
+.view-header  {
   display: flex;
-  height: 42px;
   align-items: center;
   gap: 8px;
 }
-.view-row-line {
+.view-header {
   position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.05);
-    box-shadow: 0 2px 2px 0 #FFF;
+  &:not(:last-child) {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 2px 0 #FFF;
+    }
+  }
+
+  .view-label{
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(50% - 5px);
+      right: 0;
+      width: 1px;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.2);
+    }
   }
 }
+.data-table-view {
+  margin-top: 0;
+  &:before {
+    box-sizing: border-box;
+    height: 42px;
+    padding:1px;
+    background: linear-gradient(180deg, rgba(206, 201, 198, 1), rgba(206, 201, 198, 0));
+  }
+  .data-row {
+    &:last-child {
+      .data-td {
+        &:first-child{
+          border-bottom-left-radius: 6px;
+        }
+        &:last-child{
+          border-bottom-right-radius: 6px;
+        }
+      }
+    }
+    .data-th ,
+    .data-td {
+      min-height: 42px;
+      padding: 4px 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-base);
+    }
 
+    .data-th {
+      font-weight: 400;
+      border-bottom: 1px solid #CEC9C6;
+      margin-bottom: 0;
+      background: linear-gradient(180deg, #FFF 0%, rgba(251, 247, 244, 0.00) 100%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.80) 22.95%, rgba(255, 255, 255, 0.80) 100%);
+    }
+   
+    .data-td {
+      border-bottom: 1px solid rgba(227, 225, 223, 1);
+    
+      &:first-child {
+        border-left: 1px solid rgba(227, 225, 223, 1);
+      }
+      &:last-child {
+        border-right: 1px solid rgba(227, 225, 223, 1);
+      }
+    }
+  }
+}
