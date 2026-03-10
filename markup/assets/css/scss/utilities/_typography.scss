@@ -26,4 +26,4 @@
 .fw-bold     { font-weight: $font-weight-bold !important; }      // 700
 
 
-.tc-accent { color: var(--text-accent); }
+.tc-accent { color: var(--text-accent) !important; }
