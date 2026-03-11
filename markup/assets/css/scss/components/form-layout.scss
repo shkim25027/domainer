@@ -42,7 +42,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: $spacing-sm;
+  gap: $spacing-3;
   font-size: $font-size-sm;
   margin-bottom: 0;
   width: 100%;
@@ -300,7 +300,7 @@ hr {
 .data-table {
   position: relative;
   width: 100%;
-  margin-top: 4px;
+  margin-top: 12px;
   font-size: var(--font-base);
 
   &::before {
@@ -342,12 +342,11 @@ hr {
   // div 구조 (grid)
   .data-th {
     position: relative;
-    height: 36px;
-    margin-bottom: 4px;
+    height: 34px;
     text-align: center;
     font-weight: 500;
     color: #8F8177;
-    background: linear-gradient(180deg, #FFF 0%, rgba(251, 247, 244, 0.00) 100%);
+    background:  linear-gradient(180deg,#fff,hsla(26,47%,97%,0));
     background-size: 100% 24px;
     background-repeat: no-repeat;
     white-space: nowrap;
@@ -626,7 +625,7 @@ hr {
     .data-th {
       font-weight: 400;
       border-bottom: 1px solid rgba(148, 139, 132, 0.25);
-      background: linear-gradient(180deg, #FFF 0%, #FDFBF8 12.02%);
+      background:  linear-gradient(180deg,#fff,hsla(26,47%,97%,0));
       margin-bottom: 0;
   
     }

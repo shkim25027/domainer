@@ -146,7 +146,7 @@
             </div>
             <div class="panel-body">
               <div class="form-group" id="facilityGroup">
-                <div class="form-row-inline">
+                <div class="form-row-inline gap-2">
                   <select class="select-md" aria-placeholder="종류">
                     <option value disabled hidden>종류</option>
                     <option selected>나들목</option>
@@ -159,7 +159,7 @@
                     <button type="button" class="btn btn-remove btn-xs">—</button>
                   </div>
                 </div>
-                <div class="form-row-inline">
+                <div class="form-row-inline gap-2">
                   <select class="select-md" aria-placeholder="종류">
                     <option value="" disabled hidden selected>종류</option>
                     <option>나들목</option>
@@ -465,7 +465,7 @@
         if (addBtn) {
           addBtn.addEventListener('click', function() {
             var row = document.createElement('div');
-            row.className = 'form-row-inline';
+            row.className = 'form-row-inline gap-2';
             row.innerHTML = '<select class="select-md">' + getSelectHTML('') + '</select>'
               + getFieldHTML('', true);
             group.appendChild(row);
