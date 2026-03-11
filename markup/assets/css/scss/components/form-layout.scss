@@ -49,9 +49,6 @@
   &:not(:last-child) {
     margin-bottom: $spacing-lg;
   }
-  .btn-remove {
-    margin-left: 4px;
-  }
 }
 
 .form-group-full {
@@ -60,7 +57,7 @@
 
 .form-area {
   &:not(:last-child){
-    margin-bottom: $spacing-2xl;
+    margin-bottom: $spacing-8;
   }
 
   .btn-remove {
@@ -182,7 +179,9 @@ hr {
 .form-table {
   width: 100%;
   font-size: var(--font-base);
-
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
   // table 구조
   border-collapse: collapse;
   &.form-auto {
@@ -227,13 +226,13 @@ hr {
     display: flex;
     align-items: flex-start;
     min-width: 0;
+    gap: 16px;
     &.flex-half {
       min-width: calc(50% - 12px);
     }
   }
   .form-th,
   .form-cell {
-    padding: 3px 10px;
     vertical-align: middle;
   }
   .form-th {
@@ -268,7 +267,7 @@ hr {
 .form-row-inline {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 16px;
   min-width: 0;
 
 
@@ -428,7 +427,7 @@ hr {
 
 .view-area {
   &:not(:last-child){
-    margin-bottom: 36px;
+    margin-bottom: $spacing-8;
   }
 }
 .view-table {

@@ -14,39 +14,41 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-  padding: $spacing-lg $spacing-md $spacing-lg 0px;
+  padding: $spacing-md $spacing-lg;
   overflow: hidden;
   &:has(.panel-header:last-child) {
     padding-bottom: 0;
     border-radius: $radius-xl $radius-xl 0 0;
-    > .panel-header { padding: 0px $spacing-lg $spacing-sm; }
+    > .panel-header { padding-bottom: $spacing-sm; }
   }
 
   &:first-child,
   &.panel-border-dashed-top {
     > .title-box,
     .panel-body {
-      padding-left: 44px;
+     // padding-left: 44px;
     }
   }
   &:last-child {
     .panel-body {
-      padding-right: 28px;
-      padding-bottom: 20px;
+     // padding-right: 28px;
+      //padding-bottom: 20px;
     }
   }
   > .panel-header,
   > .title-box {
-    padding: 0px $spacing-lg $spacing-md;
     flex-shrink: 0;
   }
 }
 
+.title-box {
+ 
+}
 .panel-body {
   flex: 1;
   overflow-y: auto;
   min-height: 0;
-  padding: 0 calc($spacing-lg + 4px) 0 calc($spacing-lg - 4px);
+  padding: 0 $spacing-md;
   z-index: 1;
 }
 
@@ -65,9 +67,11 @@
 }
 
 .panel-radius-tl-0 {
+  padding-right: 0;
   border-top-left-radius: 0;
 }
 .panel-radius-tr-0 {
+  padding-left: 0;
   border-top-right-radius: 0;
 }
 
@@ -87,17 +91,7 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: $spacing-xs;
-  &::before {
-    content: " ";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 48px);
-    height: 1px;
-    opacity: 0.4;
-    background: #706453;
-  }
+  border-bottom: 1px solid rgba(112, 100, 83, 0.4);
 }
 
 .panel-title {
@@ -119,10 +113,6 @@
       vertical-align: middle;
     }
   }
-}
-.panel-body-right,
-.panel-body-left {
-  padding: 16px;
 }
 
 
@@ -386,9 +376,10 @@
 .title-box {
   display: flex;
   align-items: center;
+  height: 34px;
   gap: $spacing-md;
-  padding-bottom: $spacing-md;
-  padding-top: 2px;
+  padding: 0 $spacing-md ;
+  margin-bottom: $spacing-3;
   .title {
     font-size: $font-title-3;
     font-weight: $font-weight-medium;

@@ -204,7 +204,7 @@ textarea,
 .textarea {
   @extend .input;
 
-  min-height: 5rem;
+  min-height: 64px;
   padding: $spacing-xs $input-padding-x-sm;
   resize: vertical;
   line-height: 1.5;
