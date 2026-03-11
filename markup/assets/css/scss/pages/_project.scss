@@ -61,7 +61,7 @@
 }
 
 .project-info-map {
-  min-width: 280px;
+  min-width: 292px;
   .map-thumb {
     position: relative;
     border-radius: $radius-lg;
@@ -146,3 +146,13 @@
   }
 }
 
+.project-overview {
+  
+  .map-thumb {
+    width: 292px;
+    max-width: 292px;
+    img {
+      width: 100%;
+    }
+  }
+}
