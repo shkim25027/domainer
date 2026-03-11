@@ -587,7 +587,7 @@ select,
     /* 단일 선택: 옵션 클릭 (체크박스 없음) */
     .ms-option {
       padding: 6px 10px;
-      font-size: 13px;
+      font-size: var(--font-base);
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
