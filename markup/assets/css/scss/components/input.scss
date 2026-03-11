@@ -130,6 +130,7 @@ input,
   text-align: right;
 }
 
+
 // Date input - custom calendar icon
 input[type="date"],
 .input-date-icon,
@@ -139,6 +140,10 @@ input[type="date"],
   background-repeat: no-repeat;
   background-position: right 8px center;
   background-size: 14px 14px;
+
+}
+.input-datepicker{
+  max-width: 100%;
 }
 
 input[type="date"] {
