@@ -426,6 +426,12 @@ hr {
   }
 }
 
+
+.view-area {
+  &:not(:last-child){
+    margin-bottom: 36px;
+  }
+}
 .view-table {
   > .view-row,
   > .view-row-inline {
