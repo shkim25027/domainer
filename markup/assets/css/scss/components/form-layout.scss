@@ -617,15 +617,14 @@ hr {
     }
     .data-th ,
     .data-td {
-      min-height: 34px;
       padding: 4px 2px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: var(--font-base);
     }
-
     .data-th {
+      height: 34px;
       font-weight: 500;
       border-bottom: 1px solid rgba(148, 139, 132, 0.25);
       background:  linear-gradient(180deg,#fff,hsla(26,47%,97%,0));
@@ -634,6 +633,7 @@ hr {
     }
    
     .data-td {
+      min-height: 42px;
       border-bottom: 1px solid rgba(227, 225, 223, 1);
       background: rgba(255, 255, 255, 0.80);
       &:first-child {
