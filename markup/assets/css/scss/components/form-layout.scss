@@ -430,9 +430,11 @@ hr {
     margin-bottom: $spacing-8;
   }
 }
+.view-row-between {
+  justify-content: space-between;
+}
 .view-table {
-  > .view-row,
-  > .view-row-inline {
+  > [class*="view-row"] {
     position: relative;
     &:not(:last-child) {  
       &::before {
@@ -513,7 +515,7 @@ hr {
   background: linear-gradient(270deg, rgba(236, 232, 224, 0.00) 0%, rgba(236, 232, 224, 0.30) 85%, rgba(236, 232, 224, 0.00) 100%);
 }
 .view-label {
-  padding: 12px 8px 12px 4px;
+  padding: 12px 0px 12px 0px;
   position: relative;
   display: inline-flex;
   color: #8F8177;
@@ -548,7 +550,7 @@ hr {
 }
 
 .view-value {
-  padding: 8px 4px;
+  padding: 8px 0px;
   color: #000;
   font-weight: 500;
   min-height: 42px;
