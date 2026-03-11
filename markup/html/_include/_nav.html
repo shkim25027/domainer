@@ -95,7 +95,10 @@
       var href = a.getAttribute('href');
       if (!href || href === '#') return;
       var hrefFile = href.split('/').pop().split('?')[0].toLowerCase();
-      if (hrefFile && hrefFile === current) {
+      var isActive = hrefFile && (hrefFile === current ||
+        (hrefFile === 'pj_01_01.html' && current === 'pj_01_02.html') || // 공사정보 관리: 상세(PJ_01_02)에서도 active
+        (hrefFile === 'pj_02_01.html' && current === 'pj_02_02.html'));  // 조사·협의 관리: 상세(PJ_02_02)에서도 active
+      if (isActive) {
         var li = a.parentElement;
         li.classList.add('active');
         var parentUl = li.parentElement;
