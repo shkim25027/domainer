@@ -400,15 +400,15 @@
 
 .view-title-box{
   position: relative;
-  padding-left: 8px;
   .title {
     position: relative;
+    padding-left: 6px;
     z-index: 1;
     &::before {
       content: '';
       position: absolute;
       top: 50%;
-      left: -8px;
+      left: -1px;
       width: 2px;
       height: 12px;
       background: linear-gradient(180deg, #ABABAB 0%, #606060 100%);
