@@ -428,7 +428,8 @@ hr {
 
 .view-table {
   > .view-row,
-  >.view-row-inline {
+  > .view-row-inline {
+    position: relative;
     &:not(:last-child) {  
       &::before {
         content: '';
@@ -446,9 +447,7 @@ hr {
     display: flex;
     align-items: center;
     gap: 8px;
-    position: relative;
-  
-    
+      
   }
   .view-label {
     height: 46px;
