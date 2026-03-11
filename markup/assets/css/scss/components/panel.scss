@@ -402,13 +402,13 @@
   position: relative;
   .title {
     position: relative;
-    padding-left: 6px;
+    padding-left: 10px;
     z-index: 1;
     &::before {
       content: '';
       position: absolute;
       top: 50%;
-      left: -1px;
+      left: 0px;
       width: 2px;
       height: 12px;
       background: linear-gradient(180deg, #ABABAB 0%, #606060 100%);
