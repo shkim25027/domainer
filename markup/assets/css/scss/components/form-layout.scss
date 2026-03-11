@@ -526,6 +526,19 @@ hr {
   .badge {
     color: #323130;
   }
+  .justify {
+    display: block;
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+    text-align: justify;
+    text-justify: distribute-all-lines;
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+    }
+  }
 }
 
 // 공통 auto-width 유틸리티: 레이블 너비를 내용 크기에 맞게
