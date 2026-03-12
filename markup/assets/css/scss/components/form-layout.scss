@@ -235,6 +235,7 @@ hr {
 
   .form-th,
   .form-cell {
+    align-items: center;
     vertical-align: middle;
     min-height: calc($input-height-sm);
     line-height: calc($input-height-sm - 2px);
