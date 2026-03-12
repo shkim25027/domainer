@@ -511,6 +511,23 @@ hr {
   }
 }
 .view-table {
+  &:has(+ .data-table-view){
+    > [class*="form-row"] {
+      position: relative;
+      &:not(.title-row):not(:last-child) {  
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: -6px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: rgba(0, 0, 0, 0.05);
+          box-shadow: none;
+        }
+      }
+    }
+  }
   > [class*="form-row"] {
     position: relative;
     &:not(.title-row):not(:last-child) {  
@@ -525,7 +542,7 @@ hr {
         box-shadow: 0 1px 0 0 #FFF;
       }
     }
-
+    
     
   }
   .title-row {
@@ -535,6 +552,25 @@ hr {
     display: flex;
     align-items: center;
     gap: $spacing-xs;
+    &:has(.justify) {
+      width: 60px;
+      min-width: 60px;
+      flex-shrink: 0;
+      white-space: normal;
+    }
+    .justify {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      text-align: justify;
+      text-justify: inter-character;
+      word-spacing: 0;
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+      }
+    }
     &.sub-title {
       position: relative;
       padding-right: 16px;
@@ -547,6 +583,7 @@ hr {
         height: 10px;
         background: rgba(0, 0, 0, 0.2);
       }
+      
     }
   }
   .form-cell {
