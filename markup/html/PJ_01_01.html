@@ -73,8 +73,8 @@
                     <div class="form-row">
                       <div class="form-th">공사기간</div>
                       <div class="form-cell">
-                        <div class="form-row-inline">
-                          <div class="form-row-inline gap-1">
+                        <div class="form-row-inline gap-4">
+                          <div class="form-row-inline gap-1 flex-1">
                             <input type="text" id="datepicker" class="input-datepicker" value="2023.11.13" placeholder="시작일">
                             <span class="sep">~</span>
                             <input type="text" class="input-datepicker" value="2030.12.20" placeholder="종료일">
@@ -84,7 +84,7 @@
                       </div>
                     </div>
                     <div class="form-row-inline">
-                      <div class="form-row">
+                      <div class="form-row flex-1">
                         <div class="form-th">공사연장</div>
                         <div class="form-cell">
                           <div class="form-row-inline gap-1">
@@ -93,7 +93,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="form-row">
+                      <div class="form-row flex-1">
                         <div class="form-th">공사비</div>
                         <div class="form-cell">
                           <div class="form-row-inline gap-1">
@@ -434,10 +434,10 @@
           var removeBtn = removable ? '<button type="button" class="btn btn-remove btn-xs">—</button>' : '';
           if (type === '교량' || type === '터널') {
             return '<div class="form-row-inline flex-1 ">'
-              +'<div class="form-row-inline gap-1 ">'
+              +'<div class="form-row-inline gap-1  flex-1">'
               + '<input type="number" placeholder="0">'
               + '<span class="unit">개소</span>'
-              + '</div><div class="form-row-inline gap-1 ">'
+              + '</div><div class="form-row-inline gap-1  flex-1">'
               + '<input type="number" placeholder="0.00">'
               + '<span class="unit">km</span>'
               + removeBtn
