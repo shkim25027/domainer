@@ -11,8 +11,8 @@
 .text-sm   { font-size: $font-size-sm; }   // 13px
 .text-base { font-size: $font-size-base; }  // 14px
 .text-md   { font-size: $font-size-md; }   // 14px 
-.text-lg   { font-size: $font-size-lg; }    // 16px
-.text-xl   { font-size: $font-size-xl; }    // 18px
+.text-lg   { font-size: $font-size-lg !important; }    // 16px
+.text-xl   { font-size: $font-size-xl !important; }    // 18px
 
 // ----- Font Size (제목) -----
 .text-title-1 { font-size: $font-title-1; }  // 32px

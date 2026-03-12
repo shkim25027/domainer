@@ -25,12 +25,14 @@
             </div>
           </div>
 
+
+
           <!-- 상단: 공사 기본정보 + 주요시설물 요약 -->
-          <div class="panel-grid project-layout project-layout--summary" style="grid-template-columns: 1008fr 705fr;">
+          <div class="panel-grid project-info-wrap" style="grid-template-columns: 1008fr 705fr;">
             <!-- 좌: 공사 기본정보 (보기) -->
-            <div class="panel project-panel project-panel--overview panel-radius-tl-0">
-              <div class="panel-body project-overview-body">
-                <div class="project-info project-overview">
+            <div class="panel panel-radius-tl-0">
+              <div class="panel-body">
+                <div class="project-info">
                   <!-- 좌: 지도 썸네일 -->
                   <div class="project-info-map">
                     <div class="map-thumb">
@@ -44,127 +46,134 @@
                       ></a>
                     </div>
                   </div>
-                  <!-- 우: 사업 기본정보 (보기) -->
-                  <div class="project-info-form project-overview-form">
-                    <div class="view-area project-overview-card">
-                      <div class="title-box view-title-box project-section-header">
-                        <h3 class="title"> 
-                          <span class="title-label">공사명</span>
+                
+                  <!-- 중: 사업 기본정보 폼 -->
+                  <div class="project-info-form">
+                    <div class="form-table view-table fw-medium">
+                      <div class="form-row title-row">
+                        <div class="form-th">
+                          <strong class="form-th-label">공사명</strong>
+                        </div>
+                        <div class="form-cell">
                           <strong class="tc-accent">고속국도 제30호 서산영덕선(대산~당진) 건설공사</strong>
-                        </h3>
-
+                        </div>
                       </div>
-                      <div class="view-table project-overview-table">
-                        <div class="view-row">
-                          <div class="view-label">공사구간</div>
-                          <div class="view-value">충청남도 서산시 대산읍 화곡리 ~ 충청남도 당진시 사기소동</div>
+                      <div class="form-row">
+                        <div class="form-th">공사구간</div>
+                        <div class="form-cell">
+                          충청남도 서산시 대산읍 화곡리 <span class="fw-thin">~</span> 충청남도 당진시 사기소동                            
                         </div>
-                        <div class="view-row">
-                          <div class="view-label">공사기간</div>
-                          <div class="view-value">2023.11.13 ~ 2030.12.20 <span class="text-sub">착공일로부터 <strong>36</strong>개월</span></div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-th">공사기간</div>
+                        <div class="form-cell">
+                          2023.11.13 ~ 2030.12.20 <span class="text-sub">착공일로부터 <strong>36</strong>개월</span>
                         </div>
-                        <div class="view-row-between">
-                          <div class="view-row ">
-                            <div class="view-label">공사연장</div>
-                            <div class="view-value gap-1">25.36<span class="fw-normal">km</span></div>
+                      </div>
+                      <div class="form-row-between">
+                        <div class="form-row">
+                          <div class="form-th">공사연장</div>
+                          <div class="form-cell">
+                            25.36<span class="fw-thin">km</span>
                           </div>
-                          <div class="view-row ">
-                            <div class="view-label">공&nbsp;&nbsp;사&nbsp;&nbsp;비</div>
-                            <div class="view-value gap-1">9,131,000,000,000 <span class="fw-normal">원</span></div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-th">공&nbsp;&nbsp;사&nbsp;&nbsp;비</div>
+                          <div class="form-cell">
+                            9,131,000,000,000 <span class="fw-thin">원</span>
                           </div>
                         </div>
-                        <div class="view-row">
-                          <div class="view-label">과업목적</div>
-                          <div class="view-value fw-normal">
+                      </div>
+                      <div class="form-row">
+                        <div class="form-th">과업목적</div>
+                        <div class="form-cell ">
+                          <p class="textarea-form">
                             황해권 물류거점인 대산항 및 대죽자원비축 산업단지 등과 연결되는 고속도로망 확충으로 지역균형 발전 촉진
-                          </div>
+                          </p>
                         </div>
-                        <div class="view-row-inline">
-                          <div class="view-row flex-1">
-                            <div class="view-label ">
-                              사&nbsp;&nbsp;업&nbsp;&nbsp;자
-                            </div>
-                            <div class="view-value">
-                              <span>서산아산건설사업단</span>
-                              <span class="view-value-badge">D412565</span>
-                                <span class="view-value-separator">/</span>  
-                                <span>본사(토지공간실)</span>
-                            </div>
-                            
-                          </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-th">사&nbsp;&nbsp;업&nbsp;&nbsp;자</div>
+                        <div class="form-cell gap-3">
+                          <span>서산아산건설사업단 <span class="value-badge">D412565</span></span>
+                          
+                            <span class="value-separator">/</span>  
+                            <span>본사(토지공간실)</span>
+
                         </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
 
             <!-- 우: 주요시설물 (보기) -->
-            <div class="panel project-panel project-panel--summary panel-border-dashed-left panel-radius-tr-0">
-              <div class="title-box view-title-box project-section-header">
+            <div class="panel panel-radius-tr-0 panel-border-dashed-left">
+              <div class="view-title-box title-box">
                 <h3 class="title">주요시설물</h3>
               </div>
-              <div class="panel-body project-summary-body">
-                <div class="view-area project-summary-card">
-                  <div class="view-info project-summary-info">
-                    <div class="view-table project-summary-table">
-                      <div class="view-row">
-                        <div class="view-label"><span class="justify">나 들 목</span></div>
-                        <div class="view-value">대산, 대호지, 정미</div>
-                      </div>
-                      <div class="view-row">
-                        <div class="view-label"><span class="justify">분 기 점</span></div>
-                        <div class="view-value">당진</div>
-                      </div>
-                      <div class="view-row">
-                        <div class="view-label"><span class="justify">터 널</span></div>
-                        <div class="view-value gap-1">4<span class="fw-thin">개소 (</span> 2.57 <span class="fw-thin">km)</span></div>
-                      </div>
-                      <div class="view-row">
-                        <div class="view-label"><span class="justify">교 량</span></div>
-                        <div class="view-value">46<span class="fw-thin">개소 (</span>3.85 <span class="fw-thin">km)</span></div>
-                      </div>
+              <div class="panel-body">
+                <div class="form-table view-table fw-medium">
+                  <div class="form-row">
+                    <div class="form-th"><span class="justify">나 들 목</span></div>
+                    <div class="form-cell">
+                      대산, 대호지, 정미                     
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-th"><span class="justify">분 기 점</span></div>
+                    <div class="form-cell">
+                      당진                   
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-th"><span class="justify">교 량</span></div>
+                    <div class="form-cell gap-2">
+                      <span>46<span class="fw-thin">개소</span></span>
+                      <span class="fw-thin">(<span class="fw-medium">3.85</span>km)</span>        
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-th"><span class="justify">터 널</span></div>
+                    <div class="form-cell gap-2">
+                      <span>4<span class="fw-thin">개소</span></span>
+                      <span class="fw-thin">(<span class="fw-medium">2.57</span>km)</span>        
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
           <!-- 하단: 공구 관리 (보기) -->
-          <div class="panel project-panel project-panel--section flex-1 panel-border-dashed-top">
-            <div class="title-box view-title-box project-section-header">
+          <div class="panel flex-1 panel-border-dashed-top">
+            <div class="title-box view-title-box">
               <h3 class="title">공구 관리</h3>
             </div>
-            <div class="panel-body project-section-body">
+            <div class="panel-body">
               <!-- 공구 1 -->
-              <div class="form-area view-area project-section-item">
-                <div class="view-info project-section-item-header">
-                  <div class="view-header">
-                    <div class="view-row">
-                      <div class="view-label gap-1">
-                        <strong class="tc-accent">공구명이 텍스트로 길어질 경우 예시 공구명이 텍스트로 길어질 경우 예시</strong> <span>공구</span>
-                      </div>
-                      <div class="view-value">
-                        <strong>코오롱글로벌(주)</strong>
-                      </div>
+              <div class="form-area view-area">
+                <div class="form-table view-table">
+                  <div class="form-row">
+                    <div class="form-th sub-title">
+                      <strong class="tc-accent text-lg">공구명이 텍스트로 길어질 경우 예시 공구명이 텍스트로 길어질 경우 예시</strong><span>공구</span>
                     </div>
+                    <div class="form-cell text-xl"><strong>코오롱글로벌(주)</strong></div>
                   </div>
-                  <div class="view-content">
-                    <div class="view-row-inline">
-                      <div class="view-row">
-                        <div class="view-label">공사구간</div>
-                        <div class="view-value">충청남도 천안시 동남구 병천면 가전리 293-1 ~ 충청남도 천안시 동남구 병천면 가전리 293-1</div>
-                      </div>
-                      <div class="view-row">
-                        <div class="view-label auto-width">STA.</div>
-                        <div class="view-value">0+000 ~ 0+000</div>
-                      </div>
+                  <div class="form-row-between">
+                    <div class="form-row">
+                      <div class="form-th">공사구간</div>
+                      <div class="form-cell">충청남도 천안시 동남구 병천면 가전리 293-1 ~ 충청남도 천안시 동남구 병천면 가전리 293-1</div>
+                    </div>
+                    <div class="form-row-inline">
+                      <div class="form-th auto-width">STA.</div>
+                      <div class="form-cell">0+000 ~ 0+000</div>
                     </div>
                   </div>
                 </div>
-
                 <div class="data-table data-table-view project-section-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
@@ -186,31 +195,27 @@
               </div>
 
               <!-- 공구 2 -->
-              <div class="form-area view-area project-section-item">
-                <div class="view-info project-section-item-header">
-                  <div class="view-row-between view-header">
-                    <div class="view-row">
-                      <div class="view-label gap-1">
-                        <strong class="tc-accent">2</strong><span>공구</span>
-                      </div>
-                      <div class="view-value"><strong>(주)케이씨씨건설</strong></div>
+              <div class="form-area view-area">
+                <div class="form-table view-table">
+                  <div class="form-row">
+                    <div class="form-th sub-title">
+                      <strong class="tc-accent text-lg">2</strong><span>공구</span>
                     </div>
+                    <div class="form-cell text-xl"><strong>(주)케이씨씨건설</strong></div>
                   </div>
-                  <div class="view-content">
-                    <div class="view-row-inline">
-                      <div class="view-row">
-                        <div class="view-label">공사구간</div>
-                        <div class="view-value">전북특별자치도 전주시 완산구 주화산동1가 ~ 전북특별자치도 전주시 완산구 주화산동1가</div>
-                      </div>
-                      <div class="view-row">
-                        <div class="view-label auto-width">STA.</div>
-                        <div class="view-value">0+000 ~ 0+000</div>
-                      </div>
+                  <div class="form-row-between">
+                    <div class="form-row">
+                      <div class="form-th">공사구간</div>
+                      <div class="form-cell">전북특별자치도 전주시 완산구 주화산동1가 ~ 전북특별자치도 전주시 완산구 주화산동1가</div>
+                    </div>
+                    <div class="form-row-inline">
+                      <div class="form-th auto-width">STA.</div>
+                      <div class="form-cell">0+000 ~ 0+000</div>
                     </div>
                   </div>
                 </div>
 
-                <div class="data-table data-table-view project-section-table" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr;">
+                <div class="data-table data-table-view" style="display: grid; grid-template-columns: 1fr 1fr 1fr 2fr;">
                   <div class="data-thead" style="display: contents;">
                     <div class="data-row" style="display: contents;">
                       <div class="data-th">부서</div>

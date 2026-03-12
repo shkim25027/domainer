@@ -28,6 +28,9 @@
     &:first-child {
       min-width: 52.5vw;
     }
+    .form-cell {
+      font-size: var(--font-lg);
+    }
   }
 }
 
@@ -53,6 +56,9 @@
   column-gap: $spacing-md;
   width: 100%;
   .project-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
     width: 100%;
     .form-th  {
       width: 64px;
@@ -74,93 +80,5 @@
       height: 100%;
       display: block;
     }
-  }
-}
-
-// 사업자 행: 사업자명 | [코드 + Q 코드검색] | 본사 버튼 | 추가 입력 (이미지 시안)
-.project-info-business-row {
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  flex-wrap: wrap;
-
-  > .input-md {
-    min-width: 120px;
-  }
-}
-
-.project-info-facility {
-  @media (max-width: 1024px) {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid $gray-200;
-    padding-top: $spacing-xl;
-  }
-}
-
-// 하단: 공구관리 (2번 시안 스타일 참고)
-.project-info-bottom {
-  border-top: 1px solid $gray-200;
-  padding-top: $spacing-xl;
-
-  .form-title-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: $spacing-md;
-    margin-bottom: $spacing-sm;
-  }
-  .form-desc {
-    font-size: $font-size-xs;
-    color: $gray-500;
-    margin: 0 0 $spacing-lg 0;
-  }
-}
-
-.gonggu-block {
-  border: 1px solid $gray-200;
-  border-radius: $radius-lg;
-  padding: $spacing-lg;
-  background: $gray-50;
-  &:not(:last-child) {
-    margin-bottom: $spacing-lg;
-  }
-}
-
-.gonggu-header {
-  margin-bottom: $spacing-md;
-  .input-auto {
-    width: 48px;
-    text-align: center;
-  }
-  .gonggu-company {
-    font-size: $font-size-sm;
-    color: $gray-600;
-    margin-left: $spacing-sm;
-    strong {
-      color: $gray-900;
-      font-weight: $font-weight-semibold;
-    }
-  }
-}
-
-.project-panel--overview {
-  min-width: 52.5vw;
-}
-.project-overview-card {
-
-  .title-box {
-    padding:0;
-  }
-}
-
-.project-layout--summary {
-  min-height: 338px;
-}
-
-.project-section-header {
-  .title-label {
-    min-width: 54px;
   }
 }
