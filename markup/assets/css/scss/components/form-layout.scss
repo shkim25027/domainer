@@ -313,25 +313,27 @@ hr {
   .lbl   { font-size: var(--font-sm); font-weight: 500; flex-shrink: 0; }
   .note  { font-size: var(--font-base); color: #555; flex-shrink: 0;  strong {color:#000;}}
 }
-
-[class*="form-row"] {
-  &.divider {
-    gap: 24px;
-    > *:first-child {
-      position: relative;
-      padding-right: 24px;
-      &::before {
-        content: "";
-        height: 10px;
-        position: absolute;
-        right: 0;
-        top: calc(50% - 5px);
-        width: 1px;
-        background: rgba(0, 0, 0, .2);
+.form-table{
+  [class*="form-row"] {
+    &.divider {
+      gap: 24px;
+      > *:first-child {
+        position: relative;
+        padding-right: 24px;
+        &::before {
+          content: "";
+          height: 10px;
+          position: absolute;
+          right: 0;
+          top: calc(50% - 5px);
+          width: 1px;
+          background: rgba(0, 0, 0, .2);
+        }
       }
     }
   }
 }
+
 
 
 .form-row-between {
@@ -407,6 +409,7 @@ hr {
     height: 34px;
     text-align: center;
     font-weight: 500;
+    font-size: var(--font-md);
     color: #8F8177;
     background:  linear-gradient(180deg,#fff,hsla(26,47%,97%,0));
     background-size: 100% 24px;
@@ -424,6 +427,7 @@ hr {
     padding: 2px 3px;
     text-align: center; 
     color: var(--gray-800);
+    font-size: var(--font-base);
     //background: var(--white);
     input { width: 100%; } 
     &:has(.btn-remove) {
@@ -527,9 +531,6 @@ hr {
   }
   .title-row {
     font-size: var(--font-xl);
-    .form-cell {
-      font-size: var(--font-xl);
-    }
   }
   .form-th {
     display: flex;
