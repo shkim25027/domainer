@@ -309,6 +309,7 @@ textarea,
     white-space: nowrap;
     border-radius: $radius-md;
     padding: 0 8px;
+    font-size: var(--font-sm);
     &:hover {
       background: $gray-200;
     }
