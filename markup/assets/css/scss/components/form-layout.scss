@@ -320,6 +320,9 @@ hr {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+ > .form-cell{
+    justify-content: flex-end;
+  }
 }
 // ────────────────────────────────────────────────
 // Data Row Inline
