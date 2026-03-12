@@ -314,6 +314,25 @@ hr {
   .note  { font-size: var(--font-base); color: #555; flex-shrink: 0;  strong {color:#000;}}
 }
 
+[class*="form-row"] {
+  &.divider {
+    gap: 24px;
+    > *:first-child {
+      position: relative;
+      padding-right: 24px;
+      &::before {
+        content: "";
+        height: 10px;
+        position: absolute;
+        right: 0;
+        top: calc(50% - 5px);
+        width: 1px;
+        background: rgba(0, 0, 0, .2);
+      }
+    }
+  }
+}
+
 
 .form-row-between {
   display: flex;
@@ -683,4 +702,3 @@ hr {
     }
   }
 }
-
