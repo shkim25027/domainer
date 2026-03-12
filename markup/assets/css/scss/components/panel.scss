@@ -62,12 +62,13 @@
     &::before {
       content: '';
       position: absolute;
-      top: 6.5px;
+      top: 50%;
       left: 0;
       width: 2px;
       height: 12px;
       background: linear-gradient(180deg, #ABABAB 0%, #606060 100%);
       filter: drop-shadow(1px 0 0 rgba(0, 0, 0, 0.10));
+      transform: translateY(-50%);
     }
   }
 }
