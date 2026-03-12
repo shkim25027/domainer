@@ -288,6 +288,7 @@ hr {
     flex: 1;
     min-width: 0;
     //background: var(--white);
+    .note  { font-size: var(--font-base); color: #555; flex-shrink: 0;  strong {color:#000;}}
   }
 }
 
@@ -309,7 +310,7 @@ hr {
   .sep   { min-width: 20px; color: var(--gray-400); flex-shrink: 0; text-align: center; }
   .unit  { min-width: 20px; color: var(--gray-600); font-size: var(--font-sm); flex-shrink: 0; }
   .lbl   { font-size: var(--font-sm); font-weight: 500; flex-shrink: 0; }
-  .note  { font-size: var(--font-xs); color: #555; flex-shrink: 0;  strong {color:#000;}}
+  .note  { font-size: var(--font-base); color: #555; flex-shrink: 0;  strong {color:#000;}}
 }
 
 
@@ -507,17 +508,12 @@ hr {
       font-size: var(--font-xl);
     }
   }
-  .form-row {
-    &:has(.sub-title) {
-      gap: $spacing-sm;
-    }
-  }
   .form-th {
     display: flex;
     gap: $spacing-xs;
     &.sub-title {
       position: relative;
-      padding-right: 10px;
+      padding-right: 16px;
       &::before {
         content: '';
         position: absolute;
