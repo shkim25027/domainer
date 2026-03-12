@@ -41,16 +41,6 @@
   }
 }
 
-// 상단 3열: 지도 | 사업 기본정보 | 주요시설물
-.project-info-top {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: $spacing-xl;
-  align-items: start;
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
-}
 .project-info {
   display: flex;
   column-gap: $spacing-md;

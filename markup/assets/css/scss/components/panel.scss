@@ -1,12 +1,13 @@
 @charset "UTF-8";
 
 // ================================================
-// Panel Components (필터 패널, 리스트/상세 패널, 진행 단계)
+// Panel Components
 // ================================================
 
 @use '../import/component-variables' as *;
 @use '../import/component-mixins' as *;
 
+// ---- Panel base ----
 .panel {
   background: rgba(252, 251, 249, 1);
   border-radius: $radius-xl;
@@ -16,34 +17,19 @@
   min-height: 0;
   padding: $spacing-md $spacing-lg;
   overflow: hidden;
+
   &:has(.panel-header:last-child) {
     padding-bottom: 0;
     border-radius: $radius-xl $radius-xl 0 0;
     > .panel-header { padding-bottom: $spacing-sm; }
   }
 
-  &:first-child,
-  &.panel-border-dashed-top {
-    > .title-box,
-    .panel-body {
-     // padding-left: 44px;
-    }
-  }
-  &:last-child {
-    .panel-body {
-     // padding-right: 28px;
-      //padding-bottom: 20px;
-    }
-  }
   > .panel-header,
   > .title-box {
     flex-shrink: 0;
   }
 }
 
-.title-box {
- 
-}
 .panel-body {
   flex: 1;
   overflow-y: auto;
@@ -52,24 +38,60 @@
   z-index: 1;
 }
 
-.panel-grid  {
+.title-box {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+  margin-bottom: $spacing-3;
+  .title {
+    font-size: $font-title-3;
+    font-weight: $font-weight-medium;
+    display: flex;
+    gap: $spacing-sm;
+  }
+}
+
+.view-title-box {
+  position: relative;
+  .title {
+    position: relative;
+    padding-left: 10px;
+    z-index: 1;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 6.5px;
+      left: 0;
+      width: 2px;
+      height: 12px;
+      background: linear-gradient(180deg, #ABABAB 0%, #606060 100%);
+      filter: drop-shadow(1px 0 0 rgba(0, 0, 0, 0.10));
+    }
+  }
+}
+
+// ---- Panel layout ----
+.panel-grid {
   display: grid;
   width: 100%;
 }
+
 .panel-inline {
   display: flex;
   min-height: 0;
   width: 100%;
   overflow: hidden;
-  .panel {
-    flex: 1;
-  }
+  .panel { flex: 1; }
 }
 
+// ---- Panel modifiers (radius, border) ----
 .panel-radius-tl-0 {
   padding-right: 0;
   border-top-left-radius: 0;
 }
+
 .panel-radius-tr-0 {
   padding-left: 0;
   border-top-right-radius: 0;
@@ -77,14 +99,13 @@
 
 .panel-border-dashed-left {
   border-left: 1px dashed #E5DCD6;
-  
 }
+
 .panel-border-dashed-top {
   border-top: 1px dashed #E5DCD6;
 }
 
-
-
+// ---- Panel header ----
 .panel-header {
   position: relative;
   display: flex;
@@ -102,7 +123,6 @@
   font-weight: 700;
   color: var(--text-page-title);
   height: 34px;
-
   .ico-title {
     padding-top: 2px;
     width: 19px;
@@ -116,9 +136,7 @@
   }
 }
 
-
-
-// Filter panel (사이드 필터)
+// ---- Filter panel (사이드 필터) ----
 .filter-panel {
   width: 320px;
   background: $white;
@@ -126,83 +144,72 @@
   padding: $spacing-xl $spacing-lg $spacing-xl;
   margin: $spacing-xl auto;
   box-shadow: $shadow-sm;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+  }
+  .header h2 {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    margin: 0;
+    color: $gray-900;
+  }
+  .reset {
+    font-size: $font-size-xs;
+    color: $gray-500;
+    cursor: pointer;
+  }
+  .section {
+    border-top: $input-border-width solid $gray-200;
+    padding: $spacing-md 0;
+  }
+  .section:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+  .section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-md;
+  }
+  .section-title .count {
+    background: $primary;
+    color: $white;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-normal;
+    padding: 2px $spacing-sm;
+    border-radius: $radius-full;
+    margin-left: $spacing-sm;
+  }
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    font-size: $font-size-sm;
+  }
+  .checklist label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+  }
+  .footer {
+    margin-top: $spacing-xl;
+    display: flex;
+    gap: $spacing-md;
+  }
+  .footer .btn {
+    flex: 1;
+    padding: $spacing-md 0;
+  }
 }
 
-.filter-panel .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: $spacing-lg;
-}
-
-.filter-panel .header h2 {
-  font-size: $font-size-base;
-  font-weight: $font-weight-semibold;
-  margin: 0;
-  color: $gray-900;
-}
-
-.filter-panel .reset {
-  font-size: $font-size-xs;
-  color: $gray-500;
-  cursor: pointer;
-}
-
-.filter-panel .section {
-  border-top: $input-border-width solid $gray-200;
-  padding: $spacing-md 0;
-}
-
-.filter-panel .section:first-of-type {
-  border-top: none;
-  padding-top: 0;
-}
-
-.filter-panel .section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-semibold;
-  margin-bottom: $spacing-md;
-}
-
-.filter-panel .section-title .count {
-  background: $primary;
-  color: $white;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-normal;
-  padding: 2px $spacing-sm;
-  border-radius: $radius-full;
-  margin-left: $spacing-sm;
-}
-
-.filter-panel .checklist {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  font-size: $font-size-sm;
-}
-
-.filter-panel .checklist label {
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  cursor: pointer;
-}
-
-.filter-panel .footer {
-  margin-top: $spacing-xl;
-  display: flex;
-  gap: $spacing-md;
-}
-
-.filter-panel .footer .btn {
-  flex: 1;
-  padding: $spacing-md 0;
-}
-
-// Layout: 3열 (사이드 + 리스트 + 상세)
+// ---- Layout: 3열 (사이드 + 리스트 + 상세) ----
 .layout {
   display: grid;
   grid-template-columns: 240px 360px 1fr;
@@ -222,7 +229,7 @@
   background: $gray-50;
 }
 
-// List item (민원 목록 등)
+// ---- List item (민원 목록 등) ----
 .list-item {
   padding: $spacing-md;
   border-radius: $radius-lg;
@@ -230,15 +237,13 @@
   margin-bottom: $spacing-md;
   cursor: pointer;
   @include transition(border-color, background-color);
-}
-
-.list-item:hover {
-  border-color: $gray-300;
-}
-
-.list-item.active {
-  border-color: $primary;
-  background: rgba($primary, 0.06);
+  &:hover {
+    border-color: $gray-300;
+  }
+  &.active {
+    border-color: $primary;
+    background: rgba($primary, 0.06);
+  }
 }
 
 .list-title {
@@ -255,7 +260,7 @@
   justify-content: space-between;
 }
 
-// Detail header
+// ---- Detail ----
 .detail-header {
   display: flex;
   justify-content: space-between;
@@ -269,7 +274,7 @@
   color: $gray-900;
 }
 
-// Status badge (처리중, 종결 등)
+// ---- Status badge (처리중, 종결 등) ----
 .status {
   padding: $spacing-sm $spacing-md;
   border-radius: $radius-full;
@@ -289,122 +294,79 @@
   color: $primary;
 }
 
-// Info row (키-값 행)
+// ---- Info row (키-값 행) ----
 .info-row {
   display: grid;
   grid-template-columns: 120px 1fr;
   font-size: $font-size-sm;
   padding: $spacing-sm 0;
   gap: $spacing-md;
+  span:first-child {
+    color: $gray-500;
+  }
 }
 
-.info-row span:first-child {
-  color: $gray-500;
-}
-
-// Cards grid (담당자 카드 2열)
+// ---- Cards grid (담당자 카드 2열) ----
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: $spacing-lg;
+  .card {
+    max-width: none;
+    box-shadow: none;
+    background: $gray-100;
+    border-radius: $radius-xl;
+    padding: $spacing-lg;
+    font-size: $font-size-sm;
+    h4 {
+      margin: 0 0 $spacing-sm 0;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+    }
+    .badge {
+      margin-left: $spacing-sm;
+      font-size: $font-size-xs;
+      padding: 2px $spacing-sm;
+      background: rgba($primary, 0.15);
+      color: $primary;
+      border-radius: $radius-md;
+    }
+  }
 }
 
-.cards .card {
-  max-width: none;
-  box-shadow: none;
-  background: $gray-100;
-  border-radius: $radius-xl;
-  padding: $spacing-lg;
-  font-size: $font-size-sm;
-}
-
-.cards .card h4 {
-  margin: 0 0 $spacing-sm 0;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-semibold;
-}
-
-.cards .card .badge {
-  margin-left: $spacing-sm;
-  font-size: $font-size-xs;
-  padding: 2px $spacing-sm;
-  background: rgba($primary, 0.15);
-  color: $primary;
-  border-radius: $radius-md;
-}
-
-// Progress (단계 표시)
+// ---- Progress (단계 표시) ----
 .progress {
   display: flex;
   align-items: center;
   gap: $spacing-md;
   margin-top: $spacing-xl;
-}
-
-.progress .step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: $font-size-xs;
-  color: $gray-500;
-}
-
-.progress .circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: $gray-200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: $font-weight-bold;
-  margin-bottom: $spacing-xs;
-  font-size: $font-size-sm;
-}
-
-.progress .step.done .circle {
-  background: $primary;
-  color: $white;
-}
-
-.progress .line {
-  flex: 1;
-  height: 2px;
-  background: $gray-200;
-  min-width: 24px;
-}
- 
-.title-box {
-  display: flex;
-  align-items: center;
-  height: 34px;
-  gap: $spacing-md;
-  padding: 0 $spacing-md ;
-  margin-bottom: $spacing-3;
-  .title {
-    font-size: $font-title-3;
-    font-weight: $font-weight-medium;
+  .step {
     display: flex;
-    gap: $spacing-sm;
-  }
-}
-
-.view-title-box{
-  position: relative;
-  .title {
-    position: relative;
-    padding-left: 10px;
-    z-index: 1;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 6.5px;
-      left: 0px;
-      width: 2px;
-      height: 12px;
-      background: linear-gradient(180deg, #ABABAB 0%, #606060 100%);
-      filter: drop-shadow(1px 0 0 rgba(0, 0, 0, 0.10));
+    flex-direction: column;
+    align-items: center;
+    font-size: $font-size-xs;
+    color: $gray-500;
+    &.done .circle {
+      background: $primary;
+      color: $white;
     }
   }
-  
+  .circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: $gray-200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-xs;
+    font-size: $font-size-sm;
+  }
+  .line {
+    flex: 1;
+    height: 2px;
+    background: $gray-200;
+    min-width: 24px;
+  }
 }
