@@ -511,6 +511,7 @@ hr {
   }
   .form-th {
     display: flex;
+    align-items: center;
     gap: $spacing-xs;
     &.sub-title {
       position: relative;
@@ -523,9 +524,6 @@ hr {
         width: 1px;
         height: 10px;
         background: rgba(0, 0, 0, 0.2);
-      }
-      .text-lg + span {
-        padding-top: 1px;
       }
     }
   }
