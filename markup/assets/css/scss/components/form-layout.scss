@@ -236,7 +236,7 @@ hr {
   .form-th,
   .form-cell {
     vertical-align: middle;
-    height: calc($input-height-sm);
+    min-height: calc($input-height-sm);
     line-height: calc($input-height-sm - 2px);
     &:has(textarea, .textarea-form){
       min-height: calc($input-height-sm);
