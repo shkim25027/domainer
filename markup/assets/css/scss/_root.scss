@@ -151,13 +151,13 @@ $z-index-tooltip: 1070;
 // ================================================
 :root {
   /* Font */
-  --font-xxs: 0.625rem;    /* 12px */
-  --font-xs: 0.75rem;    /* 12px */
-  --font-sm: 0.8125rem;  /* 13px */
-  --font-base: 0.94rem; /* 14px */
-  --font-md: 0.875rem;   // 14px  
-  --font-lg: 1rem;        // 16px
-  --font-xl: 1.125rem;    // 18px
+  --font-xxs: $font-size-xxs;    /* 12px */
+  --font-xs: $font-size-xs;    /* 12px */
+  --font-sm: $font-size-sm;  /* 13px */
+  --font-base: $font-size-base; /* 14px */
+  --font-md: $font-size-md;   // 14px  
+  --font-lg: $font-size-lg;        // 16px
+  --font-xl: $font-size-xl;    // 18px
 
   /* Radius */
   --radius-none: 0;
