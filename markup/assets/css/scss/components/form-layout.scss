@@ -679,9 +679,10 @@ hr {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: var(--font-base);
+      
     }
     .data-th {
+      font-size: var(--font-md);
       height: 34px;
       font-weight: 500;
       border-bottom: 1px solid rgba(148, 139, 132, 0.25);
@@ -691,6 +692,7 @@ hr {
     }
    
     .data-td {
+      font-size: var(--font-base);
       min-height: 40px;
       border-bottom: 1px solid rgba(227, 225, 223, 1);
       background: rgba(255, 255, 255, 0.80);
